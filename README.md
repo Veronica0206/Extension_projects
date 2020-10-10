@@ -14,6 +14,7 @@ Frequentist Framework:
 
 **Example data:** <br>
 - [Data](https://github.com/Veronica0206/Extension_projects/blob/master/OpenMx_E1/example_data.csv)
+
 **Source Code:** <br>
 ***R package: OpenMx*** <br>
 - [PBLSGMs for estimating fixed knots](https://github.com/Veronica0206/Extension_projects/blob/master/OpenMx_E1/PBLSGM_fixed.R)
