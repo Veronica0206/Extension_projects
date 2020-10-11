@@ -26,7 +26,7 @@ Frequentist Framework:
 
 ## Part II: Extending Mixture of Experts Model to Investigate Heterogeneity of Trajectories
 **Description:** <br>
-In this part, we extended the mixture of experts model to SEM framework with unstructured time framework:
+In this part, we extended the mixture of experts model to the SEM framework with individual measurement occasions:
 - Full mixture of experts
 - Expert-network mixture of experts
 - Gating-network mixture of experts
