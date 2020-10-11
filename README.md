@@ -1,6 +1,6 @@
 # Extension projects
 
-## Part I: Parallel Bilinear spline growth models (PBLSGMs) in the framework of individual measurement occasions
+## Part I: Parallel Bilinear Spline Growth Models (PBLSGMs) in the Framework of Individual Measurement Occasions
 **Description:** <br>
 In this part, we developed two models in unstructured time framework:
 - PBLSGMs for estimating fixed knots 
