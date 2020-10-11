@@ -23,3 +23,17 @@ Frequentist Framework:
 ***MPlus 8*** <br>
 - [PBLSGMs for estimating fixed knots](https://github.com/Veronica0206/Extension_projects/blob/master/MPlus8_E1/BLSGM_Unknown%20Fixed%20Knot.inp)
 - [PBLSGMs for estimating random knots](https://github.com/Veronica0206/Extension_projects/blob/master/MPlus8_E1/BLSGM_Unknown%20Random%20Knot.inp)
+
+## Part II: Extending Mixture of Experts Model to Investigate Heterogeneity of Trajectories
+**Description:** <br>
+In this part, we extended the mixture of experts model to SEM framework with unstructured time framework:
+- Full mixture of experts
+- Expert-network mixture of experts
+- Gating-network mixture of experts
+- Finite mixture model
+
+**Demo:** 
+Frequentist Framework:
+
+- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/OpenMx_demo2.md)
+(For OS, R version, and OpenMx version, see the demo)
