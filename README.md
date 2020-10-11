@@ -39,4 +39,4 @@ Frequentist Framework:
 (For OS, R version, and OpenMx version, see the demo)
 
 **Source Code:** <br>
-Will upload late.
+Will upload later.
