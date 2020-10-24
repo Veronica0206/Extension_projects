@@ -1,0 +1,80 @@
+---
+title: "A Parallel Process Growth Mixture Model to Examine Joint Development with Nonlinear Trajectories"
+author: Jin Liu
+output: rmarkdown::github_document
+date: \today
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## OS, R version and OpenMx Version
+```{r}
+OpenMx::mxVersion()
+```
+
+## Require package would be used
+```{r}
+library(tidyr)
+library(ggplot2)
+```
+
+## Read in dataset for analyses (wide-format data)
+```{r}
+dat <- read.csv(file = "example_data.csv")
+```
+
+## Summarize data
+```{r}
+table(dat$class)
+summary(dat[dat$class == 1, ])
+summary(dat[dat$class == 2, ])
+```
+
+## Visualize data
+```{r}
+long_dat_T <- gather(dat[, c(1, 22:31, 34), ], key = var.T, value = time, T1:T10)
+long_dat_Y <- gather(dat[, c(1, 2:11), ], key = var.Y, value = measuresY, Y1:Y10)
+long_dat_Y$outcome <- "Y"
+long_dat_Z <- gather(dat[, c(1, 12:21), ], key = var.Z, value = measuresZ, Z1:Z10)
+long_dat_Z$outcome <- "Z"
+long_dat <- data.frame(id = rep(long_dat_T$id, 2),
+                       time = rep(long_dat_T$time, 2),
+                       measures = c(long_dat_Y$measuresY, long_dat_Z$measuresZ),
+                       outcome = c(long_dat_Y$outcome, long_dat_Z$outcome),
+                       class = long_dat_T[, "class"])
+
+ggplot(aes(x = time, y = measures), data = long_dat[long_dat$outcome == "Y", ]) +
+  geom_line(aes(group = id), color = "lightgrey", linetype = "dotted") +
+  geom_point(aes(group = id), color = "darkgrey", shape = 0, size = 0.8) +
+  geom_smooth(aes(group = 1), size = 1.8, col = "lightblue", se = F, 
+              data = long_dat[I(long_dat$outcome == "Y" & long_dat$class == 1), ] ) + 
+  geom_smooth(aes(group = 1), size = 1.8, col = "pink", se = F, 
+              data = long_dat[I(long_dat$outcome == "Y" & long_dat$class == 2), ] ) + 
+  labs(title = "Development of Y with Individually Varying Measurement Time",
+       x ="Time", y = "Measurement of Y") + 
+  theme(plot.title = element_text(hjust = 0.5))
+
+ggplot(aes(x = time, y = measures), data = long_dat[long_dat$outcome == "Z", ]) +
+  geom_line(aes(group = id), color = "lightgrey", linetype = "dotted") +
+  geom_point(aes(group = id), color = "darkgrey", shape = 0, size = 0.8) +
+  geom_smooth(aes(group = 1), size = 1.8, col = "lightblue", se = F, 
+              data = long_dat[I(long_dat$outcome == "Z" & long_dat$class == 1), ] ) + 
+  geom_smooth(aes(group = 1), size = 1.8, col = "pink", se = F, 
+              data = long_dat[I(long_dat$outcome == "Z" & long_dat$class == 2), ] ) + 
+  labs(title = "Development of Z with Individually Varying Measurement Time",
+       x ="Time", y = "Measurement of Z") + 
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+
+## Parallel Bilinear Spline Growth Model with Unknown Fixed Knots
+```{r, message = F}
+source("PBLSGMM_fixed.R")
+out
+```
+
+
+
