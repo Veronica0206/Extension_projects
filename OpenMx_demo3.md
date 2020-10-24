@@ -191,7 +191,7 @@ ggplot(aes(x = time, y = measures), data = long_dat[long_dat$outcome == "Y", ]) 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](OpenMx_demo3_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ``` r
 ggplot(aes(x = time, y = measures), data = long_dat[long_dat$outcome == "Z", ]) +
@@ -209,7 +209,7 @@ ggplot(aes(x = time, y = measures), data = long_dat[long_dat$outcome == "Z", ]) 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
+![](OpenMx_demo3_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
 
 ## Parallel Bilinear Spline Growth Model with Unknown Fixed Knots
 
