@@ -26,7 +26,7 @@ Frequentist Framework:
 
 ## Part II: Extending Mixture of Experts Model to Investigate Heterogeneity of Trajectories
 **Description:** <br>
-In this part, we extended the mixture of experts model to the SEM framework with individual measurement occasions:
+In this part, we extended Mixture-of-Experts Models to the SEM framework with individual measurement occasions:
 - Full mixture of experts
 - Expert-network mixture of experts
 - Gating-network mixture of experts
@@ -40,3 +40,18 @@ Frequentist Framework:
 
 **Source Code:** <br>
 Will upload later.
+
+## Part III: Growth Mixture Model to Investigate Heterogeneity in Nonlinear Joint Development with Individual Measurement Occasions
+**Description:** <br>
+In this part, we extended Growth Mixture Models to investigate heterogeneity in nonlinear joint development with individual measurement occasions:
+- GMM with a PBLSGM (fixed knots) as the within-class model
+
+**Demo:** 
+Frequentist Framework:
+
+- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/OpenMx_demo3.md)
+(For OS, R version, and OpenMx version, see the demo)
+
+**Source Code:** <br>
+Will upload later.
+
