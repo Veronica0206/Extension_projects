@@ -1,4 +1,4 @@
-TITLE:      PBLSGM with an Unknown Random Knot
+TITLE:      PBLSGM with an Unknown Fixed Knot
 Data:       FILE = example_data.csv;
 VARIABLE:   NAMES = id Y1-Y10 Z1-Z10 T1-T10; 
             USEVAR = Y1-Y10 Z1-Z10;
@@ -31,16 +31,6 @@ MODEL:      eta0sY BY Y1-Y10@1;
                       Y8* (YL28)
                       Y9* (YL29)
                       Y10* (YL210);
-            deltaY BY Y1* (YL31)
-                      Y2* (YL32)
-                      Y3* (YL33)
-                      Y4* (YL34)
-                      Y5* (YL35)
-                      Y6* (YL36)
-                      Y7* (YL37)
-                      Y8* (YL38)
-                      Y9* (YL39)
-                      Y10* (YL310);
                       
             eta0sZ BY Z1-Z10@1;
             ! factor loadings for eta0s are set equal to 1
@@ -64,53 +54,35 @@ MODEL:      eta0sY BY Y1-Y10@1;
                       Z8* (ZL28)
                       Z9* (ZL29)
                       Z10* (ZL210);
-            deltaZ BY Z1* (ZL31)
-                      Z2* (ZL32)
-                      Z3* (ZL33)
-                      Z4* (ZL34)
-                      Z5* (ZL35)
-                      Z6* (ZL36)
-                      Z7* (ZL37)
-                      Z8* (ZL38)
-                      Z9* (ZL39)
-                      Z10* (ZL310);
             ! Factor loadings for eta1s and eta2s are not fixed values,
             ! because they contain an estimate parameter, the fixed knot
 
             ! Population values of parameters:
             !! Original settings:
             !! mueta0Y: 98, mueta1Y: 5, mueta2Y: 2.6, mugY: 3.5
-            !! mueta0Z: 98, mueta1Z: 5, mueta2Z: 2.6, mugZ: 5.5
-            !! psi00: 25, psi01: 1.5, psi02: 1.5, psi0g: 0.45
-            !!            psi11: 1.0, psi12: 0.3, psi1g: 0.09
-            !!                        psi22: 1.0, psi2g: 0.09
-            !!                                    psigg: 0.09
+            !! mueta0Z: 102, mueta1Z: 5, mueta2Z: 2.6, mugZ: 5.5
+            !! psi00: 25, psi01: 1.5, psi02: 1.5
+            !!            psi11: 1.0, psi12: 0.3
+            !!                        psi22: 1.0
+
             !! Reparameterized settings:
-            !! mueta0sY: 115.5, mueta1sY: 3.8, mueta2sY: -1.2, mugY:3.5
-            !! mueta0sZ: 129.5, mueta1sZ: 3.8, mueta2sZ: -1.2, mugZ:3.5
-            !! psi0sY0sY: 57.65, psi0sY1sY: 4.225, psi0sY2sY: -1.225, psi0sYgY: 1.215
-            !!                   psi1sY1sY: 0.650, psi1sY2sY: 0.000, psi1sYgY: 0.090
-            !!                                     psi2sY2sY: 0.350, psi2sYgY: 0.000
-            !!                                                       psigYgY: 0.090
-            !! psi0sZ0sZ: 83.45, psi0sZ1sZ: 5.525, psi0sZ2sZ: -1.925, psi0sZgZ: 1.395
-            !!                   psi1sZ1sZ: 0.650, psi1sZ2sZ: 0.000, psi1sZgZ: 0.090
-            !!                                     psi2sZ2sZ: 0.350, psi2sZgZ: 0.000
-            !!                                                       psigZgZ: 0.090
+            !! psi0sY0sY: 47.750, psi0sY1sY: 3.775, psi0sY2sY: -1.225, psi0sY0sZ: 26.775, psi0sY1sZ: 2.550, psi0sY2sZ: 0.000
+            !!                    psi1sY1sY: 0.650, psi1sY2sY: 0.000,  psi1sY0sZ: 3.150, psi1sY1sZ: 0.300, psi1sY2sZ: 0.000
+            !!                                      psi2sY2sY: 0.350,  psi2sY0sZ: 0.000, psi2sY1sZ: 0.000, psi2sY2sZ: 0.000
+            !!                                                         psi0sZ0sZ: 71.750, psi0sZ1sZ: 5.075, psi0sZ2sZ: -1.925
+            !!                                                                            psi1sZ1sZ: 0.650, psi1sZ2sZ: 0.000  
+            !!                                                                                              psi2sZ2sZ: 0.350
             
             !! theta: 1.0
 
             !! Construct Y
-            eta0sY*60.0 (psi0sY0sY);
+            eta0sY*45.0 (psi0sY0sY);
             eta1sY*0.5  (psi1sY1sY);
             eta2sY*0.5  (psi2sY2sY);
-            deltaY*0.1  (psigYgY);
 
             eta0sY WITH eta1sY*4.0  (psi0sY1sY);
             eta0sY WITH eta2sY*-1.5 (psi0sY2sY);
-            eta0sY WITH deltaY*1.2  (psi0sYgY);
             eta1sY WITH eta2sY*0    (psi1sY2sY);
-            eta1sY WITH deltaY*0.1 (psi1sYgY);
-            eta2sY WITH deltaY*0   (psi2sYgY);
 
             [eta0sY*120]  (mueta0sY);
             [eta1sY*4]    (mueta1sY);
@@ -120,19 +92,15 @@ MODEL:      eta0sY BY Y1-Y10@1;
             [Y1-Y10@0];
 
             !! Construct Z
-            eta0sZ*85.0 (psi0sZ0sZ);
+            eta0sZ*70.0 (psi0sZ0sZ);
             eta1sZ*0.5  (psi1sZ1sZ);
             eta2sZ*0.5  (psi2sZ2sZ);
-            deltaZ*0.1  (psigZgZ);
 
-            eta0sZ WITH eta1sZ*5.0  (psi0sZ1sZ);
-            eta0sZ WITH eta2sZ*-2.0 (psi0sZ2sZ);
-            eta0sZ WITH deltaZ*1.4 (psi0sZgZ);
-            eta1sZ WITH eta2sZ*0    (psi1sZ2sZ);
-            eta1sZ WITH deltaZ*0.1 (psi1sZgZ);
-            eta2sZ WITH deltaZ*0   (psi2sZgZ);
+            eta0sZ WITH eta1sZ*5.0 (psi0sZ1sZ);
+            eta0sZ WITH eta2sZ*-2  (psi0sZ2sZ);
+            eta1sZ WITH eta2sZ*0   (psi1sZ2sZ);
 
-            [eta0sZ*130]  (mueta0sZ);
+            [eta0sZ*120]  (mueta0sZ);
             [eta1sZ*4]    (mueta1sZ);
             [eta2sZ*-1]   (mueta2sZ);
 
@@ -143,22 +111,14 @@ MODEL:      eta0sY BY Y1-Y10@1;
             eta0sY WITH eta0sZ*28.0 (psi0sY0sZ);
             eta0sY WITH eta1sZ*2.5  (psi0sY1sZ);
             eta0sY WITH eta2sZ*0    (psi0sY2sZ);
-            eta0sY WITH deltaZ*1.0  (psi0sYgZ);
 
             eta1sY WITH eta0sZ*3.2  (psi1sY0sZ);
             eta1sY WITH eta1sZ*0.3  (psi1sY1sZ);
             eta1sY WITH eta2sZ*0    (psi1sY2sZ);
-            eta1sY WITH deltaZ*0.1  (psi1sYgZ);
 
             eta2sY WITH eta0sZ*0    (psi2sY0sZ);
             eta2sY WITH eta1sZ*0    (psi2sY1sZ);
             eta2sY WITH eta2sZ*0    (psi2sY2sZ);
-            eta2sY WITH deltaZ*0    (psi2sYgZ);
-
-            deltaY WITH eta0sZ*1.0  (psigY0sZ);
-            deltaY WITH eta1sZ*0.1  (psigY1sZ);
-            deltaY WITH eta2sZ*0    (psigY2sZ);
-            deltaY WITH deltaZ*0.03 (psigYgZ);
 
             Y1 WITH Z1*0.3 (thetaYZ);
             Y2 WITH Z2*0.3 (thetaYZ);
@@ -175,17 +135,16 @@ MODEL CONSTRAINT:
             ! In the model constraint, we have 3 parts:
             ! Part I: Specify extra parameters other than those related to transformed LVs
             new(mueta0Y mueta1Y mueta2Y mugY*3.5
-                psi0Y0Y psi0Y1Y psi0Y2Y psi0YgY
-                        psi1Y1Y psi1Y2Y psi1YgY
-                                psi2Y2Y psi2YgY
+                psi0Y0Y psi0Y1Y psi0Y2Y
+                        psi1Y1Y psi1Y2Y
+                                psi2Y2Y
                 mueta0Z mueta1Z mueta2Z mugZ*5.5
-                psi0Z0Z psi0Z1Z psi0Z2Z psi0ZgZ
-                        psi1Z1Z psi1Z2Z psi1ZgZ
-                                psi2Z2Z psi2ZgZ
-                psi0Y0Z psi0Y1Z psi0Y2Z psi0YgZ
-                psi1Y0Z psi1Y1Z psi1Y2Z psi1YgZ
-                psi2Y0Z psi2Y1Z psi2Y2Z psi2YgZ
-                psigY0Z psigY1Z psigY2Z);
+                psi0Z0Z psi0Z1Z psi0Z2Z
+                        psi1Z1Z psi1Z2Z
+                                psi2Z2Z
+                psi0Y0Z psi0Y1Z psi0Y2Z
+                psi1Y0Z psi1Y1Z psi1Y2Z
+                psi2Y0Z psi2Y1Z psi2Y2Z);
             
             ! Part II: Specify a series of equations to anti-transform the LVs
             mueta0Y = mueta0sY + mugY * (mueta2sY - mueta1sY);
@@ -197,12 +156,9 @@ MODEL CONSTRAINT:
                      (psi0sY1sY - psi0sY2sY);
             psi0Y2Y = (psi2sY2sY - psi1sY1sY) * mugY + 
                      (psi0sY1sY + psi0sY2sY);
-            psi0YgY = (psi2sYgY - psi1sYgY) * mugY + psi0sYgY;
             psi1Y1Y = psi1sY1sY + psi2sY2sY - 2 * psi1sY2sY;
             psi1Y2Y = psi1sY1sY - psi2sY2sY;
-            psi1YgY = psi1sYgY - psi2sYgY;
             psi2Y2Y = psi1sY1sY + psi2sY2sY + 2 * psi1sY2sY;
-            psi2YgY = psi1sYgY + psi2sYgY;
 
             mueta0Z = mueta0sZ + mugZ * (mueta2sZ - mueta1sZ);
             mueta1Z = mueta1sZ - mueta2sZ;
@@ -213,12 +169,9 @@ MODEL CONSTRAINT:
                      (psi0sZ1sZ - psi0sZ2sZ);
             psi0Z2Z = (psi2sZ2sZ - psi1sZ1sZ) * mugZ + 
                      (psi0sZ1sZ + psi0sZ2sZ);
-            psi0ZgZ = (psi2sZgZ - psi1sZgZ) * mugZ + psi0sZgZ;
             psi1Z1Z = psi1sZ1sZ + psi2sZ2sZ - 2 * psi1sZ2sZ;
             psi1Z2Z = psi1sZ1sZ - psi2sZ2sZ;
-            psi1ZgZ = psi1sZgZ - psi2sZgZ;
             psi2Z2Z = psi1sZ1sZ + psi2sZ2sZ + 2 * psi1sZ2sZ;
-            psi2ZgZ = psi1sZgZ + psi2sZgZ;
 
             psi0Y0Z = (psi1sY1sZ + psi2sY2sZ - psi1sY2sZ - psi2sY1sZ) * 
                       mugY * mugZ + (psi2sY0sZ - psi1sY0sZ) * mugY + 
@@ -227,23 +180,14 @@ MODEL CONSTRAINT:
                      (psi0sY1sZ - psi0sY2sZ);
             psi0Y2Z = (psi2sY1sZ - psi1sY2sZ - psi1sY1sZ + psi2sY2sZ) * mugY +
                      (psi0sY1sZ + psi0sY2sZ);
-            psi0YgZ = (psi2sYgZ - psi1sYgZ) * mugY + psi0sYgZ;
-
             psi1Y0Z = (psi1sY2sZ + psi2sY1sZ - psi1sY1sZ - psi2sY2sZ) * mugZ +
                      (psi1sY0sZ - psi2sY0sZ);
             psi1Y1Z = psi1sY1sZ + psi2sY2sZ - psi1sY2sZ - psi2sY1sZ;
             psi1Y2Z = psi1sY1sZ - psi2sY2sZ + psi1sY2sZ - psi2sY1sZ;
-            psi1YgZ = psi1sYgZ - psi2sYgZ;
-
             psi2Y0Z = (psi1sY2sZ - psi2sY1sZ - psi1sY1sZ + psi2sY2sZ) * mugZ +
                      (psi1sY0sZ + psi2sY0sZ);
             psi2Y1Z = psi1sY1sZ - psi2sY2sZ - psi1sY2sZ + psi2sY1sZ;
             psi2Y2Z = psi1sY1sZ + psi2sY2sZ + psi1sY2sZ + psi2sY1sZ;
-            psi2YgZ = psi1sYgZ + psi2sYgZ;
-
-            psigY0Z = (psigY2sZ - psigY1sZ) * mugZ + psigY0sZ;
-            psigY1Z = psigY1sZ - psigY2sZ;
-            psigY2Z = psigY1sZ + psigY2sZ;
 
             ! Part III: Define factor loadings for the 2nd and 3rd LVs with
             ! definition variables
@@ -270,17 +214,6 @@ MODEL CONSTRAINT:
             YL29 = sqrt((T9 - mugY)^2);
             YL210 = sqrt((T10 - mugY)^2);
 
-            YL31 = -mueta2sY * (T1 - mugY)/sqrt((T1 - mugY)^2) - mueta2sY;
-            YL32 = -mueta2sY * (T2 - mugY)/sqrt((T2 - mugY)^2) - mueta2sY;
-            YL33 = -mueta2sY * (T3 - mugY)/sqrt((T3 - mugY)^2) - mueta2sY;
-            YL34 = -mueta2sY * (T4 - mugY)/sqrt((T4 - mugY)^2) - mueta2sY;
-            YL35 = -mueta2sY * (T5 - mugY)/sqrt((T5 - mugY)^2) - mueta2sY;
-            YL36 = -mueta2sY * (T6 - mugY)/sqrt((T6 - mugY)^2) - mueta2sY;
-            YL37 = -mueta2sY * (T7 - mugY)/sqrt((T7 - mugY)^2) - mueta2sY;
-            YL38 = -mueta2sY * (T8 - mugY)/sqrt((T8 - mugY)^2) - mueta2sY;
-            YL39 = -mueta2sY * (T9 - mugY)/sqrt((T9 - mugY)^2) - mueta2sY;
-            YL310 = -mueta2sY * (T10 - mugY)/sqrt((T10 - mugY)^2) - mueta2sY;
-
             ZL11 = T1 - mugZ;
             ZL12 = T2 - mugZ;
             ZL13 = T3 - mugZ;
@@ -302,18 +235,6 @@ MODEL CONSTRAINT:
             ZL28 = sqrt((T8 - mugZ)^2);
             ZL29 = sqrt((T9 - mugZ)^2);
             ZL210 = sqrt((T10 - mugZ)^2);
-
-            ZL31 = -mueta2sZ * (T1 - mugZ)/sqrt((T1 - mugZ)^2) - mueta2sZ;
-            ZL32 = -mueta2sZ * (T2 - mugZ)/sqrt((T2 - mugZ)^2) - mueta2sZ;
-            ZL33 = -mueta2sZ * (T3 - mugZ)/sqrt((T3 - mugZ)^2) - mueta2sZ;
-            ZL34 = -mueta2sZ * (T4 - mugZ)/sqrt((T4 - mugZ)^2) - mueta2sZ;
-            ZL35 = -mueta2sZ * (T5 - mugZ)/sqrt((T5 - mugZ)^2) - mueta2sZ;
-            ZL36 = -mueta2sZ * (T6 - mugZ)/sqrt((T6 - mugZ)^2) - mueta2sZ;
-            ZL37 = -mueta2sZ * (T7 - mugZ)/sqrt((T7 - mugZ)^2) - mueta2sZ;
-            ZL38 = -mueta2sZ * (T8 - mugZ)/sqrt((T8 - mugZ)^2) - mueta2sZ;
-            ZL39 = -mueta2sZ * (T9 - mugZ)/sqrt((T9 - mugZ)^2) - mueta2sZ;
-            ZL310 = -mueta2sZ * (T10 - mugZ)/sqrt((T10 - mugZ)^2) - mueta2sZ;
-
  OUTPUT:    SAMPSTAT;
 
 
