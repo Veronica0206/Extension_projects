@@ -21,8 +21,8 @@ Frequentist Framework:
 - [PBLSGMs for estimating random knots](https://github.com/Veronica0206/Extension_projects/blob/master/OpenMx_E1/PBLSGM_random.R)
 
 ***MPlus 8*** <br>
-- [PBLSGMs for estimating fixed knots](https://github.com/Veronica0206/Extension_projects/blob/master/MPlus8_E1/BLSGM_Unknown%20Fixed%20Knot.inp)
-- [PBLSGMs for estimating random knots](https://github.com/Veronica0206/Extension_projects/blob/master/MPlus8_E1/BLSGM_Unknown%20Random%20Knot.inp)
+- [PBLSGMs for estimating fixed knots](https://github.com/Veronica0206/Extension_projects/blob/master/MPlus8_E1/PBLSGM_Unknown%20Fixed%20Knot.inp)
+- [PBLSGMs for estimating random knots](https://github.com/Veronica0206/Extension_projects/blob/master/MPlus8_E1/PBLSGM_Unknown%20Random%20Knot.inp)
 
 ## Part II: Extending Mixture of Experts Model to Investigate Heterogeneity of Trajectories
 **Description:** <br>
