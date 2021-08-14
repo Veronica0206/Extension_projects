@@ -57,6 +57,7 @@ In this part, we extended Mixture-of-Experts Models to the SEM framework with in
 - [Finite Mixture Model](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/FMM.inp)
 
 **In this part, we further extend the full mixture model to allow time-varying covariates.**
+
 ***R package: OpenMx*** <br>
 - [Full mixture model with time-varying covariates](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/R1_extension/OpenMx_E2R/fun_for_VaryingMoE.R)
 
