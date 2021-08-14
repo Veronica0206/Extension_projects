@@ -2,7 +2,7 @@
 
 ## Part I: Parallel Bilinear Spline Growth Models (PBLSGMs) in the Framework of Individual Measurement Occasions
 **Manuscript Title:** <br>
-Estimating Knots and Their Association in Parallel Bilinear Spline Growth Curve Models in the Framework of Individual Measurement Occasions (***Psychological Methods*, 2021, Advance online publication(https://doi.org/10.1037/met0000309)**)
+Estimating Knots and Their Association in Parallel Bilinear Spline Growth Curve Models in the Framework of Individual Measurement Occasions (***Psychological Methods*, 2021, [Advance online publication](https://doi.org/10.1037/met0000309)**)
 
 **Description:** <br>
 In this part, we developed two models in unstructured time framework:
