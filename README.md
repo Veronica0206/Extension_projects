@@ -31,10 +31,10 @@ Extending Mixture of Experts Model to Investigate Heterogeneity of Trajectories:
 
 **Description:** <br>
 In this part, we extended Mixture-of-Experts Models to the SEM framework with individual measurement occasions:
-- Full mixture of experts
-- Expert-network mixture of experts
-- Gating-network mixture of experts
-- Finite mixture model
+- Full Mixture Model (Full mixture of experts)
+- Growth Predictor Mixture Model (Expert-network mixture of experts)
+- Cluster Predictor Mixture Model (Gating-network mixture of experts)
+- Finite Mixture Model
 
 **Demo:** 
 - [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_demo2.md)
@@ -45,16 +45,24 @@ In this part, we extended Mixture-of-Experts Models to the SEM framework with in
 
 **Source Code:** <br>
 ***R package: OpenMx*** <br>
-- [Full mixture of experts](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/full_MoE.R)
-- [Expert-network mixture of experts](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/expert_MoE.R)
-- [Gating-network mixture of experts](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/gating_MoE.R)
-- [Finite mixture model](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/FMM.R)
+- [Full Mixture Model (Full mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/full_MoE.R)
+- [Growth Predictor Mixture Model (Expert-network mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/expert_MoE.R)
+- [Cluster Predictor Mixture Model (Gating-network mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/gating_MoE.R)
+- [Finite Mixture Model](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/FMM.R)
 
 ***MPlus 8*** <br>
-- [Full mixture of experts](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Full%20MoE.inp)
-- [Expert-network mixture of experts](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Expert-network%20MoE.inp)
-- [Gating-network mixture of experts](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Gating-network%20MoE.inp)
-- [Finite mixture model](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/FMM.inp)
+- [Full Mixture Model (Full mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Full%20MoE.inp)
+- [Growth Predictor Mixture Model (Expert-network mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Expert-network%20MoE.inp)
+- [Cluster Predictor Mixture Model (Gating-network mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Gating-network%20MoE.inp)
+- [Finite Mixture Model](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/FMM.inp)
+
+**In this part, we further extend the full mixture model to allow time-varying covariates.**
+***R package: OpenMx*** <br>
+- [Full mixture model with time-varying covariates](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/R1_extension/OpenMx_E2R/fun_for_VaryingMoE.R)
+
+**This project also provides *OpenMx* code with common parametric functional forms to capture nonlinear change patterns.**
+- [Quadratic growth curve](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/R1_sensitivity/full_MoE_quad.R)
+- [Jenss-Bayley growth curve](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/R1_sensitivity/full_MoE_JB.R)
 
 ## Part III: Growth Mixture Model to Investigate Heterogeneity in Nonlinear Joint Development with Individual Measurement Occasions
 **Manuscript Title:** <br>
