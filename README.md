@@ -40,6 +40,9 @@ In this part, we extended Mixture-of-Experts Models to the SEM framework with in
 - [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_demo2.md)
 (For OS, R version, and OpenMx version, see the demo)
 
+**Example data:** <br>
+- [Data](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/example_data.csv)
+
 **Source Code:** <br>
 ***R package: OpenMx*** <br>
 - [Full mixture of experts](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/full_MoE.R)
