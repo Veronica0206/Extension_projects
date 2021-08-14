@@ -1,0 +1,77 @@
+---
+title: "Estimating knots and Knot-knot Association of PBLSGMs in the framework of individual measurement occasions"
+author: Jin Liu
+output: rmarkdown::github_document
+date: \today
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## OS, R version and OpenMx Version
+```{r}
+OpenMx::mxVersion()
+```
+
+## Require package would be used
+```{r}
+library(tidyr)
+library(ggplot2)
+```
+
+## Read in dataset for analyses (wide-format data)
+```{r}
+dat <- read.csv(file = "example_data.csv")
+```
+
+## Summarize data
+```{r}
+table(dat$class)
+summary(dat[dat$class == 1, ])
+summary(dat[dat$class == 2, ])
+```
+
+## Visualize data
+```{r}
+long_dat_T <- gather(dat, var.T, time, T1:T10)
+long_dat_Y <- gather(dat, var.Y, measures, Y1:Y10)
+long_dat <- data.frame(id = long_dat_T[, "id"], time = long_dat_T[, "time"],
+                       measures = long_dat_Y[, "measures"], class = long_dat_Y[, "class"])
+ggplot(aes(x = time, y = measures), data = long_dat) +
+  geom_line(aes(group = id), color = "lightgrey", data = long_dat) +
+  geom_point(aes(group = id), color = "darkgrey", size = 0.5) +
+  geom_smooth(aes(group = 1), size = 1.8, col = "lightblue", se = F, 
+              data = long_dat[long_dat$class == 1, ] ) + 
+  geom_smooth(aes(group = 1), size = 1.8, col = "pink", se = F, 
+              data = long_dat[long_dat$class == 2, ] ) + 
+  labs(title = "Nonlinear Pattern with Individually Varying Measurement Time",
+       x ="Time", y = "Measurement") + 
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+## Full mixture of experts
+```{r, message = F}
+source("full_MoE.R")
+out
+```
+
+## Expert mixture of experts
+```{r, message = F}
+source("expert_MoE.R")
+out
+```
+
+## Gating mixture of experts
+```{r, message = F}
+source("gating_MoE.R")
+out
+```
+
+## Finite mixture model
+```{r, message = F}
+source("FMM.R")
+out
+```
+
+

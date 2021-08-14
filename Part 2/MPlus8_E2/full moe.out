@@ -1,0 +1,2336 @@
+Mplus VERSION 8.4
+MUTHEN & MUTHEN
+10/27/2020   6:25 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:      Full MoE
+  Data:       FILE = example_data.csv;
+  VARIABLE:   NAMES = id Y1-Y10 T1-T10 gX1 gX2 class eX1 eX2;
+              USEVAR = Y1-Y10 gX1 gX2 eX1 eX2;
+              CONSTRAINT = T1-T10;
+              CLASSES = c(2);
+  ANALYSIS:   TYPE = MIXTURE;
+              ALGORITHM = EM;
+
+  MODEL:
+              %OVERALL%
+              eta0s BY Y1-Y10@1;
+              ! factor loadings for eta0s are set equal to 1
+              ! Factor loadings for eta1s and eta2s are not fixed values,
+              ! because they contain an estimate parameter, the fixed knot
+              eta1s BY Y1* (L11)
+                       Y2* (L12)
+                       Y3* (L13)
+                       Y4* (L14)
+                       Y5* (L15)
+                       Y6* (L16)
+                       Y7* (L17)
+                       Y8* (L18)
+                       Y9* (L19)
+                       Y10* (L110);
+              eta2s BY Y1* (L21)
+                       Y2* (L22)
+                       Y3* (L23)
+                       Y4* (L24)
+                       Y5* (L25)
+                       Y6* (L26)
+                       Y7* (L27)
+                       Y8* (L28)
+                       Y9* (L29)
+                       Y10* (L210);
+
+              eta0s on eX1 (beta01s);
+              eta1s on eX1 (beta11s);
+              eta2s on eX1 (beta21s);
+
+              eta0s on eX2 (beta02s);
+              eta1s on eX2 (beta12s);
+              eta2s on eX2 (beta22s);
+
+              c on gX1 gX2;
+
+              %c#1%
+              eta0s BY Y1-Y10@1;
+              eta1s BY Y1* (c1L11)
+                       Y2* (c1L12)
+                       Y3* (c1L13)
+                       Y4* (c1L14)
+                       Y5* (c1L15)
+                       Y6* (c1L16)
+                       Y7* (c1L17)
+                       Y8* (c1L18)
+                       Y9* (c1L19)
+                       Y10* (c1L110);
+              eta2s BY Y1* (c1L21)
+                       Y2* (c1L22)
+                       Y3* (c1L23)
+                       Y4* (c1L24)
+                       Y5* (c1L25)
+                       Y6* (c1L26)
+                       Y7* (c1L27)
+                       Y8* (c1L28)
+                       Y9* (c1L29)
+                       Y10* (c1L210);
+
+              ! Population values of parameters:
+              !! Original settings:
+              !! mueta0: 100, mueta1: -5, mueta2: -2.6, mug: 4.0
+              !! psi00: 25, psi01: 1.5, psi02: 1.5
+              !!            psi11: 1.0, psi12: 0.3
+              !!                        psi22: 1.0
+
+              !! Reparameterized settings:
+              !! mueta0s: 82.5, mueta1s: -3.8, mueta2s: 1.2, mug: 3.5
+              !! psi0s0s: 47.75, psi0s1s: 3.775, psi0s2s: -1.225
+              !!                 psi1s1s: 0.650, psi1s2s: 0.00
+              !!                                 psi2s2s: 0.35
+
+              !! beta: 0.8849, 0.1770, 0.1770
+              !!       1.3274, 0.2655, 0.2655
+
+              !! theta: 1.0
+
+              eta0s*50.0 (c1psi0s0s);
+              eta1s*0.6  (c1psi1s1s);
+              eta2s*0.4  (c1psi2s2s);
+
+              eta0s WITH eta1s*4.0 (c1psi0s1s);
+              eta0s WITH eta2s*-1.2 (c1psi0s2s);
+              eta1s WITH eta2s*0.2 (c1psi1s2s);
+
+              [eta0s*80]  (c1mueta0s);
+              [eta1s*-4]  (c1mueta1s);
+              [eta2s*1]   (c1mueta2s);
+
+              eta0s on eX1*0.8 (c1beta01s);
+              eta1s on eX1*0.2 (c1beta11s);
+              eta2s on eX1*0.2 (c1beta21s);
+
+              eta0s on eX2*1.3 (c1beta02s);
+              eta1s on eX2*0.3 (c1beta12s);
+              eta2s on eX2*0.3 (c1beta22s);
+
+              eX1 eX2;
+              [eX1 eX2];
+              eX1 with eX2;
+
+              Y1-Y10*1.1 (c1theta);
+              [Y1-Y10@0];
+
+              %c#2%
+              eta0s BY Y1-Y10@1;
+              eta1s BY Y1* (c2L11)
+                       Y2* (c2L12)
+                       Y3* (c2L13)
+                       Y4* (c2L14)
+                       Y5* (c2L15)
+                       Y6* (c2L16)
+                       Y7* (c2L17)
+                       Y8* (c2L18)
+                       Y9* (c2L19)
+                       Y10* (c2L110);
+              eta2s BY Y1* (c2L21)
+                       Y2* (c2L22)
+                       Y3* (c2L23)
+                       Y4* (c2L24)
+                       Y5* (c2L25)
+                       Y6* (c2L26)
+                       Y7* (c2L27)
+                       Y8* (c2L28)
+                       Y9* (c2L29)
+                       Y10* (c2L210);
+
+              ! Factor loadings for eta1s and eta2s are not fixed values,
+              ! because they contain an estimate parameter, the fixed knot
+
+              ! Population values of parameters:
+              !! Original settings:
+              !! mueta0: 100, mueta1: -5, mueta2: -3.4, mug: 5.0
+              !! psi00: 25, psi01: 1.5, psi02: 1.5
+              !!            psi11: 1.0, psi12: 0.3
+              !!                        psi22: 1.0
+
+              !! Reparameterized settings:
+              !! mueta0s: 72.5, mueta1s: -4.2, mueta2s: 0.8, mug: 5.5
+              !! psi0s0s: 71.750, psi0s1s: 5.075, psi0s2s: -1.925
+              !!                  psi1s1s: 0.650, psi1s2s: 0.000
+              !!                                  psi2s2s: 0.350
+
+              !! beta: 1.2515, 0.2503, 0.2503
+              !!       1.8773, 0.3755, 0.3755
+
+              !! theta: 1.0
+              eta0s*70.0 (c2psi0s0s);
+              eta1s*0.6  (c2psi1s1s);
+              eta2s*0.4  (c2psi2s2s);
+
+              eta0s WITH eta1s*5.0 (c2psi0s1s);
+              eta0s WITH eta2s*-2.0 (c2psi0s2s);
+              eta1s WITH eta2s*0 (c2psi1s2s);
+
+              [eta0s*75]  (c2mueta0s);
+              [eta1s*-4]  (c2mueta1s);
+              [eta2s*1]   (c2mueta2s);
+
+              eta0s on eX1*1.2 (c2beta01s);
+              eta1s on eX1*0.3 (c2beta11s);
+              eta2s on eX1*0.3 (c2beta21s);
+
+              eta0s on eX2*1.8 (c2beta02s);
+              eta1s on eX2*0.4 (c2beta12s);
+              eta2s on eX2*0.4 (c2beta22s);
+
+              eX1 eX2;
+              [eX1 eX2];
+              eX1 with eX2;
+
+              Y1-Y10*1.1 (c2theta);
+              [Y1-Y10@0];
+
+  MODEL CONSTRAINT:
+              ! In the model constraint, we have 3 parts:
+              ! Part I: Specify extra parameters other than those related to transformed LVs
+              new(c1mueta0 c1mueta1 c1mueta2 c1mug*3.5
+                  c1psi00 c1psi01 c1psi02
+                          c1psi11 c1psi12
+                                  c1psi22
+                  c1beta01 c1beta11 c1beta21
+                  c1beta02 c1beta12 c1beta22
+
+                  c2mueta0 c2mueta1 c2mueta2 c2mug*5.5
+                  c2psi00 c2psi01 c2psi02
+                          c2psi11 c2psi12
+                                  c2psi22
+                  c2beta01 c2beta11 c2beta21
+                  c2beta02 c2beta12 c2beta22);
+
+              ! Part II: Specify a series of equations to anti-transform the LVs
+              c1mueta0 = c1mueta0s + c1mug * (c1mueta2s - c1mueta1s);
+              c1mueta1 = c1mueta1s - c1mueta2s;
+              c1mueta2 = c1mueta1s + c1mueta2s;
+              c1psi00 = (c1psi1s1s + c1psi2s2s - 2 * c1psi1s2s) * c1mug^2 +
+                       2 * (c1psi0s2s - c1psi0s1s) * c1mug + c1psi0s0s;
+              c1psi01 = (2 * c1psi1s2s - c1psi1s1s - c1psi2s2s) * c1mug +
+                      (c1psi0s1s - c1psi0s2s);
+              c1psi02 = (c1psi2s2s - c1psi1s1s) * c1mug +
+                      (c1psi0s1s + c1psi0s2s);
+              c1psi11 = c1psi1s1s + c1psi2s2s - 2 * c1psi1s2s;
+              c1psi12 = c1psi1s1s - c1psi2s2s;
+              c1psi22 = c1psi1s1s + c1psi2s2s + 2 * c1psi1s2s;
+
+              c1beta01 = c1beta01s + (c1beta21s - c1beta11s) * c1mug;
+              c1beta11 = c1beta11s - c1beta21s;
+              c1beta21 = c1beta11s + c1beta21s;
+
+              c1beta02 = c1beta02s + (c1beta22s - c1beta12s) * c1mug;
+              c1beta12 = c1beta12s - c1beta22s;
+              c1beta22 = c1beta12s + c1beta22s;
+
+              c2mueta0 = c2mueta0s + c2mug * (c2mueta2s - c2mueta1s);
+              c2mueta1 = c2mueta1s - c2mueta2s;
+              c2mueta2 = c2mueta1s + c2mueta2s;
+              c2psi00 = (c2psi1s1s + c2psi2s2s - 2 * c2psi1s2s) * c2mug^2 +
+                       2 * (c2psi0s2s - c2psi0s1s) * c2mug + c2psi0s0s;
+              c2psi01 = (2 * c2psi1s2s - c2psi1s1s - c2psi2s2s) * c2mug +
+                        (c2psi0s1s - c2psi0s2s);
+              c2psi02 = (c2psi2s2s - c2psi1s1s) * c2mug +
+                        (c2psi0s1s + c2psi0s2s);
+              c2psi11 = c2psi1s1s + c2psi2s2s - 2 * c2psi1s2s;
+              c2psi12 = c2psi1s1s - c2psi2s2s;
+              c2psi22 = c2psi1s1s + c2psi2s2s + 2 * c2psi1s2s;
+
+              c2beta01 = c2beta01s + (c2beta21s - c2beta11s) * c2mug;
+              c2beta11 = c2beta11s - c2beta21s;
+              c2beta21 = c2beta11s + c2beta21s;
+
+              c2beta02 = c2beta02s + (c2beta22s - c2beta12s) * c2mug;
+              c2beta12 = c2beta12s - c2beta22s;
+              c2beta22 = c2beta12s + c2beta22s;
+
+              ! Part III: Define factor loadings for the 2nd and 3rd LVs with
+              ! definition variables
+              c1L11 = T1 - c1mug;
+              c1L12 = T2 - c1mug;
+              c1L13 = T3 - c1mug;
+              c1L14 = T4 - c1mug;
+              c1L15 = T5 - c1mug;
+              c1L16 = T6 - c1mug;
+              c1L17 = T7 - c1mug;
+              c1L18 = T8 - c1mug;
+              c1L19 = T9 - c1mug;
+              c1L110 = T10 - c1mug;
+
+              c1L21 = sqrt((T1 - c1mug)^2);
+              c1L22 = sqrt((T2 - c1mug)^2);
+              c1L23 = sqrt((T3 - c1mug)^2);
+              c1L24 = sqrt((T4 - c1mug)^2);
+              c1L25 = sqrt((T5 - c1mug)^2);
+              c1L26 = sqrt((T6 - c1mug)^2);
+              c1L27 = sqrt((T7 - c1mug)^2);
+              c1L28 = sqrt((T8 - c1mug)^2);
+              c1L29 = sqrt((T9 - c1mug)^2);
+              c1L210 = sqrt((T10 - c1mug)^2);
+
+              c2L11 = T1 - c2mug;
+              c2L12 = T2 - c2mug;
+              c2L13 = T3 - c2mug;
+              c2L14 = T4 - c2mug;
+              c2L15 = T5 - c2mug;
+              c2L16 = T6 - c2mug;
+              c2L17 = T7 - c2mug;
+              c2L18 = T8 - c2mug;
+              c2L19 = T9 - c2mug;
+              c2L110 = T10 - c2mug;
+
+              c2L21 = sqrt((T1 - c2mug)^2);
+              c2L22 = sqrt((T2 - c2mug)^2);
+              c2L23 = sqrt((T3 - c2mug)^2);
+              c2L24 = sqrt((T4 - c2mug)^2);
+              c2L25 = sqrt((T5 - c2mug)^2);
+              c2L26 = sqrt((T6 - c2mug)^2);
+              c2L27 = sqrt((T7 - c2mug)^2);
+              c2L28 = sqrt((T8 - c2mug)^2);
+              c2L29 = sqrt((T9 - c2mug)^2);
+              c2L210 = sqrt((T10 - c2mug)^2);
+   OUTPUT:    SAMPSTAT TECH1 TECH8;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+Full MoE
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         500
+
+Number of dependent variables                                   10
+Number of independent variables                                  4
+Number of continuous latent variables                            3
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Continuous
+   Y1          Y2          Y3          Y4          Y5          Y6
+   Y7          Y8          Y9          Y10
+
+Observed independent variables
+   GX1         GX2         EX1         EX2
+
+Continuous latent variables
+   ETA0S       ETA1S       ETA2S
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Optimization algorithm                                          EM
+Random Starts Specifications
+  Number of initial stage random starts                         20
+  Number of final stage optimizations                            4
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+
+Input data file(s)
+  example_data.csv
+Input data format  FREE
+
+
+SAMPLE STATISTICS
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+               99.861        94.930        89.962        85.096        80.761
+
+
+           Means
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+               77.038        73.721        70.724        67.793        64.838
+
+
+           Means
+              EX1           EX2           GX1           GX2
+              ________      ________      ________      ________
+                0.075         0.072         0.028         0.009
+
+
+           Covariances
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1            24.646
+ Y2            25.323        29.415
+ Y3            26.276        29.995        34.659
+ Y4            27.401        31.961        36.172        41.731
+ Y5            29.113        34.459        39.588        44.499        51.298
+ Y6            30.278        36.087        41.741        46.910        53.757
+ Y7            31.337        37.565        43.842        49.283        57.225
+ Y8            32.516        38.956        45.441        50.961        59.532
+ Y9            34.157        40.844        47.761        53.742        63.014
+ Y10           35.144        42.232        49.576        55.679        65.565
+ EX1            1.254         1.547         1.909         2.159         2.491
+ EX2            1.588         1.894         2.332         2.665         3.063
+ GX1            0.131         0.265         0.350         0.438         0.497
+ GX2           -0.124        -0.028         0.066         0.087         0.097
+
+
+           Covariances
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6            61.016
+ Y7            64.922        72.955
+ Y8            68.051        76.121        82.859
+ Y9            72.690        82.227        88.929        98.875
+ Y10           76.140        86.745        94.497       104.397       113.123
+ EX1            2.711         3.051         3.224         3.550         3.989
+ EX2            3.388         3.986         4.252         4.871         5.326
+ GX1            0.087        -0.111        -0.220        -0.244        -0.338
+ GX2           -0.399        -0.591        -0.807        -0.803        -0.996
+
+
+           Covariances
+              EX1           EX2           GX1           GX2
+              ________      ________      ________      ________
+ EX1            0.999
+ EX2            0.299         0.966
+ GX1            0.014         0.025         1.049
+ GX2           -0.030        -0.041         0.350         0.983
+
+
+           Correlations
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1             1.000
+ Y2             0.940         1.000
+ Y3             0.899         0.939         1.000
+ Y4             0.854         0.912         0.951         1.000
+ Y5             0.819         0.887         0.939         0.962         1.000
+ Y6             0.781         0.852         0.908         0.930         0.961
+ Y7             0.739         0.811         0.872         0.893         0.935
+ Y8             0.720         0.789         0.848         0.867         0.913
+ Y9             0.692         0.757         0.816         0.837         0.885
+ Y10            0.666         0.732         0.792         0.810         0.861
+ EX1            0.253         0.285         0.324         0.334         0.348
+ EX2            0.326         0.355         0.403         0.420         0.435
+ GX1            0.026         0.048         0.058         0.066         0.068
+ GX2           -0.025        -0.005         0.011         0.014         0.014
+
+
+           Correlations
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6             1.000
+ Y7             0.973         1.000
+ Y8             0.957         0.979         1.000
+ Y9             0.936         0.968         0.983         1.000
+ Y10            0.916         0.955         0.976         0.987         1.000
+ EX1            0.347         0.357         0.354         0.357         0.375
+ EX2            0.441         0.475         0.475         0.498         0.510
+ GX1            0.011        -0.013        -0.024        -0.024        -0.031
+ GX2           -0.052        -0.070        -0.089        -0.081        -0.094
+
+
+           Correlations
+              EX1           EX2           GX1           GX2
+              ________      ________      ________      ________
+ EX1            1.000
+ EX2            0.304         1.000
+ GX1            0.014         0.025         1.000
+ GX2           -0.031        -0.042         0.345         1.000
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     Y1                   99.861      -0.083      85.252    0.20%      95.474     98.883     99.927
+             500.000      24.646       0.003     113.835    0.20%     101.393    103.972
+     Y2                   94.930      -0.030      78.082    0.20%      90.736     93.678     95.028
+             500.000      29.415       0.142     110.448    0.20%      96.218     99.305
+     Y3                   89.962      -0.020      71.259    0.20%      84.810     88.576     90.149
+             500.000      34.659       0.252     108.354    0.20%      91.559     94.724
+     Y4                   85.096      -0.051      62.715    0.20%      79.555     83.841     85.292
+             500.000      41.731       0.222     107.448    0.20%      86.777     90.346
+     Y5                   80.761      -0.062      56.914    0.20%      74.856     79.249     80.625
+             500.000      51.298       0.196     103.394    0.20%      82.359     86.924
+     Y6                   77.038      -0.057      53.740    0.20%      70.403     75.047     76.845
+             500.000      61.016       0.132     103.571    0.20%      79.115     83.593
+     Y7                   73.721      -0.088      48.389    0.20%      66.670     71.387     73.410
+             500.000      72.955       0.019      99.948    0.20%      75.782     81.046
+     Y8                   70.724      -0.145      44.095    0.20%      62.874     68.429     70.933
+             500.000      82.859      -0.031      96.895    0.20%      73.342     78.566
+     Y9                   67.793      -0.096      38.838    0.20%      59.282     65.778     67.952
+             500.000      98.875      -0.071      94.656    0.20%      70.594     75.868
+     Y10                  64.838      -0.100      35.742    0.20%      55.358     62.641     65.030
+             500.000     113.123      -0.201      93.634    0.20%      68.105     73.794
+     EX1                   0.075       0.020      -2.913    0.20%      -0.781     -0.166      0.107
+             500.000       0.999       0.297       3.405    0.20%       0.317      0.838
+     EX2                   0.072       0.020      -2.741    0.20%      -0.813     -0.168      0.100
+             500.000       0.966      -0.189       3.080    0.20%       0.311      0.961
+     GX1                   0.028       0.081      -2.543    0.20%      -0.839     -0.245     -0.012
+             500.000       1.049      -0.148       3.295    0.20%       0.284      0.879
+     GX2                   0.009      -0.184      -3.053    0.20%      -0.828     -0.233      0.028
+             500.000       0.983      -0.241       2.607    0.20%       0.275      0.851
+     T1                    0.000       0.000       0.000  100.00%       0.000      0.000      0.000
+             500.000       0.000       0.000       0.000  100.00%       0.000      0.000
+     T2                    0.996       0.050       0.753    0.20%       0.847      0.936      0.983
+             500.000       0.022      -1.268       1.248    0.20%       1.048      1.154
+     T3                    1.997       0.149       1.751    0.20%       1.860      1.937      1.982
+             500.000       0.020      -1.175       2.248    0.20%       2.035      2.154
+     T4                    2.992       0.128       2.753    0.20%       2.855      2.949      2.986
+             500.000       0.019      -1.050       3.249    0.20%       3.026      3.128
+     T5                    3.996       0.031       3.753    0.20%       3.843      3.946      3.997
+             500.000       0.021      -1.188       4.250    0.20%       4.050      4.144
+     T6                    5.011      -0.098       4.751    0.20%       4.870      4.965      5.014
+             500.000       0.020      -1.145       5.250    0.20%       5.064      5.157
+     T7                    6.002      -0.013       5.752    0.20%       5.850      5.949      6.003
+             500.000       0.021      -1.199       6.250    0.20%       6.050      6.153
+     T8                    7.016      -0.166       6.751    0.20%       6.866      6.971      7.028
+             500.000       0.020      -1.179       7.250    0.20%       7.078      7.160
+     T9                    7.992       0.051       7.750    0.20%       7.832      7.937      7.996
+             500.000       0.022      -1.229       8.249    0.20%       8.042      8.148
+     T10                   9.000       0.000       9.000  100.00%       9.000      9.000      9.000
+             500.000       0.000       0.000       9.000  100.00%       9.000      9.000
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+          -11458.347  127215           9
+          -11458.347  533738           11
+          -11458.347  unperturbed      0
+          -11458.347  27071            15
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       47
+
+Loglikelihood
+
+          H0 Value                      -11458.347
+          H0 Scaling Correction Factor      1.0364
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   23010.695
+          Bayesian (BIC)                 23208.781
+          Sample-Size Adjusted BIC       23059.601
+            (n* = (n + 2) / 24)
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1        241.96429          0.48393
+       2        258.03571          0.51607
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1        241.96439          0.48393
+       2        258.03561          0.51607
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1              255          0.51000
+       2              245          0.49000
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.661
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2
+
+    1   0.921    0.079
+    2   0.125    0.875
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2
+
+    1      2.457    0.000
+    2     -1.950    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ ETA0S    BY
+    Y1                 1.000      0.000    999.000    999.000
+    Y2                 1.000      0.000    999.000    999.000
+    Y3                 1.000      0.000    999.000    999.000
+    Y4                 1.000      0.000    999.000    999.000
+    Y5                 1.000      0.000    999.000    999.000
+    Y6                 1.000      0.000    999.000    999.000
+    Y7                 1.000      0.000    999.000    999.000
+    Y8                 1.000      0.000    999.000    999.000
+    Y9                 1.000      0.000    999.000    999.000
+    Y10                1.000      0.000    999.000    999.000
+
+ ETA1S    BY
+    Y1               999.000      0.000    999.000    999.000
+    Y2               999.000      0.000    999.000    999.000
+    Y3               999.000      0.000    999.000    999.000
+    Y4               999.000      0.000    999.000    999.000
+    Y5               999.000      0.000    999.000    999.000
+    Y6               999.000      0.000    999.000    999.000
+    Y7               999.000      0.000    999.000    999.000
+    Y8               999.000      0.000    999.000    999.000
+    Y9               999.000      0.000    999.000    999.000
+    Y10              999.000      0.000    999.000    999.000
+
+ ETA2S    BY
+    Y1               999.000      0.000    999.000    999.000
+    Y2               999.000      0.000    999.000    999.000
+    Y3               999.000      0.000    999.000    999.000
+    Y4               999.000      0.000    999.000    999.000
+    Y5               999.000      0.000    999.000    999.000
+    Y6               999.000      0.000    999.000    999.000
+    Y7               999.000      0.000    999.000    999.000
+    Y8               999.000      0.000    999.000    999.000
+    Y9               999.000      0.000    999.000    999.000
+    Y10              999.000      0.000    999.000    999.000
+
+ ETA0S      ON
+    EX1                2.408      0.643      3.743      0.000
+    EX2                3.693      0.576      6.408      0.000
+
+ ETA1S      ON
+    EX1                0.236      0.054      4.397      0.000
+    EX2                0.438      0.056      7.785      0.000
+
+ ETA2S      ON
+    EX1               -0.028      0.053     -0.517      0.605
+    EX2                0.077      0.066      1.160      0.246
+
+ ETA1S    WITH
+    ETA0S              2.753      0.324      8.498      0.000
+
+ ETA2S    WITH
+    ETA0S             -2.125      0.368     -5.770      0.000
+    ETA1S             -0.003      0.029     -0.089      0.929
+
+ EX2      WITH
+    EX1                0.392      0.078      4.996      0.000
+
+ Means
+    EX1                0.110      0.086      1.286      0.198
+    EX2                0.055      0.076      0.727      0.467
+
+ Intercepts
+    Y1                 0.000      0.000    999.000    999.000
+    Y2                 0.000      0.000    999.000    999.000
+    Y3                 0.000      0.000    999.000    999.000
+    Y4                 0.000      0.000    999.000    999.000
+    Y5                 0.000      0.000    999.000    999.000
+    Y6                 0.000      0.000    999.000    999.000
+    Y7                 0.000      0.000    999.000    999.000
+    Y8                 0.000      0.000    999.000    999.000
+    Y9                 0.000      0.000    999.000    999.000
+    Y10                0.000      0.000    999.000    999.000
+    ETA0S             72.896      0.639    114.124      0.000
+    ETA1S             -4.099      0.052    -78.222      0.000
+    ETA2S              0.718      0.065     11.017      0.000
+
+ Variances
+    EX1                1.137      0.134      8.512      0.000
+    EX2                0.909      0.084     10.774      0.000
+
+ Residual Variances
+    Y1                 1.024      0.046     22.080      0.000
+    Y2                 1.024      0.046     22.080      0.000
+    Y3                 1.024      0.046     22.080      0.000
+    Y4                 1.024      0.046     22.080      0.000
+    Y5                 1.024      0.046     22.080      0.000
+    Y6                 1.024      0.046     22.080      0.000
+    Y7                 1.024      0.046     22.080      0.000
+    Y8                 1.024      0.046     22.080      0.000
+    Y9                 1.024      0.046     22.080      0.000
+    Y10                1.024      0.046     22.080      0.000
+    ETA0S             47.450      4.709     10.076      0.000
+    ETA1S              0.423      0.043      9.765      0.000
+    ETA2S              0.381      0.043      8.948      0.000
+
+Latent Class 2
+
+ ETA0S    BY
+    Y1                 1.000      0.000    999.000    999.000
+    Y2                 1.000      0.000    999.000    999.000
+    Y3                 1.000      0.000    999.000    999.000
+    Y4                 1.000      0.000    999.000    999.000
+    Y5                 1.000      0.000    999.000    999.000
+    Y6                 1.000      0.000    999.000    999.000
+    Y7                 1.000      0.000    999.000    999.000
+    Y8                 1.000      0.000    999.000    999.000
+    Y9                 1.000      0.000    999.000    999.000
+    Y10                1.000      0.000    999.000    999.000
+
+ ETA1S    BY
+    Y1               999.000      0.000    999.000    999.000
+    Y2               999.000      0.000    999.000    999.000
+    Y3               999.000      0.000    999.000    999.000
+    Y4               999.000      0.000    999.000    999.000
+    Y5               999.000      0.000    999.000    999.000
+    Y6               999.000      0.000    999.000    999.000
+    Y7               999.000      0.000    999.000    999.000
+    Y8               999.000      0.000    999.000    999.000
+    Y9               999.000      0.000    999.000    999.000
+    Y10              999.000      0.000    999.000    999.000
+
+ ETA2S    BY
+    Y1               999.000      0.000    999.000    999.000
+    Y2               999.000      0.000    999.000    999.000
+    Y3               999.000      0.000    999.000    999.000
+    Y4               999.000      0.000    999.000    999.000
+    Y5               999.000      0.000    999.000    999.000
+    Y6               999.000      0.000    999.000    999.000
+    Y7               999.000      0.000    999.000    999.000
+    Y8               999.000      0.000    999.000    999.000
+    Y9               999.000      0.000    999.000    999.000
+    Y10              999.000      0.000    999.000    999.000
+
+ ETA0S      ON
+    EX1                1.097      0.553      1.986      0.047
+    EX2                1.979      0.438      4.519      0.000
+
+ ETA1S      ON
+    EX1                0.137      0.063      2.161      0.031
+    EX2                0.297      0.047      6.326      0.000
+
+ ETA2S      ON
+    EX1                0.007      0.064      0.115      0.908
+    EX2                0.056      0.057      0.984      0.325
+
+ ETA1S    WITH
+    ETA0S              2.365      0.367      6.447      0.000
+
+ ETA2S    WITH
+    ETA0S             -1.336      0.347     -3.851      0.000
+    ETA1S              0.006      0.043      0.134      0.894
+
+ EX2      WITH
+    EX1                0.212      0.078      2.702      0.007
+
+ Means
+    EX1                0.042      0.081      0.513      0.608
+    EX2                0.088      0.074      1.184      0.237
+
+ Intercepts
+    Y1                 0.000      0.000    999.000    999.000
+    Y2                 0.000      0.000    999.000    999.000
+    Y3                 0.000      0.000    999.000    999.000
+    Y4                 0.000      0.000    999.000    999.000
+    Y5                 0.000      0.000    999.000    999.000
+    Y6                 0.000      0.000    999.000    999.000
+    Y7                 0.000      0.000    999.000    999.000
+    Y8                 0.000      0.000    999.000    999.000
+    Y9                 0.000      0.000    999.000    999.000
+    Y10                0.000      0.000    999.000    999.000
+    ETA0S             81.712      0.520    157.030      0.000
+    ETA1S             -3.884      0.061    -63.459      0.000
+    ETA2S              1.229      0.098     12.500      0.000
+
+ Variances
+    EX1                0.867      0.110      7.900      0.000
+    EX2                1.019      0.093     10.935      0.000
+
+ Residual Variances
+    Y1                 1.013      0.042     24.230      0.000
+    Y2                 1.013      0.042     24.230      0.000
+    Y3                 1.013      0.042     24.230      0.000
+    Y4                 1.013      0.042     24.230      0.000
+    Y5                 1.013      0.042     24.230      0.000
+    Y6                 1.013      0.042     24.230      0.000
+    Y7                 1.013      0.042     24.230      0.000
+    Y8                 1.013      0.042     24.230      0.000
+    Y9                 1.013      0.042     24.230      0.000
+    Y10                1.013      0.042     24.230      0.000
+    ETA0S             38.166      3.609     10.574      0.000
+    ETA1S              0.533      0.055      9.680      0.000
+    ETA2S              0.332      0.086      3.870      0.000
+
+Categorical Latent Variables
+
+ C#1        ON
+    GX1                0.440      0.130      3.390      0.001
+    GX2                0.553      0.166      3.326      0.001
+
+ Intercepts
+    C#1               -0.095      0.233     -0.408      0.684
+
+New/Additional Parameters
+    C1MUETA0          99.672      0.331    301.187      0.000
+    C1MUETA1          -4.817      0.081    -59.279      0.000
+    C1MUETA2          -3.381      0.086    -39.350      0.000
+    C1MUG              5.559      0.046    120.845      0.000
+    C1PSI00           18.212      1.890      9.636      0.000
+    C1PSI01            0.381      0.288      1.325      0.185
+    C1PSI02            0.396      0.282      1.407      0.159
+    C1PSI11            0.809      0.086      9.432      0.000
+    C1PSI12            0.042      0.062      0.675      0.500
+    C1PSI22            0.799      0.081      9.870      0.000
+    C1BETA01           0.942      0.341      2.765      0.006
+    C1BETA11           0.264      0.080      3.316      0.001
+    C1BETA21           0.209      0.071      2.919      0.004
+    C1BETA02           1.682      0.360      4.670      0.000
+    C1BETA12           0.362      0.080      4.529      0.000
+    C1BETA22           0.515      0.093      5.526      0.000
+    C2MUETA0          99.701      0.344    289.926      0.000
+    C2MUETA1          -5.112      0.092    -55.621      0.000
+    C2MUETA2          -2.655      0.136    -19.588      0.000
+    C2MUG              3.519      0.034    103.643      0.000
+    C2PSI00           22.690      2.247     10.099      0.000
+    C2PSI01            0.697      0.304      2.295      0.022
+    C2PSI02            0.320      0.332      0.965      0.335
+    C2PSI11            0.854      0.107      7.963      0.000
+    C2PSI12            0.201      0.101      1.989      0.047
+    C2PSI22            0.876      0.155      5.658      0.000
+    C2BETA01           0.642      0.404      1.591      0.112
+    C2BETA11           0.129      0.092      1.405      0.160
+    C2BETA21           0.144      0.088      1.632      0.103
+    C2BETA02           1.130      0.329      3.440      0.001
+    C2BETA12           0.241      0.078      3.102      0.002
+    C2BETA22           0.354      0.070      5.061      0.000
+
+
+LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+Categorical Latent Variables
+
+ C#1      ON
+    GX1                1.553      0.201      2.743      0.006
+    GX2                1.738      0.289      2.555      0.011
+
+
+ALTERNATIVE PARAMETERIZATIONS FOR THE CATEGORICAL LATENT VARIABLE REGRESSION
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Parameterization using Reference Class 1
+
+ C#2      ON
+    GX1               -0.440      0.130     -3.390      0.001
+    GX2               -0.553      0.166     -3.326      0.001
+
+ Intercepts
+    C#2                0.095      0.233      0.408      0.684
+
+
+ODDS RATIO FOR THE ALTERNATIVE PARAMETERIZATIONS FOR THE CATEGORICAL LATENT VARIABLE REGRESSION
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+Parameterization using Reference Class 1
+
+ C#2      ON
+    GX1                0.644      0.084     -4.259      0.000
+    GX2                0.575      0.096     -4.441      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.255E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 1
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              EX1           EX2           GX1           GX2
+              ________      ________      ________      ________
+                    0             0             0             0
+
+
+           LAMBDA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ Y1                 0             1             2             0             0
+ Y2                 0             3             4             0             0
+ Y3                 0             5             6             0             0
+ Y4                 0             7             8             0             0
+ Y5                 0             9            10             0             0
+ Y6                 0            11            12             0             0
+ Y7                 0            13            14             0             0
+ Y8                 0            15            16             0             0
+ Y9                 0            17            18             0             0
+ Y10                0            19            20             0             0
+ EX1                0             0             0             0             0
+ EX2                0             0             0             0             0
+ GX1                0             0             0             0             0
+ GX2                0             0             0             0             0
+
+
+           LAMBDA
+              GX1           GX2
+              ________      ________
+ Y1                 0             0
+ Y2                 0             0
+ Y3                 0             0
+ Y4                 0             0
+ Y5                 0             0
+ Y6                 0             0
+ Y7                 0             0
+ Y8                 0             0
+ Y9                 0             0
+ Y10                0             0
+ EX1                0             0
+ EX2                0             0
+ GX1                0             0
+ GX2                0             0
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1                21
+ Y2                 0            21
+ Y3                 0             0            21
+ Y4                 0             0             0            21
+ Y5                 0             0             0             0            21
+ Y6                 0             0             0             0             0
+ Y7                 0             0             0             0             0
+ Y8                 0             0             0             0             0
+ Y9                 0             0             0             0             0
+ Y10                0             0             0             0             0
+ EX1                0             0             0             0             0
+ EX2                0             0             0             0             0
+ GX1                0             0             0             0             0
+ GX2                0             0             0             0             0
+
+
+           THETA
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6                21
+ Y7                 0            21
+ Y8                 0             0            21
+ Y9                 0             0             0            21
+ Y10                0             0             0             0            21
+ EX1                0             0             0             0             0
+ EX2                0             0             0             0             0
+ GX1                0             0             0             0             0
+ GX2                0             0             0             0             0
+
+
+           THETA
+              EX1           EX2           GX1           GX2
+              ________      ________      ________      ________
+ EX1                0
+ EX2                0             0
+ GX1                0             0             0
+ GX2                0             0             0             0
+
+
+           ALPHA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+                   22            23            24            25            26
+
+
+           ALPHA
+              GX1           GX2
+              ________      ________
+                    0             0
+
+
+           BETA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ ETA0S              0             0             0            27            28
+ ETA1S              0             0             0            29            30
+ ETA2S              0             0             0            31            32
+ EX1                0             0             0             0             0
+ EX2                0             0             0             0             0
+ GX1                0             0             0             0             0
+ GX2                0             0             0             0             0
+
+
+           BETA
+              GX1           GX2
+              ________      ________
+ ETA0S              0             0
+ ETA1S              0             0
+ ETA2S              0             0
+ EX1                0             0
+ EX2                0             0
+ GX1                0             0
+ GX2                0             0
+
+
+           PSI
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ ETA0S             33
+ ETA1S             34            35
+ ETA2S             36            37            38
+ EX1                0             0             0            39
+ EX2                0             0             0            40            41
+ GX1                0             0             0             0             0
+ GX2                0             0             0             0             0
+
+
+           PSI
+              GX1           GX2
+              ________      ________
+ GX1                0
+ GX2                0             0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 2
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              EX1           EX2           GX1           GX2
+              ________      ________      ________      ________
+                    0             0             0             0
+
+
+           LAMBDA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ Y1                 0            42            43             0             0
+ Y2                 0            44            45             0             0
+ Y3                 0            46            47             0             0
+ Y4                 0            48            49             0             0
+ Y5                 0            50            51             0             0
+ Y6                 0            52            53             0             0
+ Y7                 0            54            55             0             0
+ Y8                 0            56            57             0             0
+ Y9                 0            58            59             0             0
+ Y10                0            60            61             0             0
+ EX1                0             0             0             0             0
+ EX2                0             0             0             0             0
+ GX1                0             0             0             0             0
+ GX2                0             0             0             0             0
+
+
+           LAMBDA
+              GX1           GX2
+              ________      ________
+ Y1                 0             0
+ Y2                 0             0
+ Y3                 0             0
+ Y4                 0             0
+ Y5                 0             0
+ Y6                 0             0
+ Y7                 0             0
+ Y8                 0             0
+ Y9                 0             0
+ Y10                0             0
+ EX1                0             0
+ EX2                0             0
+ GX1                0             0
+ GX2                0             0
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1                62
+ Y2                 0            62
+ Y3                 0             0            62
+ Y4                 0             0             0            62
+ Y5                 0             0             0             0            62
+ Y6                 0             0             0             0             0
+ Y7                 0             0             0             0             0
+ Y8                 0             0             0             0             0
+ Y9                 0             0             0             0             0
+ Y10                0             0             0             0             0
+ EX1                0             0             0             0             0
+ EX2                0             0             0             0             0
+ GX1                0             0             0             0             0
+ GX2                0             0             0             0             0
+
+
+           THETA
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6                62
+ Y7                 0            62
+ Y8                 0             0            62
+ Y9                 0             0             0            62
+ Y10                0             0             0             0            62
+ EX1                0             0             0             0             0
+ EX2                0             0             0             0             0
+ GX1                0             0             0             0             0
+ GX2                0             0             0             0             0
+
+
+           THETA
+              EX1           EX2           GX1           GX2
+              ________      ________      ________      ________
+ EX1                0
+ EX2                0             0
+ GX1                0             0             0
+ GX2                0             0             0             0
+
+
+           ALPHA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+                   63            64            65            66            67
+
+
+           ALPHA
+              GX1           GX2
+              ________      ________
+                    0             0
+
+
+           BETA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ ETA0S              0             0             0            68            69
+ ETA1S              0             0             0            70            71
+ ETA2S              0             0             0            72            73
+ EX1                0             0             0             0             0
+ EX2                0             0             0             0             0
+ GX1                0             0             0             0             0
+ GX2                0             0             0             0             0
+
+
+           BETA
+              GX1           GX2
+              ________      ________
+ ETA0S              0             0
+ ETA1S              0             0
+ ETA2S              0             0
+ EX1                0             0
+ EX2                0             0
+ GX1                0             0
+ GX2                0             0
+
+
+           PSI
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ ETA0S             74
+ ETA1S             75            76
+ ETA2S             77            78            79
+ EX1                0             0             0            80
+ EX2                0             0             0            81            82
+ GX1                0             0             0             0             0
+ GX2                0             0             0             0             0
+
+
+           PSI
+              GX1           GX2
+              ________      ________
+ GX1                0
+ GX2                0             0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                   83             0
+
+
+           GAMMA(C)
+              GX1           GX2
+              ________      ________
+ C#1               84            85
+ C#2                0             0
+
+
+     PARAMETER SPECIFICATION FOR THE ADDITIONAL PARAMETERS
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1MUETA0      C1MUETA1      C1MUETA2      C1MUG         C1PSI00
+              ________      ________      ________      ________      ________
+                   86            87            88            89            90
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1PSI01       C1PSI02       C1PSI11       C1PSI12       C1PSI22
+              ________      ________      ________      ________      ________
+                   91            92            93            94            95
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1BETA01      C1BETA11      C1BETA21      C1BETA02      C1BETA12
+              ________      ________      ________      ________      ________
+                   96            97            98            99           100
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1BETA22      C2MUETA0      C2MUETA1      C2MUETA2      C2MUG
+              ________      ________      ________      ________      ________
+                  101           102           103           104           105
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2PSI00       C2PSI01       C2PSI02       C2PSI11       C2PSI12
+              ________      ________      ________      ________      ________
+                  106           107           108           109           110
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2PSI22       C2BETA01      C2BETA11      C2BETA21      C2BETA02
+              ________      ________      ________      ________      ________
+                  111           112           113           114           115
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2BETA12      C2BETA22
+              ________      ________
+                  116           117
+
+
+     STARTING VALUES FOR LATENT CLASS 1
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              EX1           EX2           GX1           GX2
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ Y1             1.000         1.000         1.000         0.000         0.000
+ Y2             1.000         1.000         1.000         0.000         0.000
+ Y3             1.000         1.000         1.000         0.000         0.000
+ Y4             1.000         1.000         1.000         0.000         0.000
+ Y5             1.000         1.000         1.000         0.000         0.000
+ Y6             1.000         1.000         1.000         0.000         0.000
+ Y7             1.000         1.000         1.000         0.000         0.000
+ Y8             1.000         1.000         1.000         0.000         0.000
+ Y9             1.000         1.000         1.000         0.000         0.000
+ Y10            1.000         1.000         1.000         0.000         0.000
+ EX1            0.000         0.000         0.000         1.000         0.000
+ EX2            0.000         0.000         0.000         0.000         1.000
+ GX1            0.000         0.000         0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              GX1           GX2
+              ________      ________
+ Y1             0.000         0.000
+ Y2             0.000         0.000
+ Y3             0.000         0.000
+ Y4             0.000         0.000
+ Y5             0.000         0.000
+ Y6             0.000         0.000
+ Y7             0.000         0.000
+ Y8             0.000         0.000
+ Y9             0.000         0.000
+ Y10            0.000         0.000
+ EX1            0.000         0.000
+ EX2            0.000         0.000
+ GX1            1.000         0.000
+ GX2            0.000         1.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1             1.100
+ Y2             0.000         1.100
+ Y3             0.000         0.000         1.100
+ Y4             0.000         0.000         0.000         1.100
+ Y5             0.000         0.000         0.000         0.000         1.100
+ Y6             0.000         0.000         0.000         0.000         0.000
+ Y7             0.000         0.000         0.000         0.000         0.000
+ Y8             0.000         0.000         0.000         0.000         0.000
+ Y9             0.000         0.000         0.000         0.000         0.000
+ Y10            0.000         0.000         0.000         0.000         0.000
+ EX1            0.000         0.000         0.000         0.000         0.000
+ EX2            0.000         0.000         0.000         0.000         0.000
+ GX1            0.000         0.000         0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6             1.100
+ Y7             0.000         1.100
+ Y8             0.000         0.000         1.100
+ Y9             0.000         0.000         0.000         1.100
+ Y10            0.000         0.000         0.000         0.000         1.100
+ EX1            0.000         0.000         0.000         0.000         0.000
+ EX2            0.000         0.000         0.000         0.000         0.000
+ GX1            0.000         0.000         0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              EX1           EX2           GX1           GX2
+              ________      ________      ________      ________
+ EX1            0.000
+ EX2            0.000         0.000
+ GX1            0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000
+
+
+           ALPHA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+               80.000        -4.000         1.000        -0.924        -0.911
+
+
+           ALPHA
+              GX1           GX2
+              ________      ________
+                0.000         0.000
+
+
+           BETA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ ETA0S          0.000         0.000         0.000         0.800         1.300
+ ETA1S          0.000         0.000         0.000         0.200         0.300
+ ETA2S          0.000         0.000         0.000         0.200         0.300
+ EX1            0.000         0.000         0.000         0.000         0.000
+ EX2            0.000         0.000         0.000         0.000         0.000
+ GX1            0.000         0.000         0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000         0.000
+
+
+           BETA
+              GX1           GX2
+              ________      ________
+ ETA0S          0.000         0.000
+ ETA1S          0.000         0.000
+ ETA2S          0.000         0.000
+ EX1            0.000         0.000
+ EX2            0.000         0.000
+ GX1            0.000         0.000
+ GX2            0.000         0.000
+
+
+           PSI
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ ETA0S         50.000
+ ETA1S          4.000         0.600
+ ETA2S         -1.200         0.200         0.400
+ EX1            0.000         0.000         0.000         0.499
+ EX2            0.000         0.000         0.000         0.000         0.483
+ GX1            0.000         0.000         0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000         0.000
+
+
+           PSI
+              GX1           GX2
+              ________      ________
+ GX1            0.524
+ GX2            0.000         0.492
+
+
+     STARTING VALUES FOR LATENT CLASS 2
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              EX1           EX2           GX1           GX2
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ Y1             1.000         1.000         1.000         0.000         0.000
+ Y2             1.000         1.000         1.000         0.000         0.000
+ Y3             1.000         1.000         1.000         0.000         0.000
+ Y4             1.000         1.000         1.000         0.000         0.000
+ Y5             1.000         1.000         1.000         0.000         0.000
+ Y6             1.000         1.000         1.000         0.000         0.000
+ Y7             1.000         1.000         1.000         0.000         0.000
+ Y8             1.000         1.000         1.000         0.000         0.000
+ Y9             1.000         1.000         1.000         0.000         0.000
+ Y10            1.000         1.000         1.000         0.000         0.000
+ EX1            0.000         0.000         0.000         1.000         0.000
+ EX2            0.000         0.000         0.000         0.000         1.000
+ GX1            0.000         0.000         0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              GX1           GX2
+              ________      ________
+ Y1             0.000         0.000
+ Y2             0.000         0.000
+ Y3             0.000         0.000
+ Y4             0.000         0.000
+ Y5             0.000         0.000
+ Y6             0.000         0.000
+ Y7             0.000         0.000
+ Y8             0.000         0.000
+ Y9             0.000         0.000
+ Y10            0.000         0.000
+ EX1            0.000         0.000
+ EX2            0.000         0.000
+ GX1            1.000         0.000
+ GX2            0.000         1.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1             1.100
+ Y2             0.000         1.100
+ Y3             0.000         0.000         1.100
+ Y4             0.000         0.000         0.000         1.100
+ Y5             0.000         0.000         0.000         0.000         1.100
+ Y6             0.000         0.000         0.000         0.000         0.000
+ Y7             0.000         0.000         0.000         0.000         0.000
+ Y8             0.000         0.000         0.000         0.000         0.000
+ Y9             0.000         0.000         0.000         0.000         0.000
+ Y10            0.000         0.000         0.000         0.000         0.000
+ EX1            0.000         0.000         0.000         0.000         0.000
+ EX2            0.000         0.000         0.000         0.000         0.000
+ GX1            0.000         0.000         0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6             1.100
+ Y7             0.000         1.100
+ Y8             0.000         0.000         1.100
+ Y9             0.000         0.000         0.000         1.100
+ Y10            0.000         0.000         0.000         0.000         1.100
+ EX1            0.000         0.000         0.000         0.000         0.000
+ EX2            0.000         0.000         0.000         0.000         0.000
+ GX1            0.000         0.000         0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              EX1           EX2           GX1           GX2
+              ________      ________      ________      ________
+ EX1            0.000
+ EX2            0.000         0.000
+ GX1            0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000
+
+
+           ALPHA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+               75.000        -4.000         1.000         1.074         1.055
+
+
+           ALPHA
+              GX1           GX2
+              ________      ________
+                0.000         0.000
+
+
+           BETA
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ ETA0S          0.000         0.000         0.000         1.200         1.800
+ ETA1S          0.000         0.000         0.000         0.300         0.400
+ ETA2S          0.000         0.000         0.000         0.300         0.400
+ EX1            0.000         0.000         0.000         0.000         0.000
+ EX2            0.000         0.000         0.000         0.000         0.000
+ GX1            0.000         0.000         0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000         0.000
+
+
+           BETA
+              GX1           GX2
+              ________      ________
+ ETA0S          0.000         0.000
+ ETA1S          0.000         0.000
+ ETA2S          0.000         0.000
+ EX1            0.000         0.000
+ EX2            0.000         0.000
+ GX1            0.000         0.000
+ GX2            0.000         0.000
+
+
+           PSI
+              ETA0S         ETA1S         ETA2S         EX1           EX2
+              ________      ________      ________      ________      ________
+ ETA0S         70.000
+ ETA1S          5.000         0.600
+ ETA2S         -2.000         0.000         0.400
+ EX1            0.000         0.000         0.000         0.499
+ EX2            0.000         0.000         0.000         0.000         0.483
+ GX1            0.000         0.000         0.000         0.000         0.000
+ GX2            0.000         0.000         0.000         0.000         0.000
+
+
+           PSI
+              GX1           GX2
+              ________      ________
+ GX1            0.524
+ GX2            0.000         0.492
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                0.000         0.000
+
+
+           GAMMA(C)
+              GX1           GX2
+              ________      ________
+ C#1            0.000         0.000
+ C#2            0.000         0.000
+
+
+     STARTING VALUES FOR THE ADDITIONAL PARAMETERS
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1MUETA0      C1MUETA1      C1MUETA2      C1MUG         C1PSI00
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         3.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1PSI01       C1PSI02       C1PSI11       C1PSI12       C1PSI22
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1BETA01      C1BETA11      C1BETA21      C1BETA02      C1BETA12
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1BETA22      C2MUETA0      C2MUETA1      C2MUETA2      C2MUG
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         0.500         5.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2PSI00       C2PSI01       C2PSI02       C2PSI11       C2PSI12
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2PSI22       C2BETA01      C2BETA11      C2BETA21      C2BETA02
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2BETA12      C2BETA22
+              ________      ________
+                0.500         0.500
+
+
+TECHNICAL 8 OUTPUT
+
+
+  INITIAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.12549335D+05    0.0000000    0.0000000  EM
+              2 -0.11587682D+05  961.6532180    0.0766298  EM
+              3 -0.11496141D+05   91.5408911    0.0078998  EM
+              4 -0.11472377D+05   23.7633397    0.0020671  EM
+              5 -0.11464537D+05    7.8405458    0.0006834  EM
+              6 -0.11461316D+05    3.2210309    0.0002810  EM
+              7 -0.11459806D+05    1.5097894    0.0001317  EM
+              8 -0.11459067D+05    0.7385530    0.0000644  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 1
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.38081126D+05    0.0000000    0.0000000  EM
+              2 -0.13681309D+05 ************    0.6407325  EM
+              3 -0.13537342D+05  143.9667812    0.0105229  EM
+              4 -0.13421896D+05  115.4468308    0.0085280  EM
+              5 -0.13251024D+05  170.8720056    0.0127308  EM
+              6 -0.12148651D+05 1102.3727559    0.0831915  EM
+              7 -0.11891080D+05  257.5708382    0.0212016  EM
+              8 -0.11825532D+05   65.5479215    0.0055124  EM
+              9 -0.11803081D+05   22.4506772    0.0018985  EM
+             10 -0.11792719D+05   10.3620691    0.0008779  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 2
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.37314098D+05    0.0000000    0.0000000  EM
+              2 -0.13746809D+05 ************    0.6315921  EM
+              3 -0.13690621D+05   56.1877928    0.0040873  EM
+              4 -0.13680839D+05    9.7817594    0.0007145  EM
+              5 -0.13671159D+05    9.6806584    0.0007076  EM
+              6 -0.13637260D+05   33.8984410    0.0024796  EM
+              7 -0.13565708D+05   71.5524628    0.0052468  EM
+              8 -0.13515679D+05   50.0286844    0.0036879  EM
+              9 -0.13498949D+05   16.7297983    0.0012378  EM
+             10 -0.13490562D+05    8.3873002    0.0006213  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 3
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.56762634D+05    0.0000000    0.0000000  EM
+              2 -0.11832550D+05 ************    0.7915433  EM
+              3 -0.11778963D+05   53.5868301    0.0045288  EM
+              4 -0.11747547D+05   31.4160940    0.0026671  EM
+              5 -0.11705150D+05   42.3968147    0.0036090  EM
+              6 -0.11651219D+05   53.9312963    0.0046075  EM
+              7 -0.11586655D+05   64.5643188    0.0055414  EM
+              8 -0.11496326D+05   90.3292378    0.0077960  EM
+              9 -0.11467673D+05   28.6520118    0.0024923  EM
+             10 -0.11461564D+05    6.1095138    0.0005328  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 4
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.57022420D+05    0.0000000    0.0000000  EM
+              2 -0.13734229D+05 ************    0.7591434  EM
+              3 -0.13656302D+05   77.9267100    0.0056739  EM
+              4 -0.13612271D+05   44.0310491    0.0032242  EM
+              5 -0.13560211D+05   52.0602661    0.0038245  EM
+              6 -0.13513299D+05   46.9114672    0.0034595  EM
+              7 -0.13486121D+05   27.1785920    0.0020112  EM
+              8 -0.13477038D+05    9.0823948    0.0006735  EM
+              9 -0.13474386D+05    2.6527726    0.0001968  EM
+             10 -0.13473530D+05    0.8555612    0.0000635  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 5
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.65190148D+05    0.0000000    0.0000000  EM
+              2 -0.11831320D+05 ************    0.8185106  EM
+              3 -0.11774104D+05   57.2159680    0.0048360  EM
+              4 -0.11727053D+05   47.0501778    0.0039961  EM
+              5 -0.11679020D+05   48.0332369    0.0040959  EM
+              6 -0.11625856D+05   53.1638772    0.0045521  EM
+              7 -0.11575342D+05   50.5139278    0.0043450  EM
+              8 -0.11496733D+05   78.6095648    0.0067911  EM
+              9 -0.11469662D+05   27.0711434    0.0023547  EM
+             10 -0.11463971D+05    5.6905009    0.0004961  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 6
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.33127333D+05    0.0000000    0.0000000  EM
+              2 -0.13323187D+05 ************    0.5978189  EM
+              3 -0.13215416D+05  107.7714697    0.0080890  EM
+              4 -0.13186086D+05   29.3297906    0.0022194  EM
+              5 -0.13152485D+05   33.6013667    0.0025482  EM
+              6 -0.13108690D+05   43.7945045    0.0033298  EM
+              7 -0.13057968D+05   50.7222121    0.0038694  EM
+              8 -0.13011946D+05   46.0221542    0.0035244  EM
+              9 -0.12985745D+05   26.2011028    0.0020136  EM
+             10 -0.12976478D+05    9.2672047    0.0007136  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 7
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.23728631D+05    0.0000000    0.0000000  EM
+              2 -0.12417550D+05 ************    0.4766849  EM
+              3 -0.12006771D+05  410.7792369    0.0330805  EM
+              4 -0.11863858D+05  142.9130416    0.0119027  EM
+              5 -0.11816186D+05   47.6721405    0.0040183  EM
+              6 -0.11796717D+05   19.4681478    0.0016476  EM
+              7 -0.11785983D+05   10.7346593    0.0009100  EM
+              8 -0.11781005D+05    4.9777698    0.0004223  EM
+              9 -0.11777383D+05    3.6220204    0.0003074  EM
+             10 -0.11775476D+05    1.9065842    0.0001619  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 8
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.38106473D+05    0.0000000    0.0000000  EM
+              2 -0.12001425D+05 ************    0.6850555  EM
+              3 -0.11791448D+05  209.9773285    0.0174960  EM
+              4 -0.11756405D+05   35.0426902    0.0029719  EM
+              5 -0.11698070D+05   58.3351653    0.0049620  EM
+              6 -0.11637171D+05   60.8990893    0.0052059  EM
+              7 -0.11587192D+05   49.9785991    0.0042947  EM
+              8 -0.11506228D+05   80.9642546    0.0069874  EM
+              9 -0.11473141D+05   33.0868579    0.0028756  EM
+             10 -0.11465660D+05    7.4811328    0.0006521  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 9
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.49263303D+05    0.0000000    0.0000000  EM
+              2 -0.11815998D+05 ************    0.7601460  EM
+              3 -0.11706150D+05  109.8480624    0.0092966  EM
+              4 -0.11574227D+05  131.9227446    0.0112695  EM
+              5 -0.11489645D+05   84.5824909    0.0073078  EM
+              6 -0.11467582D+05   22.0627220    0.0019202  EM
+              7 -0.11461600D+05    5.9816549    0.0005216  EM
+              8 -0.11459633D+05    1.9669135    0.0001716  EM
+              9 -0.11458912D+05    0.7214628    0.0000630  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 10
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.29052914D+05    0.0000000    0.0000000  EM
+              2 -0.13767254D+05 ************    0.5261317  EM
+              3 -0.13663312D+05  103.9419632    0.0075499  EM
+              4 -0.13614774D+05   48.5383835    0.0035525  EM
+              5 -0.13592589D+05   22.1849354    0.0016295  EM
+              6 -0.13591920D+05    0.6685845    0.0000492  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 11
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.38583079D+05    0.0000000    0.0000000  EM
+              2 -0.11812633D+05 ************    0.6938390  EM
+              3 -0.11674787D+05  137.8456442    0.0116693  EM
+              4 -0.11583185D+05   91.6020888    0.0078461  EM
+              5 -0.11487412D+05   95.7735529    0.0082683  EM
+              6 -0.11466233D+05   21.1792076    0.0018437  EM
+              7 -0.11461087D+05    5.1451996    0.0004487  EM
+              8 -0.11459484D+05    1.6030841    0.0001399  EM
+              9 -0.11458893D+05    0.5917192    0.0000516  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 12
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.37181108D+05    0.0000000    0.0000000  EM
+              2 -0.13203035D+05 ************    0.6448994  EM
+              3 -0.12367661D+05  835.3740808    0.0632714  EM
+              4 -0.12056591D+05  311.0702448    0.0251519  EM
+              5 -0.11872872D+05  183.7191146    0.0152381  EM
+              6 -0.11827774D+05   45.0977552    0.0037984  EM
+              7 -0.11809961D+05   17.8132565    0.0015061  EM
+              8 -0.11799950D+05   10.0110572    0.0008477  EM
+              9 -0.11794262D+05    5.6873161    0.0004820  EM
+             10 -0.11788564D+05    5.6982329    0.0004831  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 13
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.68369798D+05    0.0000000    0.0000000  EM
+              2 -0.12759151D+05 ************    0.8133803  EM
+              3 -0.11935914D+05  823.2375124    0.0645213  EM
+              4 -0.11827372D+05  108.5414046    0.0090937  EM
+              5 -0.11792560D+05   34.8123860    0.0029434  EM
+              6 -0.11782149D+05   10.4113366    0.0008829  EM
+              7 -0.11778616D+05    3.5327940    0.0002998  EM
+              8 -0.11776400D+05    2.2157889    0.0001881  EM
+              9 -0.11774956D+05    1.4445646    0.0001227  EM
+             10 -0.11773957D+05    0.9989023    0.0000848  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 14
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.31791434D+05    0.0000000    0.0000000  EM
+              2 -0.11839936D+05 ************    0.6275747  EM
+              3 -0.11766759D+05   73.1765036    0.0061805  EM
+              4 -0.11655626D+05  111.1332146    0.0094447  EM
+              5 -0.11521806D+05  133.8199291    0.0114811  EM
+              6 -0.11479237D+05   42.5686036    0.0036946  EM
+              7 -0.11468286D+05   10.9510324    0.0009540  EM
+              8 -0.11463523D+05    4.7631776    0.0004153  EM
+              9 -0.11461327D+05    2.1965299    0.0001916  EM
+             10 -0.11460156D+05    1.1703779    0.0001021  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 15
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.41405411D+05    0.0000000    0.0000000  EM
+              2 -0.11844382D+05 ************    0.7139412  EM
+              3 -0.11711879D+05  132.5026801    0.0111870  EM
+              4 -0.11614733D+05   97.1459542    0.0082947  EM
+              5 -0.11515376D+05   99.3571856    0.0085544  EM
+              6 -0.11471881D+05   43.4949522    0.0037771  EM
+              7 -0.11462607D+05    9.2747233    0.0008085  EM
+              8 -0.11460240D+05    2.3667151    0.0002065  EM
+              9 -0.11459402D+05    0.8375013    0.0000731  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 16
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.22927161D+05    0.0000000    0.0000000  EM
+              2 -0.11817436D+05 ************    0.4845661  EM
+              3 -0.11774062D+05   43.3747917    0.0036704  EM
+              4 -0.11743005D+05   31.0564556    0.0026377  EM
+              5 -0.11715491D+05   27.5137298    0.0023430  EM
+              6 -0.11687367D+05   28.1240636    0.0024006  EM
+              7 -0.11656436D+05   30.9316494    0.0026466  EM
+              8 -0.11626787D+05   29.6489038    0.0025436  EM
+              9 -0.11594003D+05   32.7838047    0.0028197  EM
+             10 -0.11557029D+05   36.9744122    0.0031891  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 17
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.57360751D+05    0.0000000    0.0000000  EM
+              2 -0.12636419D+05 ************    0.7797027  EM
+              3 -0.12113154D+05  523.2651327    0.0414093  EM
+              4 -0.11878049D+05  235.1053611    0.0194091  EM
+              5 -0.11825518D+05   52.5306073    0.0044225  EM
+              6 -0.11808363D+05   17.1546548    0.0014506  EM
+              7 -0.11798447D+05    9.9164014    0.0008398  EM
+              8 -0.11790433D+05    8.0134919    0.0006792  EM
+              9 -0.11784386D+05    6.0471315    0.0005129  EM
+             10 -0.11780073D+05    4.3137023    0.0003661  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 18
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.58757659D+05    0.0000000    0.0000000  EM
+              2 -0.11864063D+05 ************    0.7980848  EM
+              3 -0.11820372D+05   43.6909499    0.0036826  EM
+              4 -0.11802435D+05   17.9371627    0.0015175  EM
+              5 -0.11794141D+05    8.2941173    0.0007027  EM
+              6 -0.11786666D+05    7.4748870    0.0006338  EM
+              7 -0.11782843D+05    3.8227086    0.0003243  EM
+              8 -0.11779239D+05    3.6043387    0.0003059  EM
+              9 -0.11774769D+05    4.4695803    0.0003794  EM
+             10 -0.11769473D+05    5.2960928    0.0004498  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 19
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.59946511D+05    0.0000000    0.0000000  EM
+              2 -0.13591669D+05 ************    0.7732701  EM
+              3 -0.13340005D+05  251.6638037    0.0185160  EM
+              4 -0.13333077D+05    6.9277698    0.0005193  EM
+              5 -0.13329562D+05    3.5155634    0.0002637  EM
+              6 -0.13319636D+05    9.9252515    0.0007446  EM
+              7 -0.13288189D+05   31.4479144    0.0023610  EM
+              8 -0.13234478D+05   53.7104676    0.0040420  EM
+              9 -0.13192313D+05   42.1654007    0.0031860  EM
+             10 -0.13168898D+05   23.4147546    0.0017749  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 20
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.29626487D+05    0.0000000    0.0000000  EM
+              2 -0.11804691D+05 ************    0.6015494  EM
+              3 -0.11790532D+05   14.1589335    0.0011994  EM
+              4 -0.11778694D+05   11.8386197    0.0010041  EM
+              5 -0.11777819D+05    0.8748212    0.0000743  EM
+
+
+  FINAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 11
+
+
+              9 -0.11458893D+05    0.5917192    0.0000516  EM
+             10 -0.11458636D+05    0.2564768    0.0000224  EM
+             11 -0.11458515D+05    0.1213655    0.0000106  EM
+             12 -0.11458453D+05    0.0618734    0.0000054  EM
+             13 -0.11458419D+05    0.0342866    0.0000030  EM
+             14 -0.11458398D+05    0.0206541    0.0000018  EM
+             15 -0.11458385D+05    0.0133848    0.0000012  EM
+             16 -0.11458375D+05    0.0091928    0.0000008  EM
+             17 -0.11458369D+05    0.0065921    0.0000006  EM
+             18 -0.11458364D+05    0.0048688    0.0000004  EM
+             19 -0.11458360D+05    0.0036805    0.0000003  EM
+             20 -0.11458357D+05    0.0028131    0.0000002  EM
+             21 -0.11458355D+05    0.0021711    0.0000002  EM
+             22 -0.11458354D+05    0.0016859    0.0000001  EM
+             23 -0.11458352D+05    0.0013193    0.0000001  EM
+             24 -0.11458351D+05    0.0010292    0.0000001  EM
+             25 -0.11458350D+05    0.0008062    0.0000001  EM
+             26 -0.11458350D+05    0.0006324    0.0000001  EM
+             27 -0.11458349D+05    0.0004967    0.0000000  EM
+             28 -0.11458349D+05    0.0003905    0.0000000  EM
+             29 -0.11458349D+05    0.0003096    0.0000000  EM
+             30 -0.11458348D+05    0.0002422    0.0000000  EM
+             31 -0.11458348D+05    0.0001908    0.0000000  EM
+             32 -0.11458348D+05    0.0001503    0.0000000  EM
+             33 -0.11458348D+05    0.0001184    0.0000000  EM
+             34 -0.11458348D+05    0.0000934    0.0000000  EM
+             35 -0.11458348D+05    0.0000736    0.0000000  EM
+             36 -0.11458348D+05    0.0000581    0.0000000  EM
+             37 -0.11458348D+05    0.0000458    0.0000000  EM
+             38 -0.11458348D+05    0.0000362    0.0000000  EM
+             39 -0.11458348D+05    0.0000286    0.0000000  EM
+             40 -0.11458348D+05    0.0000226    0.0000000  EM
+             41 -0.11458348D+05    0.0000179    0.0000000  EM
+             42 -0.11458347D+05    0.0000141    0.0000000  EM
+             43 -0.11458347D+05    0.0000112    0.0000000  EM
+             44 -0.11458347D+05    0.0000089    0.0000000  EM
+             45 -0.11458347D+05    0.0000070    0.0000000  EM
+             46 -0.11458347D+05    0.0000053    0.0000000  EM
+             47 -0.11458347D+05    0.0000043    0.0000000  EM
+             48 -0.11458347D+05    0.0000035    0.0000000  EM
+             49 -0.11458347D+05    0.0000037    0.0000000  EM
+             50 -0.11458347D+05    0.0000021    0.0000000  EM
+             51 -0.11458347D+05    0.0000017    0.0000000  EM
+             52 -0.11458347D+05    0.0000013    0.0000000  EM
+             53 -0.11458347D+05    0.0000011    0.0000000  EM
+             54 -0.11458347D+05    0.0000008    0.0000000  EM
+             55 -0.11458347D+05    0.0000007    0.0000000  EM
+             56 -0.11458347D+05    0.0000005    0.0000000  EM
+             57 -0.11458347D+05    0.0000004    0.0000000  EM
+             58 -0.11458347D+05    0.0000003    0.0000000  EM
+             59 -0.11458347D+05    0.0000003    0.0000000  EM
+             60 -0.11458347D+05    0.0000002    0.0000000  EM
+             61 -0.11458347D+05    0.0000001    0.0000000  EM
+             62 -0.11458347D+05    0.0000002    0.0000000  EM
+             63 -0.11458347D+05    0.0000001    0.0000000  EM
+             64 -0.11458347D+05    0.0000001    0.0000000  EM
+             65 -0.11458347D+05    0.0000001    0.0000000  EM
+             66 -0.11458347D+05    0.0000000    0.0000000  EM
+             67 -0.11458347D+05    0.0000000    0.0000000  EM
+             68 -0.11458347D+05    0.0000000    0.0000000  EM
+             69 -0.11458347D+05    0.0000000    0.0000000  EM
+             70 -0.11458347D+05    0.0000001    0.0000000  EM
+             71 -0.11458347D+05    0.0000000    0.0000000  EM
+             72 -0.11458347D+05    0.0000000    0.0000000  EM
+             73 -0.11458347D+05    0.0000000    0.0000000  EM
+             74 -0.11458347D+05    0.0000000    0.0000000  EM
+             75 -0.11458347D+05    0.0000000    0.0000000  EM
+             76 -0.11458347D+05    0.0000000    0.0000000  EM
+             77 -0.11458347D+05    0.0000000    0.0000000  EM
+             78 -0.11458347D+05    0.0000000    0.0000000  EM
+             79 -0.11458347D+05    0.0000000    0.0000000  EM
+             80 -0.11458347D+05    0.0000000    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 9
+
+
+              9 -0.11458912D+05    0.7214628    0.0000630  EM
+             10 -0.11458616D+05    0.2956575    0.0000258  EM
+             11 -0.11458485D+05    0.1314211    0.0000115  EM
+             12 -0.11458422D+05    0.0628842    0.0000055  EM
+             13 -0.11458390D+05    0.0315377    0.0000028  EM
+             14 -0.11458374D+05    0.0165885    0.0000014  EM
+             15 -0.11458365D+05    0.0091709    0.0000008  EM
+             16 -0.11458359D+05    0.0053716    0.0000005  EM
+             17 -0.11458356D+05    0.0033346    0.0000003  EM
+             18 -0.11458354D+05    0.0021923    0.0000002  EM
+             19 -0.11458352D+05    0.0015103    0.0000001  EM
+             20 -0.11458351D+05    0.0010937    0.0000001  EM
+             21 -0.11458350D+05    0.0008079    0.0000001  EM
+             22 -0.11458350D+05    0.0006114    0.0000001  EM
+             23 -0.11458349D+05    0.0004727    0.0000000  EM
+             24 -0.11458349D+05    0.0003647    0.0000000  EM
+             25 -0.11458348D+05    0.0002843    0.0000000  EM
+             26 -0.11458348D+05    0.0002225    0.0000000  EM
+             27 -0.11458348D+05    0.0001747    0.0000000  EM
+             28 -0.11458348D+05    0.0001373    0.0000000  EM
+             29 -0.11458348D+05    0.0001080    0.0000000  EM
+             30 -0.11458348D+05    0.0000852    0.0000000  EM
+             31 -0.11458348D+05    0.0000672    0.0000000  EM
+             32 -0.11458348D+05    0.0000530    0.0000000  EM
+             33 -0.11458348D+05    0.0000418    0.0000000  EM
+             34 -0.11458348D+05    0.0000330    0.0000000  EM
+             35 -0.11458348D+05    0.0000261    0.0000000  EM
+             36 -0.11458348D+05    0.0000206    0.0000000  EM
+             37 -0.11458348D+05    0.0000163    0.0000000  EM
+             38 -0.11458347D+05    0.0000129    0.0000000  EM
+             39 -0.11458347D+05    0.0000102    0.0000000  EM
+             40 -0.11458347D+05    0.0000081    0.0000000  EM
+             41 -0.11458347D+05    0.0000064    0.0000000  EM
+             42 -0.11458347D+05    0.0000048    0.0000000  EM
+             43 -0.11458347D+05    0.0000040    0.0000000  EM
+             44 -0.11458347D+05    0.0000031    0.0000000  EM
+             45 -0.11458347D+05    0.0000025    0.0000000  EM
+             46 -0.11458347D+05    0.0000019    0.0000000  EM
+             47 -0.11458347D+05    0.0000016    0.0000000  EM
+             48 -0.11458347D+05    0.0000021    0.0000000  EM
+             49 -0.11458347D+05    0.0000010    0.0000000  EM
+             50 -0.11458347D+05    0.0000008    0.0000000  EM
+             51 -0.11458347D+05    0.0000006    0.0000000  EM
+             52 -0.11458347D+05    0.0000004    0.0000000  EM
+             53 -0.11458347D+05    0.0000004    0.0000000  EM
+             54 -0.11458347D+05    0.0000003    0.0000000  EM
+             55 -0.11458347D+05    0.0000002    0.0000000  EM
+             56 -0.11458347D+05    0.0000002    0.0000000  EM
+             57 -0.11458347D+05    0.0000002    0.0000000  EM
+             58 -0.11458347D+05    0.0000001    0.0000000  EM
+             59 -0.11458347D+05    0.0000001    0.0000000  EM
+             60 -0.11458347D+05    0.0000001    0.0000000  EM
+             61 -0.11458347D+05    0.0000000    0.0000000  EM
+             62 -0.11458347D+05    0.0000000    0.0000000  EM
+             63 -0.11458347D+05    0.0000001    0.0000000  EM
+             64 -0.11458347D+05    0.0000000    0.0000000  EM
+             65 -0.11458347D+05    0.0000000    0.0000000  EM
+             66 -0.11458347D+05    0.0000000    0.0000000  EM
+             67 -0.11458347D+05    0.0000000    0.0000000  EM
+             68 -0.11458347D+05    0.0000000    0.0000000  EM
+             69 -0.11458347D+05    0.0000000    0.0000000  EM
+             70 -0.11458347D+05    0.0000000    0.0000000  EM
+             71 -0.11458347D+05    0.0000000    0.0000000  EM
+             72 -0.11458347D+05    0.0000000    0.0000000  EM
+             73 -0.11458347D+05    0.0000000    0.0000000  EM
+             74 -0.11458347D+05    0.0000000    0.0000000  EM
+             75 -0.11458347D+05    0.0000000    0.0000000  EM
+             76 -0.11458347D+05    0.0000000    0.0000000  EM
+             77 -0.11458347D+05    0.0000000    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+              8 -0.11459067D+05    0.7385530    0.0000644  EM
+              9 -0.11458715D+05    0.3528481    0.0000308  EM
+             10 -0.11458549D+05    0.1655179    0.0000144  EM
+             11 -0.11458469D+05    0.0797738    0.0000070  EM
+             12 -0.11458428D+05    0.0413975    0.0000036  EM
+             13 -0.11458404D+05    0.0236978    0.0000021  EM
+             14 -0.11458389D+05    0.0149605    0.0000013  EM
+             15 -0.11458379D+05    0.0102073    0.0000009  EM
+             16 -0.11458372D+05    0.0073401    0.0000006  EM
+             17 -0.11458366D+05    0.0054727    0.0000005  EM
+             18 -0.11458362D+05    0.0041532    0.0000004  EM
+             19 -0.11458359D+05    0.0031971    0.0000003  EM
+             20 -0.11458356D+05    0.0024749    0.0000002  EM
+             21 -0.11458354D+05    0.0019258    0.0000002  EM
+             22 -0.11458353D+05    0.0015071    0.0000001  EM
+             23 -0.11458352D+05    0.0011777    0.0000001  EM
+             24 -0.11458351D+05    0.0009228    0.0000001  EM
+             25 -0.11458350D+05    0.0007240    0.0000001  EM
+             26 -0.11458350D+05    0.0005711    0.0000000  EM
+             27 -0.11458349D+05    0.0004477    0.0000000  EM
+             28 -0.11458349D+05    0.0003520    0.0000000  EM
+             29 -0.11458348D+05    0.0002770    0.0000000  EM
+             30 -0.11458348D+05    0.0002181    0.0000000  EM
+             31 -0.11458348D+05    0.0001716    0.0000000  EM
+             32 -0.11458348D+05    0.0001355    0.0000000  EM
+             33 -0.11458348D+05    0.0001069    0.0000000  EM
+             34 -0.11458348D+05    0.0000841    0.0000000  EM
+             35 -0.11458348D+05    0.0000665    0.0000000  EM
+             36 -0.11458348D+05    0.0000543    0.0000000  EM
+             37 -0.11458348D+05    0.0000416    0.0000000  EM
+             38 -0.11458348D+05    0.0000327    0.0000000  EM
+             39 -0.11458348D+05    0.0000258    0.0000000  EM
+             40 -0.11458348D+05    0.0000204    0.0000000  EM
+             41 -0.11458348D+05    0.0000161    0.0000000  EM
+             42 -0.11458347D+05    0.0000127    0.0000000  EM
+             43 -0.11458347D+05    0.0000101    0.0000000  EM
+             44 -0.11458347D+05    0.0000079    0.0000000  EM
+             45 -0.11458347D+05    0.0000063    0.0000000  EM
+             46 -0.11458347D+05    0.0000049    0.0000000  EM
+             47 -0.11458347D+05    0.0000039    0.0000000  EM
+             48 -0.11458347D+05    0.0000031    0.0000000  EM
+             49 -0.11458347D+05    0.0000024    0.0000000  EM
+             50 -0.11458347D+05    0.0000020    0.0000000  EM
+             51 -0.11458347D+05    0.0000015    0.0000000  EM
+             52 -0.11458347D+05    0.0000012    0.0000000  EM
+             53 -0.11458347D+05    0.0000009    0.0000000  EM
+             54 -0.11458347D+05    0.0000008    0.0000000  EM
+             55 -0.11458347D+05    0.0000006    0.0000000  EM
+             56 -0.11458347D+05    0.0000005    0.0000000  EM
+             57 -0.11458347D+05    0.0000004    0.0000000  EM
+             58 -0.11458347D+05    0.0000003    0.0000000  EM
+             59 -0.11458347D+05    0.0000002    0.0000000  EM
+             60 -0.11458347D+05    0.0000002    0.0000000  EM
+             61 -0.11458347D+05    0.0000002    0.0000000  EM
+             62 -0.11458347D+05    0.0000001    0.0000000  EM
+             63 -0.11458347D+05    0.0000001    0.0000000  EM
+             64 -0.11458347D+05    0.0000001    0.0000000  EM
+             65 -0.11458347D+05    0.0000001    0.0000000  EM
+             66 -0.11458347D+05    0.0000000    0.0000000  EM
+             67 -0.11458347D+05    0.0000000    0.0000000  EM
+             68 -0.11458347D+05    0.0000000    0.0000000  EM
+             69 -0.11458347D+05    0.0000001    0.0000000  EM
+             70 -0.11458347D+05    0.0000000    0.0000000  EM
+             71 -0.11458347D+05    0.0000000    0.0000000  EM
+             72 -0.11458347D+05    0.0000000    0.0000000  EM
+             73 -0.11458347D+05    0.0000000    0.0000000  EM
+             74 -0.11458347D+05    0.0000000    0.0000000  EM
+             75 -0.11458347D+05    0.0000000    0.0000000  EM
+             76 -0.11458347D+05    0.0000000    0.0000000  EM
+             77 -0.11458347D+05    0.0000000    0.0000000  EM
+             78 -0.11458347D+05    0.0000000    0.0000000  EM
+             79 -0.11458347D+05    0.0000000    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 15
+
+
+              9 -0.11459402D+05    0.8375013    0.0000731  EM
+             10 -0.11459017D+05    0.3852376    0.0000336  EM
+             11 -0.11458816D+05    0.2013110    0.0000176  EM
+             12 -0.11458697D+05    0.1190441    0.0000104  EM
+             13 -0.11458617D+05    0.0796731    0.0000070  EM
+             14 -0.11458559D+05    0.0579929    0.0000051  EM
+             15 -0.11458515D+05    0.0441670    0.0000039  EM
+             16 -0.11458481D+05    0.0344092    0.0000030  EM
+             17 -0.11458453D+05    0.0271154    0.0000024  EM
+             18 -0.11458432D+05    0.0215012    0.0000019  EM
+             19 -0.11458415D+05    0.0171033    0.0000015  EM
+             20 -0.11458401D+05    0.0136427    0.0000012  EM
+             21 -0.11458390D+05    0.0108832    0.0000009  EM
+             22 -0.11458382D+05    0.0086880    0.0000008  EM
+             23 -0.11458375D+05    0.0069429    0.0000006  EM
+             24 -0.11458369D+05    0.0055390    0.0000005  EM
+             25 -0.11458365D+05    0.0044188    0.0000004  EM
+             26 -0.11458361D+05    0.0035232    0.0000003  EM
+             27 -0.11458358D+05    0.0028130    0.0000002  EM
+             28 -0.11458356D+05    0.0022385    0.0000002  EM
+             29 -0.11458354D+05    0.0017815    0.0000002  EM
+             30 -0.11458353D+05    0.0014173    0.0000001  EM
+             31 -0.11458352D+05    0.0011292    0.0000001  EM
+             32 -0.11458351D+05    0.0008962    0.0000001  EM
+             33 -0.11458350D+05    0.0007117    0.0000001  EM
+             34 -0.11458350D+05    0.0005649    0.0000000  EM
+             35 -0.11458349D+05    0.0004482    0.0000000  EM
+             36 -0.11458349D+05    0.0003555    0.0000000  EM
+             37 -0.11458349D+05    0.0002820    0.0000000  EM
+             38 -0.11458348D+05    0.0002254    0.0000000  EM
+             39 -0.11458348D+05    0.0001773    0.0000000  EM
+             40 -0.11458348D+05    0.0001405    0.0000000  EM
+             41 -0.11458348D+05    0.0001112    0.0000000  EM
+             42 -0.11458348D+05    0.0000881    0.0000000  EM
+             43 -0.11458348D+05    0.0000697    0.0000000  EM
+             44 -0.11458348D+05    0.0000552    0.0000000  EM
+             45 -0.11458348D+05    0.0000437    0.0000000  EM
+             46 -0.11458348D+05    0.0000346    0.0000000  EM
+             47 -0.11458348D+05    0.0000273    0.0000000  EM
+             48 -0.11458348D+05    0.0000216    0.0000000  EM
+             49 -0.11458348D+05    0.0000171    0.0000000  EM
+             50 -0.11458347D+05    0.0000136    0.0000000  EM
+             51 -0.11458347D+05    0.0000107    0.0000000  EM
+             52 -0.11458347D+05    0.0000085    0.0000000  EM
+             53 -0.11458347D+05    0.0000068    0.0000000  EM
+             54 -0.11458347D+05    0.0000054    0.0000000  EM
+             55 -0.11458347D+05    0.0000042    0.0000000  EM
+             56 -0.11458347D+05    0.0000033    0.0000000  EM
+             57 -0.11458347D+05    0.0000026    0.0000000  EM
+             58 -0.11458347D+05    0.0000021    0.0000000  EM
+             59 -0.11458347D+05    0.0000016    0.0000000  EM
+             60 -0.11458347D+05    0.0000013    0.0000000  EM
+             61 -0.11458347D+05    0.0000010    0.0000000  EM
+             62 -0.11458347D+05    0.0000009    0.0000000  EM
+             63 -0.11458347D+05    0.0000006    0.0000000  EM
+             64 -0.11458347D+05    0.0000005    0.0000000  EM
+             65 -0.11458347D+05    0.0000004    0.0000000  EM
+             66 -0.11458347D+05    0.0000003    0.0000000  EM
+             67 -0.11458347D+05    0.0000003    0.0000000  EM
+             68 -0.11458347D+05    0.0000002    0.0000000  EM
+             69 -0.11458347D+05    0.0000002    0.0000000  EM
+             70 -0.11458347D+05    0.0000001    0.0000000  EM
+             71 -0.11458347D+05    0.0000001    0.0000000  EM
+             72 -0.11458347D+05    0.0000001    0.0000000  EM
+             73 -0.11458347D+05    0.0000000    0.0000000  EM
+             74 -0.11458347D+05    0.0000001    0.0000000  EM
+             75 -0.11458347D+05    0.0000000    0.0000000  EM
+             76 -0.11458347D+05    0.0000000    0.0000000  EM
+             77 -0.11458347D+05    0.0000000    0.0000000  EM
+             78 -0.11458347D+05    0.0000000    0.0000000  EM
+             79 -0.11458347D+05    0.0000000    0.0000000  EM
+             80 -0.11458347D+05    0.0000000    0.0000000  EM
+             81 -0.11458347D+05    0.0000000    0.0000000  EM
+             82 -0.11458347D+05    0.0000001    0.0000000  EM
+             83 -0.11458347D+05    0.0000000    0.0000000  EM
+             84 -0.11458347D+05    0.0000000    0.0000000  EM
+             85 -0.11458347D+05    0.0000000    0.0000000  EM
+             86 -0.11458347D+05    0.0000000    0.0000000  EM
+             87 -0.11458347D+05    0.0000000    0.0000000  EM
+             88 -0.11458347D+05    0.0000000    0.0000000  EM
+             89 -0.11458347D+05    0.0000000    0.0000000  EM
+             90 -0.11458347D+05    0.0000000    0.0000000  EM
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Mixture analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  18:25:42
+        Ending Time:  19:22:48
+       Elapsed Time:  00:57:06
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen
