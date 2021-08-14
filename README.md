@@ -56,9 +56,7 @@ In this part, we extended Mixture-of-Experts Models to the SEM framework with in
 - [Cluster Predictor Mixture Model (Gating-network mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Gating-network%20MoE.inp)
 - [Finite Mixture Model](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/FMM.inp)
 
-**In this part, we further extend the full mixture model to allow time-varying covariates.**
-
-***R package: OpenMx*** <br>
+**In this part, we further extend the full mixture model to allow time-varying covariates and provide *OpenMx* code.**
 - [Full mixture model with time-varying covariates](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/R1_extension/OpenMx_E2R/fun_for_VaryingMoE.R)
 
 **This project also provides *OpenMx* code with common parametric functional forms to capture nonlinear change patterns.**
