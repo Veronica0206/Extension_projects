@@ -78,8 +78,7 @@ In this part, we extended Growth Mixture Models to investigate heterogeneity in 
 **Source Code:** <br>
 Will upload later.
 
-## Part IV: Jenss-Bayley Latent Change Score Model with Individual Ratio of Growth Acceleration in the Framework of Individual
-Measurement Occasions
+## Part IV: Jenss-Bayley Latent Change Score Model with Individual Ratio of Growth Acceleration in the Framework of Individual Measurement Occasions
 **Manuscript Title:** <br>
 Jenss-Bayley Latent Change Score Model with Individual Ratio of Growth Acceleration in the Framework of Individual
 Measurement Occasions
