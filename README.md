@@ -78,14 +78,15 @@ In this part, we extended Growth Mixture Models to investigate heterogeneity in 
 **Source Code:** <br>
 Will upload later.
 
-## Part IV: Jenss-Bayley Latent Change Score Model with Individual Ratio of Growth Acceleration in the Framework of Individual
-Measurement Occasions
+## Part IV: Jenss-Bayley Latent Change Score Model with Individual Ratio of Growth Acceleration in the Framework of Individual Measurement Occasions
 **Manuscript Title:** <br>
 Jenss-Bayley Latent Change Score Model with Individual Ratio of Growth Acceleration in the Framework of Individual
 Measurement Occasions
 
 **Description:** <br>
-We extend an existing LCSM with the Jenss-Bayley growth curve and propose a novel expression of change scores that allows for (1) unequally-spaced study waves and (2) individual measurement occasions around each wave. We also extend the existing model to estimate the individual ratio of growth acceleration (that largely determines the trajectory shape and is viewed as the most important parameter in the Jenss-Bayley model). 
+In this part, we extend an existing LCSM with the Jenss-Bayley growth curve and propose a novel expression of change scores that allows for (1) unequally-spaced study waves and (2) individual measurement occasions around each wave. We also extend the existing model to estimate the individual ratio of growth acceleration (that largely determines the trajectory shape and is viewed as the most important parameter in the Jenss-Bayley model). 
+- Jenss-Bayley Latent Change Score Model with Random Ratio of Growth Acceleration
+- Jenss-Bayley Latent Change Score Model with Fixed Ratio of Growth Acceleration
 
 **Demo:** 
 - [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%204/OpenMx_demo4.md)
