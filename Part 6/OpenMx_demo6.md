@@ -1,6 +1,5 @@
 Assessing Mediational Processes in Parallel Bilinear Spline Growth Curve Models in the Framework
 of Individual Measurement Occasions.
-
 ================
 Jin Liu
 
