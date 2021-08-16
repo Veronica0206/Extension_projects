@@ -1,5 +1,4 @@
-A Parallel Process Growth Mixture Model to Examine Joint Development
-with Nonlinear Trajectories
+Extending Growth Mixture Model to Assess Heterogeneity in Joint Development with Piecewise Linear Trajectories in the Framework of Individual Measurement Occasions
 ================
 Jin Liu
 
