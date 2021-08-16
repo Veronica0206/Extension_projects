@@ -110,3 +110,18 @@ In this part, we propose a novel specification for LBGMs that allows for (1) une
 **Source Code:** <br>
 Will upload later.
 
+## Part VI: Mediational Processes in Parallel Bilinear Spline Growth Curve Models in the Framework of Individual Measurement Occasions
+**Manuscript Title:** <br>
+Assessing Mediational Processes in Parallel Bilinear Spline Growth Curve Models in the Framework of Individual Measurement Occasions.
+
+**Description:** <br>
+In this study, we extend latent growth mediation models with linear trajectories (Cheong et al., 2003) and develop two models to evaluate mediational processes where the bilinear spline (i.e., the linear-linear piecewise) growth model is utilized to capture the change patterns. We define the mediational process as either the baseline covariate or the change of covariate influencing the change of the mediator, which, in turn, affects the change of the outcome. 
+- Baseline covariate$\rightarrow$longitudinal mediator$\rightarrow$longitudinal outcome
+- Longitudinal covariate$\rightarrow$longitudinal mediator$\rightarrow$longitudinal outcome
+
+**Demo:** 
+- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%206/OpenMx_demo6.md)
+(For OS, R version, and OpenMx version, see the demo)
+
+**Source Code:** <br>
+Will upload later.
