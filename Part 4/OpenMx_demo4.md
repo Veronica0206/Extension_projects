@@ -1,5 +1,5 @@
-Estimating knots and Knot-knot Association of PBLSGMs in the framework
-of individual measurement occasions
+Jenss-Bayley Latent Change Score Model with Individual Ratio of Growth Acceleration in the Framework of Individual
+Measurement Occasions
 ================
 Jin Liu
 
