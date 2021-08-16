@@ -1,5 +1,5 @@
-Estimating knots and Knot-knot Association of PBLSGMs in the framework
-of individual measurement occasions
+Extending Latent Basis Growth Model to Explore Joint Development in the Framework of Individual Measurement
+Occasions
 ================
 Jin Liu
 
