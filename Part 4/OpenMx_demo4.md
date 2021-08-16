@@ -91,7 +91,7 @@ ggplot(aes(x = time, y = measures), data = long_dat) +
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](OpenMx_demo4_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ## Jenss-Bayley Latent Change Model with Random Ratio of Growth Acceleration
 
