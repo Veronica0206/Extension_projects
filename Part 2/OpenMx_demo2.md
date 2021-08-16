@@ -1,5 +1,4 @@
-Estimating knots and Knot-knot Association of PBLSGMs in the framework
-of individual measurement occasions
+Extending Mixture of Experts Model to Investigate Heterogeneity of Trajectories: When, Where and How to Add Which Covariates
 ================
 Jin Liu
 
