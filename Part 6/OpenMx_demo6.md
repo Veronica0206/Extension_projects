@@ -1,5 +1,6 @@
-Estimating knots and Knot-knot Association of PBLSGMs in the framework
-of individual measurement occasions
+Assessing Mediational Processes in Parallel Bilinear Spline Growth Curve Models in the Framework
+of Individual Measurement Occasions.
+
 ================
 Jin Liu
 
