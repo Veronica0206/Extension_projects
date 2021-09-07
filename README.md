@@ -18,8 +18,9 @@ In this part, we developed two models in unstructured time framework:
 
 **Source Code:** <br>
 ***R package: OpenMx*** <br>
-- [PBLSGMs for estimating fixed knots](https://github.com/Veronica0206/Extension_projects/blob/master/Part%201/OpenMx_E1/PBLSGM_fixed.R)
-- [PBLSGMs for estimating random knots](https://github.com/Veronica0206/Extension_projects/blob/master/Part%201/OpenMx_E1/PBLSGM_random.R)
+**The models developed in this project are now part of *R* package *NonLinearCurve* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
+- [PBLSGMs for estimating fixed knots](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/PBLSGM_fixed.R)
+- [PBLSGMs for estimating random knots](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/PBLSGM_random.R)
 
 ***MPlus 8*** <br>
 - [PBLSGMs for estimating fixed knots](https://github.com/Veronica0206/Extension_projects/blob/master/Part%201/MPlus8_E1/PBLSGM_Unknown%20Fixed%20Knot.inp)
@@ -45,10 +46,11 @@ In this part, we extended Mixture-of-Experts Models to the SEM framework with in
 
 **Source Code:** <br>
 ***R package: OpenMx*** <br>
-- [Full Mixture Model (Full mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/full_MoE.R)
-- [Growth Predictor Mixture Model (Expert-network mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/expert_MoE.R)
-- [Cluster Predictor Mixture Model (Gating-network mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/gating_MoE.R)
-- [Finite Mixture Model](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/FMM.R)
+**The models developed in this project are now part of *R* package *NonLinearCurve* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
+- [Full Mixture Model (Full mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/FullMM_BLSGM.R)
+- [Growth Predictor Mixture Model (Expert-network mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/GPMM_BLSGM.R)
+- [Cluster Predictor Mixture Model (Gating-network mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/CPMM_BLSGM.R)
+- [Finite Mixture Model](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/FMM_BLSGM.R)
 
 ***MPlus 8*** <br>
 - [Full Mixture Model (Full mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Full%20MoE.inp)
