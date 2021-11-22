@@ -10,11 +10,11 @@ In this part, we developed two models in unstructured time framework:
 - PBLSGMs for estimating random knots
 
 **Demo:**
-- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%201/OpenMx_demo1.md)
+- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%201/OpenMx_E1/OpenMx_demo.md)
 (For OS, R version, and OpenMx version, see the demo)
 
 **Example data:** <br>
-- [Data](https://github.com/Veronica0206/Extension_projects/blob/master/Part%201/example_data.csv)
+- [Data](https://github.com/Veronica0206/NonLinearCurve/blob/main/data/bi_dat.RData)
 
 **Source Code:** <br>
 ***R package: OpenMx*** <br>
@@ -38,11 +38,11 @@ In this part, we extended Mixture-of-Experts Models to the SEM framework with in
 - Finite Mixture Model
 
 **Demo:** 
-- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_demo2.md)
+- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/OpenMx_demo.md)
 (For OS, R version, and OpenMx version, see the demo)
 
 **Example data:** <br>
-- [Data](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/example_data.csv)
+- [Data](https://github.com/Veronica0206/NonLinearCurve/blob/main/data/uni_sub_dat.RData)
 
 **Source Code:** <br>
 ***R package: OpenMx*** <br>
