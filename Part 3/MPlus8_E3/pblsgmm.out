@@ -1,0 +1,3158 @@
+Mplus VERSION 8.4
+MUTHEN & MUTHEN
+10/26/2020  12:48 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:      PBLSGMM with an Unknown Fixed Knot
+  Data:       FILE = example_data.csv;
+  VARIABLE:   NAMES = Y1-Y10 Z1-Z10 T1-T10 x1 x2 class;
+              USEVAR = Y1-Y10 Z1-Z10 x1 x2;
+              CONSTRAINT = T1-T10;
+              CLASSES = c(2);
+  ANALYSIS:   TYPE = MIXTURE;
+              ALGORITHM = EM;
+
+  MODEL:
+              %OVERALL%
+              eta0sY BY Y1-Y10@1;
+              ! factor loadings for eta0s are set equal to 1
+              eta1sY BY Y1* (L11Y)
+                        Y2* (L12Y)
+                        Y3* (L13Y)
+                        Y4* (L14Y)
+                        Y5* (L15Y)
+                        Y6* (L16Y)
+                        Y7* (L17Y)
+                        Y8* (L18Y)
+                        Y9* (L19Y)
+                        Y10* (L110Y);
+              eta2sY BY Y1* (L21Y)
+                        Y2* (L22Y)
+                        Y3* (L23Y)
+                        Y4* (L24Y)
+                        Y5* (L25Y)
+                        Y6* (L26Y)
+                        Y7* (L27Y)
+                        Y8* (L28Y)
+                        Y9* (L29Y)
+                        Y10* (L210Y);
+
+              eta0sZ BY Z1-Z10@1;
+              ! factor loadings for eta0s are set equal to 1
+              eta1sZ BY Z1* (L11Z)
+                        Z2* (L12Z)
+                        Z3* (L13Z)
+                        Z4* (L14Z)
+                        Z5* (L15Z)
+                        Z6* (L16Z)
+                        Z7* (L17Z)
+                        Z8* (L18Z)
+                        Z9* (L19Z)
+                        Z10* (L110Z);
+              eta2sZ BY Z1* (L21Z)
+                        Z2* (L22Z)
+                        Z3* (L23Z)
+                        Z4* (L24Z)
+                        Z5* (L25Z)
+                        Z6* (L26Z)
+                        Z7* (L27Z)
+                        Z8* (L28Z)
+                        Z9* (L29Z)
+                        Z10* (L210Z);
+
+              c on x1 x2;
+              %c#1%
+              eta0sY BY Y1-Y10@1;
+              ! factor loadings for eta0s are set equal to 1
+              eta1sY BY Y1* (c1L11Y)
+                        Y2* (c1L12Y)
+                        Y3* (c1L13Y)
+                        Y4* (c1L14Y)
+                        Y5* (c1L15Y)
+                        Y6* (c1L16Y)
+                        Y7* (c1L17Y)
+                        Y8* (c1L18Y)
+                        Y9* (c1L19Y)
+                        Y10* (c1L110Y);
+              eta2sY BY Y1* (c1L21Y)
+                        Y2* (c1L22Y)
+                        Y3* (c1L23Y)
+                        Y4* (c1L24Y)
+                        Y5* (c1L25Y)
+                        Y6* (c1L26Y)
+                        Y7* (c1L27Y)
+                        Y8* (c1L28Y)
+                        Y9* (c1L29Y)
+                        Y10* (c1L210Y);
+
+              eta0sZ BY Z1-Z10@1;
+              ! factor loadings for eta0s are set equal to 1
+              eta1sZ BY Z1* (c1L11Z)
+                        Z2* (c1L12Z)
+                        Z3* (c1L13Z)
+                        Z4* (c1L14Z)
+                        Z5* (c1L15Z)
+                        Z6* (c1L16Z)
+                        Z7* (c1L17Z)
+                        Z8* (c1L18Z)
+                        Z9* (c1L19Z)
+                        Z10* (c1L110Z);
+              eta2sZ BY Z1* (c1L21Z)
+                        Z2* (c1L22Z)
+                        Z3* (c1L23Z)
+                        Z4* (c1L24Z)
+                        Z5* (c1L25Z)
+                        Z6* (c1L26Z)
+                        Z7* (c1L27Z)
+                        Z8* (c1L28Z)
+                        Z9* (c1L29Z)
+                        Z10* (c1L210Z);
+
+              ! Factor loadings for eta1s and eta2s are not fixed values,
+              ! because they contain an estimate parameter, the fixed knot
+
+              ! Population values of parameters:
+              !! Original settings:
+              !! mueta0Y: 98, mueta1Y: 5, mueta2Y: 2.6, mugY: 3.5
+              !! mueta0Z: 98, mueta1Z: 5, mueta2Z: 2.6, mugZ: 4.5
+              !! psi0Y0Y: 25, psi0Y1Y: 1.5, psi0Y2Y: 1.5, psi0Y0Z: 7.5, psi0Y1Z: 1.5, psi0Y2
+              !!              psi1Y1Y: 1.0, psi1Y2Y: 0.3, psi1Y0Z: 1.5, psi1Y1Z: 0.3, psi1Y2
+              !!                            psi2Y2Y: 1.0, psi2Y0Z: 1.5, psi2Y1Z: 0.3, psi2Y2
+              !!                                           psi0Z0Z: 25, psi0Z1Z: 1.5, psi0Z2
+              !!                                                        psi1Z1Z: 1.0, psi1Z2
+              !!                                                                      psi2Z2
+              !! Reparameterized settings:
+              !! mueta0sY: 115.5, mueta1sY: 3.8, mueta2sY: -1.2, mugY:3.5
+              !! mueta0sZ: 120.5, mueta1sZ: 3.8, mueta2sZ: -1.2, mugZ:4.5
+              !! psi0sY0sY: 47.750, psi0sY1sY: 3.775, psi0sY2sY: -1.225, psi0sY0sZ: 24.225,
+              !!                    psi1sY1sY: 0.650, psi1sY2sY: 0.000,  psi1sY0sZ: 2.850, p
+              !!                                      psi2sY2sY: 0.350,  psi2sY0sZ: 0.000, p
+              !!                                                         psi0sZ0sZ: 58.750,
+              !!
+              !!
+              !! theta: 1.0
+
+              !! Construct Y
+              eta0sY*50.0 (c1psi0sY0sY);
+              eta1sY*0.5  (c1psi1sY1sY);
+              eta2sY*0.5  (c1psi2sY2sY);
+
+              eta0sY WITH eta1sY*4.0  (c1psi0sY1sY);
+              eta0sY WITH eta2sY*-1.5 (c1psi0sY2sY);
+              eta1sY WITH eta2sY*0    (c1psi1sY2sY);
+
+              [eta0sY*120]  (c1mueta0sY);
+              [eta1sY*4]    (c1mueta1sY);
+              [eta2sY*-1]   (c1mueta2sY);
+
+              Y1-Y10*1.1 (c1thetaY);
+              [Y1-Y10@0];
+
+              !! Construct Z
+              eta0sZ*60.0 (c1psi0sZ0sZ);
+              eta1sZ*0.5  (c1psi1sZ1sZ);
+              eta2sZ*0.5  (c1psi2sZ2sZ);
+
+              eta0sZ WITH eta1sZ*4.5 (c1psi0sZ1sZ);
+              eta0sZ WITH eta2sZ*-2  (c1psi0sZ2sZ);
+              eta1sZ WITH eta2sZ*0   (c1psi1sZ2sZ);
+
+              [eta0sZ*120]  (c1mueta0sZ);
+              [eta1sZ*4]    (c1mueta1sZ);
+              [eta2sZ*-1]   (c1mueta2sZ);
+
+              Z1-Z10*1.1 (c1thetaZ);
+              [Z1-Z10@0];
+
+              !! Association between Y and Z
+              eta0sY WITH eta0sZ*28.0 (c1psi0sY0sZ);
+              eta0sY WITH eta1sZ*2.5  (c1psi0sY1sZ);
+              eta0sY WITH eta2sZ*0    (c1psi0sY2sZ);
+
+              eta1sY WITH eta0sZ*3.0  (c1psi1sY0sZ);
+              eta1sY WITH eta1sZ*0.3  (c1psi1sY1sZ);
+              eta1sY WITH eta2sZ*0    (c1psi1sY2sZ);
+
+              eta2sY WITH eta0sZ*0    (c1psi2sY0sZ);
+              eta2sY WITH eta1sZ*0    (c1psi2sY1sZ);
+              eta2sY WITH eta2sZ*0    (c1psi2sY2sZ);
+
+              Y1 WITH Z1*0.3 (c1thetaYZ);
+              Y2 WITH Z2*0.3 (c1thetaYZ);
+              Y3 WITH Z3*0.3 (c1thetaYZ);
+              Y4 WITH Z4*0.3 (c1thetaYZ);
+              Y5 WITH Z5*0.3 (c1thetaYZ);
+              Y6 WITH Z6*0.3 (c1thetaYZ);
+              Y7 WITH Z7*0.3 (c1thetaYZ);
+              Y8 WITH Z8*0.3 (c1thetaYZ);
+              Y9 WITH Z9*0.3 (c1thetaYZ);
+              Y10 WITH Z10*0.3 (c1thetaYZ);
+
+              %c#2%
+              ! Factor loadings for eta1s and eta2s are not fixed values,
+              ! because they contain an estimate parameter, the fixed knot
+
+              ! Population values of parameters:
+              !! Original settings:
+              !! mueta0Y: 102, mueta1Y: 5, mueta2Y: 2.6, mugY: 4.5
+              !! mueta0Z: 102, mueta1Z: 5, mueta2Z: 2.6, mugZ: 5.5
+              !! psi0Y0Y: 25, psi0Y1Y: 1.5, psi0Y2Y: 1.5, psi0Y0Z: 7.5, psi0Y1Z: 1.5, psi0Y2
+              !!              psi1Y1Y: 1.0, psi1Y2Y: 0.3, psi1Y0Z: 1.5, psi1Y1Z: 0.3, psi1Y2
+              !!                            psi2Y2Y: 1.0, psi2Y0Z: 1.5, psi2Y1Z: 0.3, psi2Y2
+              !!                                           psi0Z0Z: 25, psi0Z1Z: 1.5, psi0Z2
+              !!                                                        psi1Z1Z: 1.0, psi1Z2
+              !!                                                                      psi2Z2
+              !! Reparameterized settings:
+              !! mueta0sY: 124.5, mueta1sY: 3.8, mueta2sY: -1.2, mugY:4.5
+              !! mueta0sZ: 129.5, mueta1sZ: 3.8, mueta2sZ: -1.2, mugZ:5.5
+              !! psi0sY0sY: 58.750, psi0sY1sY: 4.425, psi0sY2sY: -1.575, psi0sY0sZ: 29.925,
+              !!                    psi1sY1sY: 0.650, psi1sY2sY: 0.000,  psi1sY0sZ: 3.150, p
+              !!                                      psi2sY2sY: 0.350,  psi2sY0sZ: 0.000, p
+              !!                                                         psi0sZ0sZ: 71.750,
+              !!
+              !!
+              !! theta: 1.0
+
+              eta0sY BY Y1-Y10@1;
+              ! factor loadings for eta0s are set equal to 1
+              eta1sY BY Y1* (c2L11Y)
+                        Y2* (c2L12Y)
+                        Y3* (c2L13Y)
+                        Y4* (c2L14Y)
+                        Y5* (c2L15Y)
+                        Y6* (c2L16Y)
+                        Y7* (c2L17Y)
+                        Y8* (c2L18Y)
+                        Y9* (c2L19Y)
+                        Y10* (c2L110Y);
+              eta2sY BY Y1* (c2L21Y)
+                        Y2* (c2L22Y)
+                        Y3* (c2L23Y)
+                        Y4* (c2L24Y)
+                        Y5* (c2L25Y)
+                        Y6* (c2L26Y)
+                        Y7* (c2L27Y)
+                        Y8* (c2L28Y)
+                        Y9* (c2L29Y)
+                        Y10* (c2L210Y);
+
+              eta0sZ BY Z1-Z10@1;
+              ! factor loadings for eta0s are set equal to 1
+              eta1sZ BY Z1* (c2L11Z)
+                        Z2* (c2L12Z)
+                        Z3* (c2L13Z)
+                        Z4* (c2L14Z)
+                        Z5* (c2L15Z)
+                        Z6* (c2L16Z)
+                        Z7* (c2L17Z)
+                        Z8* (c2L18Z)
+                        Z9* (c2L19Z)
+                        Z10* (c2L110Z);
+              eta2sZ BY Z1* (c2L21Z)
+                        Z2* (c2L22Z)
+                        Z3* (c2L23Z)
+                        Z4* (c2L24Z)
+                        Z5* (c2L25Z)
+                        Z6* (c2L26Z)
+                        Z7* (c2L27Z)
+                        Z8* (c2L28Z)
+                        Z9* (c2L29Z)
+                        Z10* (c2L210Z);
+
+              !! Construct Y
+              eta0sY*55.0 (c2psi0sY0sY);
+              eta1sY*0.5  (c2psi1sY1sY);
+              eta2sY*0.5  (c2psi2sY2sY);
+
+              eta0sY WITH eta1sY*4.0  (c2psi0sY1sY);
+              eta0sY WITH eta2sY*-1.5 (c2psi0sY2sY);
+              eta1sY WITH eta2sY*0    (c2psi1sY2sY);
+
+              [eta0sY*120]  (c2mueta0sY);
+              [eta1sY*4]    (c2mueta1sY);
+              [eta2sY*-1]   (c2mueta2sY);
+
+              Y1-Y10*1.1 (c2thetaY);
+              [Y1-Y10@0];
+
+              !! Construct Z
+              eta0sZ*70.0 (c2psi0sZ0sZ);
+              eta1sZ*0.5  (c2psi1sZ1sZ);
+              eta2sZ*0.5  (c2psi2sZ2sZ);
+
+              eta0sZ WITH eta1sZ*5.0 (c2psi0sZ1sZ);
+              eta0sZ WITH eta2sZ*-2  (c2psi0sZ2sZ);
+              eta1sZ WITH eta2sZ*0   (c2psi1sZ2sZ);
+
+              [eta0sZ*130]  (c2mueta0sZ);
+              [eta1sZ*4]    (c2mueta1sZ);
+              [eta2sZ*-1]   (c2mueta2sZ);
+
+              Z1-Z10*1.1 (c2thetaZ);
+              [Z1-Z10@0];
+
+              !! Association between Y and Z
+              eta0sY WITH eta0sZ*28.0 (c2psi0sY0sZ);
+              eta0sY WITH eta1sZ*2.5  (c2psi0sY1sZ);
+              eta0sY WITH eta2sZ*0    (c2psi0sY2sZ);
+
+              eta1sY WITH eta0sZ*3.2  (c2psi1sY0sZ);
+              eta1sY WITH eta1sZ*0.3  (c2psi1sY1sZ);
+              eta1sY WITH eta2sZ*0    (c2psi1sY2sZ);
+
+              eta2sY WITH eta0sZ*0    (c2psi2sY0sZ);
+              eta2sY WITH eta1sZ*0    (c2psi2sY1sZ);
+              eta2sY WITH eta2sZ*0    (c2psi2sY2sZ);
+
+              Y1 WITH Z1*0.3 (c2thetaYZ);
+              Y2 WITH Z2*0.3 (c2thetaYZ);
+              Y3 WITH Z3*0.3 (c2thetaYZ);
+              Y4 WITH Z4*0.3 (c2thetaYZ);
+              Y5 WITH Z5*0.3 (c2thetaYZ);
+              Y6 WITH Z6*0.3 (c2thetaYZ);
+              Y7 WITH Z7*0.3 (c2thetaYZ);
+              Y8 WITH Z8*0.3 (c2thetaYZ);
+              Y9 WITH Z9*0.3 (c2thetaYZ);
+              Y10 WITH Z10*0.3 (c2thetaYZ);
+
+  MODEL CONSTRAINT:
+              ! In the model constraint, we have 3 parts:
+              ! Part I: Specify extra parameters other than those related to transformed LVs
+              new(c1mueta0Y c1mueta1Y c1mueta2Y c1mugY*4.0
+                  c1psi0Y0Y c1psi0Y1Y c1psi0Y2Y
+                            c1psi1Y1Y c1psi1Y2Y
+                                      c1psi2Y2Y
+                  c1mueta0Z c1mueta1Z c1mueta2Z c1mugZ*4.5
+                  c1psi0Z0Z c1psi0Z1Z c1psi0Z2Z
+                            c1psi1Z1Z c1psi1Z2Z
+                                      c1psi2Z2Z
+                  c1psi0Y0Z c1psi0Y1Z c1psi0Y2Z
+                  c1psi1Y0Z c1psi1Y1Z c1psi1Y2Z
+                  c1psi2Y0Z c1psi2Y1Z c1psi2Y2Z
+                  c2mueta0Y c2mueta1Y c2mueta2Y c2mugY*4.5
+                  c2psi0Y0Y c2psi0Y1Y c2psi0Y2Y
+                            c2psi1Y1Y c2psi1Y2Y
+                                      c2psi2Y2Y
+                  c2mueta0Z c2mueta1Z c2mueta2Z c2mugZ*5.0
+                  c2psi0Z0Z c2psi0Z1Z c2psi0Z2Z
+                            c2psi1Z1Z c2psi1Z2Z
+                                      c2psi2Z2Z
+                  c2psi0Y0Z c2psi0Y1Z c2psi0Y2Z
+                  c2psi1Y0Z c2psi1Y1Z c2psi1Y2Z
+                  c2psi2Y0Z c2psi2Y1Z c2psi2Y2Z);
+
+              ! Part II: Specify a series of equations to anti-transform the LVs
+              c1mueta0Y = c1mueta0sY + c1mugY * (c1mueta2sY - c1mueta1sY);
+              c1mueta1Y = c1mueta1sY - c1mueta2sY;
+              c1mueta2Y = c1mueta1sY + c1mueta2sY;
+              c1psi0Y0Y = (c1psi1sY1sY + c1psi2sY2sY - 2 * c1psi1sY2sY) * c1mugY^2 +
+                          2 * (c1psi0sY2sY - c1psi0sY1sY) * c1mugY + c1psi0sY0sY;
+              c1psi0Y1Y = (2 * c1psi1sY2sY - c1psi1sY1sY - c1psi2sY2sY) * c1mugY +
+                          (c1psi0sY1sY - c1psi0sY2sY);
+              c1psi0Y2Y = (c1psi2sY2sY - c1psi1sY1sY) * c1mugY +
+                          (c1psi0sY1sY + c1psi0sY2sY);
+              c1psi1Y1Y = c1psi1sY1sY + c1psi2sY2sY - 2 * c1psi1sY2sY;
+              c1psi1Y2Y = c1psi1sY1sY - c1psi2sY2sY;
+              c1psi2Y2Y = c1psi1sY1sY + c1psi2sY2sY + 2 * c1psi1sY2sY;
+
+              c1mueta0Z = c1mueta0sZ + c1mugZ * (c1mueta2sZ - c1mueta1sZ);
+              c1mueta1Z = c1mueta1sZ - c1mueta2sZ;
+              c1mueta2Z = c1mueta1sZ + c1mueta2sZ;
+              c1psi0Z0Z = (c1psi1sZ1sZ + c1psi2sZ2sZ - 2 * c1psi1sZ2sZ) * c1mugZ^2 +
+                          2 * (c1psi0sZ2sZ - c1psi0sZ1sZ) * c1mugZ + c1psi0sZ0sZ;
+              c1psi0Z1Z = (2 * c1psi1sZ2sZ - c1psi1sZ1sZ - c1psi2sZ2sZ) * c1mugZ +
+                          (c1psi0sZ1sZ - c1psi0sZ2sZ);
+              c1psi0Z2Z = (c1psi2sZ2sZ - c1psi1sZ1sZ) * c1mugZ +
+                          (c1psi0sZ1sZ + c1psi0sZ2sZ);
+              c1psi1Z1Z = c1psi1sZ1sZ + c1psi2sZ2sZ - 2 * c1psi1sZ2sZ;
+              c1psi1Z2Z = c1psi1sZ1sZ - c1psi2sZ2sZ;
+              c1psi2Z2Z = c1psi1sZ1sZ + c1psi2sZ2sZ + 2 * c1psi1sZ2sZ;
+
+              c1psi0Y0Z = (c1psi1sY1sZ + c1psi2sY2sZ - c1psi1sY2sZ - c1psi2sY1sZ) *
+                          c1mugY * c1mugZ + (c1psi2sY0sZ - c1psi1sY0sZ) * c1mugY +
+                          (c1psi0sY2sZ - c1psi0sY1sZ) * c1mugZ + c1psi0sY0sZ;
+              c1psi0Y1Z = (c1psi1sY2sZ + c1psi2sY1sZ - c1psi1sY1sZ - c1psi2sY2sZ) * c1mugY +
+                          (c1psi0sY1sZ - c1psi0sY2sZ);
+              c1psi0Y2Z = (c1psi2sY1sZ - c1psi1sY2sZ - c1psi1sY1sZ + c1psi2sY2sZ) * c1mugY +
+                          (c1psi0sY1sZ + c1psi0sY2sZ);
+              c1psi1Y0Z = (c1psi1sY2sZ + c1psi2sY1sZ - c1psi1sY1sZ - c1psi2sY2sZ) * c1mugZ +
+                          (c1psi1sY0sZ - c1psi2sY0sZ);
+              c1psi1Y1Z = c1psi1sY1sZ + c1psi2sY2sZ - c1psi1sY2sZ - c1psi2sY1sZ;
+              c1psi1Y2Z = c1psi1sY1sZ - c1psi2sY2sZ + c1psi1sY2sZ - c1psi2sY1sZ;
+              c1psi2Y0Z = (c1psi1sY2sZ - c1psi2sY1sZ - c1psi1sY1sZ + c1psi2sY2sZ) * c1mugZ +
+                          (c1psi1sY0sZ + c1psi2sY0sZ);
+              c1psi2Y1Z = c1psi1sY1sZ - c1psi2sY2sZ - c1psi1sY2sZ + c1psi2sY1sZ;
+              c1psi2Y2Z = c1psi1sY1sZ + c1psi2sY2sZ + c1psi1sY2sZ + c1psi2sY1sZ;
+
+              c2mueta0Y = c2mueta0sY + c2mugY * (c2mueta2sY - c2mueta1sY);
+              c2mueta1Y = c2mueta1sY - c2mueta2sY;
+              c2mueta2Y = c2mueta1sY + c2mueta2sY;
+              c2psi0Y0Y = (c2psi1sY1sY + c2psi2sY2sY - 2 * c2psi1sY2sY) * c2mugY^2 +
+                          2 * (c2psi0sY2sY - c2psi0sY1sY) * c2mugY + c2psi0sY0sY;
+              c2psi0Y1Y = (2 * c2psi1sY2sY - c2psi1sY1sY - c2psi2sY2sY) * c2mugY +
+                          (c2psi0sY1sY - c2psi0sY2sY);
+              c2psi0Y2Y = (c2psi2sY2sY - c2psi1sY1sY) * c2mugY +
+                          (c2psi0sY1sY + c2psi0sY2sY);
+              c2psi1Y1Y = c2psi1sY1sY + c2psi2sY2sY - 2 * c2psi1sY2sY;
+              c2psi1Y2Y = c2psi1sY1sY - c2psi2sY2sY;
+              c2psi2Y2Y = c2psi1sY1sY + c2psi2sY2sY + 2 * c2psi1sY2sY;
+
+              c2mueta0Z = c2mueta0sZ + c2mugZ * (c2mueta2sZ - c2mueta1sZ);
+              c2mueta1Z = c2mueta1sZ - c2mueta2sZ;
+              c2mueta2Z = c2mueta1sZ + c2mueta2sZ;
+              c2psi0Z0Z = (c2psi1sZ1sZ + c2psi2sZ2sZ - 2 * c2psi1sZ2sZ) * c2mugZ^2 +
+                          2 * (c2psi0sZ2sZ - c2psi0sZ1sZ) * c2mugZ + c2psi0sZ0sZ;
+              c2psi0Z1Z = (2 * c2psi1sZ2sZ - c2psi1sZ1sZ - c2psi2sZ2sZ) * c2mugZ +
+                          (c2psi0sZ1sZ - c2psi0sZ2sZ);
+              c2psi0Z2Z = (c2psi2sZ2sZ - c2psi1sZ1sZ) * c2mugZ +
+                          (c2psi0sZ1sZ + c2psi0sZ2sZ);
+              c2psi1Z1Z = c2psi1sZ1sZ + c2psi2sZ2sZ - 2 * c2psi1sZ2sZ;
+              c2psi1Z2Z = c2psi1sZ1sZ - c2psi2sZ2sZ;
+              c2psi2Z2Z = c2psi1sZ1sZ + c2psi2sZ2sZ + 2 * c2psi1sZ2sZ;
+
+              c2psi0Y0Z = (c2psi1sY1sZ + c2psi2sY2sZ - c2psi1sY2sZ - c2psi2sY1sZ) *
+                          c2mugY * c2mugZ + (c2psi2sY0sZ - c2psi1sY0sZ) * c2mugY +
+                          (c2psi0sY2sZ - c2psi0sY1sZ) * c2mugZ + c2psi0sY0sZ;
+              c2psi0Y1Z = (c2psi1sY2sZ + c2psi2sY1sZ - c2psi1sY1sZ - c2psi2sY2sZ) * c2mugY +
+                          (c2psi0sY1sZ - c2psi0sY2sZ);
+              c2psi0Y2Z = (c2psi2sY1sZ - c2psi1sY2sZ - c2psi1sY1sZ + c2psi2sY2sZ) * c2mugY +
+                          (c2psi0sY1sZ + c2psi0sY2sZ);
+              c2psi1Y0Z = (c2psi1sY2sZ + c2psi2sY1sZ - c2psi1sY1sZ - c2psi2sY2sZ) * c2mugZ +
+                          (c2psi1sY0sZ - c2psi2sY0sZ);
+              c2psi1Y1Z = c2psi1sY1sZ + c2psi2sY2sZ - c2psi1sY2sZ - c2psi2sY1sZ;
+              c2psi1Y2Z = c2psi1sY1sZ - c2psi2sY2sZ + c2psi1sY2sZ - c2psi2sY1sZ;
+              c2psi2Y0Z = (c2psi1sY2sZ - c2psi2sY1sZ - c2psi1sY1sZ + c2psi2sY2sZ) * c2mugZ +
+                          (c2psi1sY0sZ + c2psi2sY0sZ);
+              c2psi2Y1Z = c2psi1sY1sZ - c2psi2sY2sZ - c2psi1sY2sZ + c2psi2sY1sZ;
+              c2psi2Y2Z = c2psi1sY1sZ + c2psi2sY2sZ + c2psi1sY2sZ + c2psi2sY1sZ;
+
+              ! Part III: Define factor loadings for the 2nd and 3rd LVs with
+              ! definition variables
+
+              c1L11Y = T1 - c1mugY;
+              c1L12Y = T2 - c1mugY;
+              c1L13Y = T3 - c1mugY;
+              c1L14Y = T4 - c1mugY;
+              c1L15Y = T5 - c1mugY;
+              c1L16Y = T6 - c1mugY;
+              c1L17Y = T7 - c1mugY;
+              c1L18Y = T8 - c1mugY;
+              c1L19Y = T9 - c1mugY;
+              c1L110Y = T10 - c1mugY;
+
+              c1L21Y = sqrt((T1 - c1mugY)^2);
+              c1L22Y = sqrt((T2 - c1mugY)^2);
+              c1L23Y = sqrt((T3 - c1mugY)^2);
+              c1L24Y = sqrt((T4 - c1mugY)^2);
+              c1L25Y = sqrt((T5 - c1mugY)^2);
+              c1L26Y = sqrt((T6 - c1mugY)^2);
+              c1L27Y = sqrt((T7 - c1mugY)^2);
+              c1L28Y = sqrt((T8 - c1mugY)^2);
+              c1L29Y = sqrt((T9 - c1mugY)^2);
+              c1L210Y = sqrt((T10 - c1mugY)^2);
+
+              c1L11Z = T1 - c1mugZ;
+              c1L12Z = T2 - c1mugZ;
+              c1L13Z = T3 - c1mugZ;
+              c1L14Z = T4 - c1mugZ;
+              c1L15Z = T5 - c1mugZ;
+              c1L16Z = T6 - c1mugZ;
+              c1L17Z = T7 - c1mugZ;
+              c1L18Z = T8 - c1mugZ;
+              c1L19Z = T9 - c1mugZ;
+              c1L110Z = T10 - c1mugZ;
+
+              c1L21Z = sqrt((T1 - c1mugZ)^2);
+              c1L22Z = sqrt((T2 - c1mugZ)^2);
+              c1L23Z = sqrt((T3 - c1mugZ)^2);
+              c1L24Z = sqrt((T4 - c1mugZ)^2);
+              c1L25Z = sqrt((T5 - c1mugZ)^2);
+              c1L26Z = sqrt((T6 - c1mugZ)^2);
+              c1L27Z = sqrt((T7 - c1mugZ)^2);
+              c1L28Z = sqrt((T8 - c1mugZ)^2);
+              c1L29Z = sqrt((T9 - c1mugZ)^2);
+              c1L210Z = sqrt((T10 - c1mugZ)^2);
+
+              c2L11Y = T1 - c2mugY;
+              c2L12Y = T2 - c2mugY;
+              c2L13Y = T3 - c2mugY;
+              c2L14Y = T4 - c2mugY;
+              c2L15Y = T5 - c2mugY;
+              c2L16Y = T6 - c2mugY;
+              c2L17Y = T7 - c2mugY;
+              c2L18Y = T8 - c2mugY;
+              c2L19Y = T9 - c2mugY;
+              c2L110Y = T10 - c2mugY;
+
+              c2L21Y = sqrt((T1 - c2mugY)^2);
+              c2L22Y = sqrt((T2 - c2mugY)^2);
+              c2L23Y = sqrt((T3 - c2mugY)^2);
+              c2L24Y = sqrt((T4 - c2mugY)^2);
+              c2L25Y = sqrt((T5 - c2mugY)^2);
+              c2L26Y = sqrt((T6 - c2mugY)^2);
+              c2L27Y = sqrt((T7 - c2mugY)^2);
+              c2L28Y = sqrt((T8 - c2mugY)^2);
+              c2L29Y = sqrt((T9 - c2mugY)^2);
+              c2L210Y = sqrt((T10 - c2mugY)^2);
+
+              c2L11Z = T1 - c2mugZ;
+              c2L12Z = T2 - c2mugZ;
+              c2L13Z = T3 - c2mugZ;
+              c2L14Z = T4 - c2mugZ;
+              c2L15Z = T5 - c2mugZ;
+              c2L16Z = T6 - c2mugZ;
+              c2L17Z = T7 - c2mugZ;
+              c2L18Z = T8 - c2mugZ;
+              c2L19Z = T9 - c2mugZ;
+              c2L110Z = T10 - c2mugZ;
+
+              c2L21Z = sqrt((T1 - c2mugZ)^2);
+              c2L22Z = sqrt((T2 - c2mugZ)^2);
+              c2L23Z = sqrt((T3 - c2mugZ)^2);
+              c2L24Z = sqrt((T4 - c2mugZ)^2);
+              c2L25Z = sqrt((T5 - c2mugZ)^2);
+              c2L26Z = sqrt((T6 - c2mugZ)^2);
+              c2L27Z = sqrt((T7 - c2mugZ)^2);
+              c2L28Z = sqrt((T8 - c2mugZ)^2);
+              c2L29Z = sqrt((T9 - c2mugZ)^2);
+              c2L210Z = sqrt((T10 - c2mugZ)^2);
+
+  OUTPUT:    SAMPSTAT TECH1 TECH8;
+
+
+
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !! psi0Y0Y: 25, psi0Y1Y: 1.5, psi0Y2Y: 1.5, psi0Y0Z: 7.5, psi0Y1Z: 1.5, psi0Y2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!              psi1Y1Y: 1.0, psi1Y2Y: 0.3, psi1Y0Z: 1.5, psi1Y1Z: 0.3, psi1Y2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                            psi2Y2Y: 1.0, psi2Y0Z: 1.5, psi2Y1Z: 0.3, psi2Y2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                           psi0Z0Z: 25, psi0Z1Z: 1.5, psi0Z2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                                        psi1Z1Z: 1.0, psi1Z2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                                                      psi2Z2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !! psi0sY0sY: 47.750, psi0sY1sY: 3.775, psi0sY2sY: -1.225, psi0sY0sZ: 24.225, p
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                    psi1sY1sY: 0.650, psi1sY2sY: 0.000,  psi1sY0sZ: 2.850, ps
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                      psi2sY2sY: 0.350,  psi2sY0sZ: 0.000, ps
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                                         psi0sZ0sZ: 58.750, p
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                                                            p
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !! psi0Y0Y: 25, psi0Y1Y: 1.5, psi0Y2Y: 1.5, psi0Y0Z: 7.5, psi0Y1Z: 1.5, psi0Y2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!              psi1Y1Y: 1.0, psi1Y2Y: 0.3, psi1Y0Z: 1.5, psi1Y1Z: 0.3, psi1Y2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                            psi2Y2Y: 1.0, psi2Y0Z: 1.5, psi2Y1Z: 0.3, psi2Y2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                           psi0Z0Z: 25, psi0Z1Z: 1.5, psi0Z2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                                        psi1Z1Z: 1.0, psi1Z2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                                                      psi2Z2Z
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !! psi0sY0sY: 58.750, psi0sY1sY: 4.425, psi0sY2sY: -1.575, psi0sY0sZ: 29.925, p
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                    psi1sY1sY: 0.650, psi1sY2sY: 0.000,  psi1sY0sZ: 3.150, ps
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                      psi2sY2sY: 0.350,  psi2sY0sZ: 0.000, ps
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                                         psi0sZ0sZ: 71.750, p
+*** WARNING
+  Input line exceeded 90 characters. Some input may be truncated.
+              !!                                                                            p
+  22 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+PBLSGMM with an Unknown Fixed Knot
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         500
+
+Number of dependent variables                                   20
+Number of independent variables                                  2
+Number of continuous latent variables                            6
+Number of categorical latent variables                           1
+
+Observed dependent variables
+
+  Continuous
+   Y1          Y2          Y3          Y4          Y5          Y6
+   Y7          Y8          Y9          Y10         Z1          Z2
+   Z3          Z4          Z5          Z6          Z7          Z8
+   Z9          Z10
+
+Observed independent variables
+   X1          X2
+
+Continuous latent variables
+   ETA0SY      ETA1SY      ETA2SY      ETA0SZ      ETA1SZ      ETA2SZ
+
+Categorical latent variables
+   C
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-06
+    Relative loglikelihood change                        0.100D-06
+    Derivative                                           0.100D-05
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-05
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Optimization algorithm                                          EM
+Random Starts Specifications
+  Number of initial stage random starts                         20
+  Number of final stage optimizations                            4
+  Number of initial stage iterations                            10
+  Initial stage convergence criterion                    0.100D+01
+  Random starts scale                                    0.500D+01
+  Random seed for generating random starts                       0
+
+Input data file(s)
+  example_data.csv
+Input data format  FREE
+
+
+SAMPLE STATISTICS
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+               99.791       104.879       109.814       114.830       119.119
+
+
+           Means
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+              122.276       124.948       127.519       130.117       132.697
+
+
+           Means
+              Z1            Z2            Z3            Z4            Z5
+              ________      ________      ________      ________      ________
+              100.099       105.200       110.119       115.064       120.045
+
+
+           Means
+              Z6            Z7            Z8            Z9            Z10
+              ________      ________      ________      ________      ________
+              124.387       127.681       130.274       132.882       135.562
+
+
+           Means
+              X1            X2
+              ________      ________
+               -0.106        -0.031
+
+
+           Covariances
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1            26.745
+ Y2            27.112        31.346
+ Y3            28.383        31.904        36.791
+ Y4            29.473        34.360        38.566        44.535
+ Y5            31.992        37.663        42.757        47.773        54.911
+ Y6            35.418        41.584        47.054        52.605        59.625
+ Y7            36.782        43.104        48.841        54.549        61.968
+ Y8            38.251        44.793        50.802        56.737        64.529
+ Y9            40.222        46.846        53.422        59.524        67.889
+ Y10           42.020        48.732        55.518        61.912        70.710
+ Z1            11.327        12.673        14.272        15.499        17.967
+ Z2            12.390        15.282        16.323        17.908        20.427
+ Z3            14.016        16.318        19.219        20.395        23.241
+ Z4            15.617        18.212        20.453        23.585        25.609
+ Z5            16.358        19.312        21.495        24.147        27.661
+ Z6            19.362        22.709        25.400        28.113        31.697
+ Z7            22.526        26.152        29.303        32.258        36.561
+ Z8            24.039        27.989        31.393        34.790        39.174
+ Z9            26.125        30.076        34.049        37.450        42.213
+ Z10           27.860        31.859        36.064        39.509        44.477
+ X1             1.057         1.257         1.222         1.217         1.632
+ X2             0.843         0.856         0.778         0.731         0.920
+
+
+           Covariances
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6            67.818
+ Y7            69.940        75.185
+ Y8            73.376        78.684        85.724
+ Y9            77.650        83.773        90.710        98.883
+ Y10           81.229        88.312        96.369       104.248       112.732
+ Z1            21.781        22.697        24.334        26.445        27.891
+ Z2            24.780        26.260        28.172        30.606        32.376
+ Z3            28.009        29.925        32.280        35.190        37.462
+ Z4            30.867        33.049        35.538        38.648        41.439
+ Z5            32.589        35.245        37.999        41.678        44.680
+ Z6            38.623        41.036        44.007        47.867        51.286
+ Z7            43.849        47.680        50.591        55.121        58.949
+ Z8            46.921        50.649        54.879        59.316        63.596
+ Z9            50.281        54.348        58.522        64.324        68.479
+ Z10           52.892        57.273        61.478        67.060        72.263
+ X1             1.788         1.773         1.882         1.733         1.835
+ X2             1.129         1.319         1.310         1.356         1.556
+
+
+           Covariances
+              Z1            Z2            Z3            Z4            Z5
+              ________      ________      ________      ________      ________
+ Z1            31.234
+ Z2            31.964        36.272
+ Z3            34.568        38.357        44.324
+ Z4            35.850        40.733        46.201        52.351
+ Z5            36.912        42.660        48.983        54.777        60.936
+ Z6            41.064        47.868        55.220        61.826        67.184
+ Z7            44.529        51.934        59.966        66.938        72.779
+ Z8            46.882        54.588        62.943        70.508        76.471
+ Z9            48.312        56.416        65.206        72.937        79.336
+ Z10           50.386        58.786        67.911        75.967        82.609
+ X1             0.910         0.888         0.814         0.688         0.672
+ X2             0.927         1.003         0.988         0.992         0.987
+
+
+           Covariances
+              Z6            Z7            Z8            Z9            Z10
+              ________      ________      ________      ________      ________
+ Z6            77.927
+ Z7            83.373        92.417
+ Z8            87.633        96.525       104.186
+ Z9            91.057       100.965       108.405       116.059
+ Z10           95.058       105.850       114.403       121.851       131.056
+ X1             0.812         1.000         1.064         1.163         1.283
+ X2             1.170         1.413         1.442         1.418         1.561
+
+
+           Covariances
+              X1            X2
+              ________      ________
+ X1             1.031
+ X2             0.328         0.950
+
+
+           Correlations
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1             1.000
+ Y2             0.936         1.000
+ Y3             0.905         0.939         1.000
+ Y4             0.854         0.920         0.953         1.000
+ Y5             0.835         0.908         0.951         0.966         1.000
+ Y6             0.832         0.902         0.942         0.957         0.977
+ Y7             0.820         0.888         0.929         0.943         0.964
+ Y8             0.799         0.864         0.905         0.918         0.941
+ Y9             0.782         0.841         0.886         0.897         0.921
+ Y10            0.765         0.820         0.862         0.874         0.899
+ Z1             0.392         0.405         0.421         0.416         0.434
+ Z2             0.398         0.453         0.447         0.446         0.458
+ Z3             0.407         0.438         0.476         0.459         0.471
+ Z4             0.417         0.450         0.466         0.488         0.478
+ Z5             0.405         0.442         0.454         0.464         0.478
+ Z6             0.424         0.459         0.474         0.477         0.485
+ Z7             0.453         0.486         0.503         0.503         0.513
+ Z8             0.455         0.490         0.507         0.511         0.518
+ Z9             0.469         0.499         0.521         0.521         0.529
+ Z10            0.471         0.497         0.519         0.517         0.524
+ X1             0.201         0.221         0.198         0.180         0.217
+ X2             0.167         0.157         0.132         0.112         0.127
+
+
+           Correlations
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6             1.000
+ Y7             0.979         1.000
+ Y8             0.962         0.980         1.000
+ Y9             0.948         0.972         0.985         1.000
+ Y10            0.929         0.959         0.980         0.987         1.000
+ Z1             0.473         0.468         0.470         0.476         0.470
+ Z2             0.500         0.503         0.505         0.511         0.506
+ Z3             0.511         0.518         0.524         0.532         0.530
+ Z4             0.518         0.527         0.530         0.537         0.539
+ Z5             0.507         0.521         0.526         0.537         0.539
+ Z6             0.531         0.536         0.538         0.545         0.547
+ Z7             0.554         0.572         0.568         0.577         0.578
+ Z8             0.558         0.572         0.581         0.584         0.587
+ Z9             0.567         0.582         0.587         0.600         0.599
+ Z10            0.561         0.577         0.580         0.589         0.595
+ X1             0.214         0.201         0.200         0.172         0.170
+ X2             0.141         0.156         0.145         0.140         0.150
+
+
+           Correlations
+              Z1            Z2            Z3            Z4            Z5
+              ________      ________      ________      ________      ________
+ Z1             1.000
+ Z2             0.950         1.000
+ Z3             0.929         0.957         1.000
+ Z4             0.887         0.935         0.959         1.000
+ Z5             0.846         0.907         0.943         0.970         1.000
+ Z6             0.832         0.900         0.940         0.968         0.975
+ Z7             0.829         0.897         0.937         0.962         0.970
+ Z8             0.822         0.888         0.926         0.955         0.960
+ Z9             0.802         0.870         0.909         0.936         0.943
+ Z10            0.788         0.853         0.891         0.917         0.924
+ X1             0.160         0.145         0.120         0.094         0.085
+ X2             0.170         0.171         0.152         0.141         0.130
+
+
+           Correlations
+              Z6            Z7            Z8            Z9            Z10
+              ________      ________      ________      ________      ________
+ Z6             1.000
+ Z7             0.982         1.000
+ Z8             0.973         0.984         1.000
+ Z9             0.957         0.975         0.986         1.000
+ Z10            0.941         0.962         0.979         0.988         1.000
+ X1             0.091         0.102         0.103         0.106         0.110
+ X2             0.136         0.151         0.145         0.135         0.140
+
+
+           Correlations
+              X1            X2
+              ________      ________
+ X1             1.000
+ X2             0.331         1.000
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     Y1                   99.791      -0.088      80.925    0.20%      95.908     98.713     99.811
+             500.000      26.745       0.418     115.178    0.20%     100.804    103.781
+     Y2                  104.879      -0.087      82.559    0.20%     100.505    103.495    104.788
+             500.000      31.346       0.276     122.146    0.20%     106.118    109.595
+     Y3                  109.814      -0.072      87.210    0.20%     104.917    108.369    109.770
+             500.000      36.791       0.361     127.078    0.20%     111.361    114.401
+     Y4                  114.830      -0.236      85.360    0.20%     109.321    113.168    115.059
+             500.000      44.535       0.441     134.228    0.20%     116.600    120.182
+     Y5                  119.119      -0.143      88.819    0.20%     112.924    117.247    119.286
+             500.000      54.911       0.222     141.366    0.20%     121.025    125.189
+     Y6                  122.276      -0.102      88.069    0.20%     115.746    119.966    122.407
+             500.000      67.818       0.281     148.061    0.20%     124.317    129.389
+     Y7                  124.948      -0.133      88.253    0.20%     117.537    122.757    125.481
+             500.000      75.185       0.220     150.300    0.20%     127.504    132.230
+     Y8                  127.519      -0.135      87.831    0.20%     119.984    125.096    127.819
+             500.000      85.724       0.230     154.791    0.20%     130.333    135.262
+     Y9                  130.117      -0.080      88.262    0.20%     121.811    127.481    130.616
+             500.000      98.883       0.254     156.418    0.20%     133.141    138.163
+     Y10                 132.697      -0.126      89.132    0.20%     124.029    130.353    133.471
+             500.000     112.732       0.139     162.155    0.20%     135.927    141.063
+     Z1                  100.099      -0.081      82.954    0.20%      95.377     98.871    100.078
+             500.000      31.234       0.013     116.972    0.20%     101.565    104.802
+     Z2                  105.200      -0.002      86.730    0.20%     100.131    103.787    105.306
+             500.000      36.272       0.080     125.089    0.20%     106.799    110.174
+     Z3                  110.119       0.055      92.594    0.20%     104.460    108.514    110.086
+             500.000      44.324       0.004     129.156    0.20%     111.620    115.508
+     Z4                  115.064       0.033      95.268    0.20%     108.930    113.050    114.718
+             500.000      52.351      -0.121     136.693    0.20%     116.727    121.097
+     Z5                  120.045       0.010      98.392    0.20%     113.498    118.174    119.796
+             500.000      60.936      -0.143     143.563    0.20%     122.106    126.674
+     Z6                  124.387       0.088      99.470    0.20%     117.045    121.977    124.312
+             500.000      77.927      -0.056     154.039    0.20%     126.343    131.634
+     Z7                  127.681       0.154     101.760    0.20%     119.744    124.924    126.807
+             500.000      92.417      -0.042     159.188    0.20%     129.821    135.253
+     Z8                  130.274       0.124     102.659    0.20%     121.746    127.164    129.931
+             500.000     104.186      -0.112     161.002    0.20%     132.774    138.454
+     Z9                  132.882       0.120     102.072    0.20%     124.171    129.665    132.304
+             500.000     116.059      -0.028     167.064    0.20%     135.206    141.327
+     Z10                 135.562       0.100     103.554    0.20%     125.611    132.720    135.145
+             500.000     131.056      -0.063     172.400    0.20%     137.715    144.710
+     X1                   -0.106      -0.162      -3.104    0.20%      -0.998     -0.334     -0.103
+             500.000       1.031      -0.013       2.870    0.20%       0.194      0.758
+     X2                   -0.031      -0.128      -3.305    0.20%      -0.802     -0.268     -0.012
+             500.000       0.950       0.264       2.871    0.20%       0.198      0.750
+     T1                    0.000       0.000       0.000  100.00%       0.000      0.000      0.000
+             500.000       0.000       0.000       0.000  100.00%       0.000      0.000
+     T2                    1.010      -0.084       0.753    0.20%       0.858      0.961      1.012
+             500.000       0.021      -1.232       1.248    0.20%       1.069      1.150
+     T3                    2.002      -0.067       1.752    0.20%       1.853      1.960      2.009
+             500.000       0.020      -1.181       2.247    0.20%       2.058      2.147
+     T4                    3.002      -0.059       2.750    0.20%       2.848      2.952      3.008
+             500.000       0.021      -1.266       3.249    0.20%       3.061      3.154
+     T5                    4.007      -0.093       3.750    0.20%       3.850      3.962      4.010
+             500.000       0.021      -1.179       4.250    0.20%       4.060      4.157
+     T6                    4.997       0.108       4.753    0.20%       4.862      4.943      4.985
+             500.000       0.020      -1.115       5.249    0.20%       5.038      5.140
+     T7                    5.988       0.149       5.750    0.20%       5.842      5.929      5.973
+             500.000       0.021      -1.149       6.250    0.20%       6.031      6.133
+     T8                    7.004      -0.067       6.750    0.20%       6.850      6.967      7.011
+             500.000       0.020      -1.209       7.250    0.20%       7.057      7.153
+     T9                    8.002      -0.052       7.751    0.20%       7.855      7.958      8.005
+             500.000       0.020      -1.134       8.250    0.20%       8.047      8.147
+     T10                   9.000       0.000       9.000  100.00%       9.000      9.000      9.000
+             500.000       0.000       0.000       9.000  100.00%       9.000      9.000
+
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LOGLIKELIHOOD VALUES
+
+1 perturbed starting value run(s) did not converge in the initial stage
+optimizations.
+
+Final stage loglikelihood values at local maxima, seeds, and initial stage start numbers:
+
+          -19777.192  195873           6
+          -19777.192  unperturbed      0
+          -19777.192  903420           5
+          -19777.192  851945           18
+
+
+
+THE BEST LOGLIKELIHOOD VALUE HAS BEEN REPLICATED.  RERUN WITH AT LEAST TWICE THE
+RANDOM STARTS TO CHECK THAT THE BEST LOGLIKELIHOOD IS STILL OBTAINED AND REPLICATED.
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       67
+
+Loglikelihood
+
+          H0 Value                      -19777.192
+          H0 Scaling Correction Factor      1.0684
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   39688.385
+          Bayesian (BIC)                 39970.764
+          Sample-Size Adjusted BIC       39758.102
+            (n* = (n + 2) / 24)
+
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THE ESTIMATED MODEL
+
+    Latent
+   Classes
+
+       1        250.65416          0.50131
+       2        249.34584          0.49869
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON ESTIMATED POSTERIOR PROBABILITIES
+
+    Latent
+   Classes
+
+       1        250.65421          0.50131
+       2        249.34579          0.49869
+
+
+FINAL CLASS COUNTS AND PROPORTIONS FOR THE LATENT CLASSES
+BASED ON THEIR MOST LIKELY LATENT CLASS MEMBERSHIP
+
+Class Counts and Proportions
+
+    Latent
+   Classes
+
+       1              244          0.48800
+       2              256          0.51200
+
+
+CLASSIFICATION QUALITY
+
+     Entropy                         0.652
+
+
+Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+           1        2
+
+    1   0.881    0.119
+    2   0.093    0.907
+
+
+Logits for the Classification Probabilities for the Most Likely Latent Class Membership (Column)
+by Latent Class (Row)
+
+              1        2
+
+    1      2.004    0.000
+    2     -2.280    0.000
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Latent Class 1
+
+ ETA0SY   BY
+    Y1                 1.000      0.000    999.000    999.000
+    Y2                 1.000      0.000    999.000    999.000
+    Y3                 1.000      0.000    999.000    999.000
+    Y4                 1.000      0.000    999.000    999.000
+    Y5                 1.000      0.000    999.000    999.000
+    Y6                 1.000      0.000    999.000    999.000
+    Y7                 1.000      0.000    999.000    999.000
+    Y8                 1.000      0.000    999.000    999.000
+    Y9                 1.000      0.000    999.000    999.000
+    Y10                1.000      0.000    999.000    999.000
+
+ ETA1SY   BY
+    Y1               999.000      0.000    999.000    999.000
+    Y2               999.000      0.000    999.000    999.000
+    Y3               999.000      0.000    999.000    999.000
+    Y4               999.000      0.000    999.000    999.000
+    Y5               999.000      0.000    999.000    999.000
+    Y6               999.000      0.000    999.000    999.000
+    Y7               999.000      0.000    999.000    999.000
+    Y8               999.000      0.000    999.000    999.000
+    Y9               999.000      0.000    999.000    999.000
+    Y10              999.000      0.000    999.000    999.000
+
+ ETA2SY   BY
+    Y1               999.000      0.000    999.000    999.000
+    Y2               999.000      0.000    999.000    999.000
+    Y3               999.000      0.000    999.000    999.000
+    Y4               999.000      0.000    999.000    999.000
+    Y5               999.000      0.000    999.000    999.000
+    Y6               999.000      0.000    999.000    999.000
+    Y7               999.000      0.000    999.000    999.000
+    Y8               999.000      0.000    999.000    999.000
+    Y9               999.000      0.000    999.000    999.000
+    Y10              999.000      0.000    999.000    999.000
+
+ ETA0SZ   BY
+    Z1                 1.000      0.000    999.000    999.000
+    Z2                 1.000      0.000    999.000    999.000
+    Z3                 1.000      0.000    999.000    999.000
+    Z4                 1.000      0.000    999.000    999.000
+    Z5                 1.000      0.000    999.000    999.000
+    Z6                 1.000      0.000    999.000    999.000
+    Z7                 1.000      0.000    999.000    999.000
+    Z8                 1.000      0.000    999.000    999.000
+    Z9                 1.000      0.000    999.000    999.000
+    Z10                1.000      0.000    999.000    999.000
+
+ ETA1SZ   BY
+    Z1               999.000      0.000    999.000    999.000
+    Z2               999.000      0.000    999.000    999.000
+    Z3               999.000      0.000    999.000    999.000
+    Z4               999.000      0.000    999.000    999.000
+    Z5               999.000      0.000    999.000    999.000
+    Z6               999.000      0.000    999.000    999.000
+    Z7               999.000      0.000    999.000    999.000
+    Z8               999.000      0.000    999.000    999.000
+    Z9               999.000      0.000    999.000    999.000
+    Z10              999.000      0.000    999.000    999.000
+
+ ETA2SZ   BY
+    Z1               999.000      0.000    999.000    999.000
+    Z2               999.000      0.000    999.000    999.000
+    Z3               999.000      0.000    999.000    999.000
+    Z4               999.000      0.000    999.000    999.000
+    Z5               999.000      0.000    999.000    999.000
+    Z6               999.000      0.000    999.000    999.000
+    Z7               999.000      0.000    999.000    999.000
+    Z8               999.000      0.000    999.000    999.000
+    Z9               999.000      0.000    999.000    999.000
+    Z10              999.000      0.000    999.000    999.000
+
+ ETA1SY   WITH
+    ETA0SY             4.127      0.513      8.036      0.000
+
+ ETA2SY   WITH
+    ETA0SY            -1.334      0.352     -3.793      0.000
+    ETA1SY            -0.078      0.038     -2.037      0.042
+
+ ETA0SZ   WITH
+    ETA0SY            22.899      4.348      5.266      0.000
+    ETA1SY             3.372      0.495      6.812      0.000
+    ETA2SY             0.082      0.411      0.199      0.842
+
+ ETA1SZ   WITH
+    ETA0SY             2.499      0.500      4.997      0.000
+    ETA1SY             0.309      0.054      5.739      0.000
+    ETA2SY             0.031      0.040      0.762      0.446
+    ETA0SZ             4.811      0.631      7.626      0.000
+
+ ETA2SZ   WITH
+    ETA0SY             0.008      0.319      0.024      0.981
+    ETA1SY            -0.072      0.046     -1.576      0.115
+    ETA2SY            -0.003      0.034     -0.090      0.929
+    ETA0SZ            -1.523      0.364     -4.182      0.000
+    ETA1SZ            -0.023      0.039     -0.585      0.559
+
+ Y1       WITH
+    Z1                 0.342      0.032     10.814      0.000
+
+ Y2       WITH
+    Z2                 0.342      0.032     10.814      0.000
+
+ Y3       WITH
+    Z3                 0.342      0.032     10.814      0.000
+
+ Y4       WITH
+    Z4                 0.342      0.032     10.814      0.000
+
+ Y5       WITH
+    Z5                 0.342      0.032     10.814      0.000
+
+ Y6       WITH
+    Z6                 0.342      0.032     10.814      0.000
+
+ Y7       WITH
+    Z7                 0.342      0.032     10.814      0.000
+
+ Y8       WITH
+    Z8                 0.342      0.032     10.814      0.000
+
+ Y9       WITH
+    Z9                 0.342      0.032     10.814      0.000
+
+ Y10      WITH
+    Z10                0.342      0.032     10.814      0.000
+
+ Means
+    ETA0SY           114.756      0.541    212.234      0.000
+    ETA1SY             3.737      0.070     53.105      0.000
+    ETA2SY            -1.225      0.065    -18.925      0.000
+    ETA0SZ           119.878      0.700    171.280      0.000
+    ETA1SZ             3.740      0.067     55.867      0.000
+    ETA2SZ            -1.208      0.053    -22.597      0.000
+
+ Intercepts
+    Y1                 0.000      0.000    999.000    999.000
+    Y2                 0.000      0.000    999.000    999.000
+    Y3                 0.000      0.000    999.000    999.000
+    Y4                 0.000      0.000    999.000    999.000
+    Y5                 0.000      0.000    999.000    999.000
+    Y6                 0.000      0.000    999.000    999.000
+    Y7                 0.000      0.000    999.000    999.000
+    Y8                 0.000      0.000    999.000    999.000
+    Y9                 0.000      0.000    999.000    999.000
+    Y10                0.000      0.000    999.000    999.000
+    Z1                 0.000      0.000    999.000    999.000
+    Z2                 0.000      0.000    999.000    999.000
+    Z3                 0.000      0.000    999.000    999.000
+    Z4                 0.000      0.000    999.000    999.000
+    Z5                 0.000      0.000    999.000    999.000
+    Z6                 0.000      0.000    999.000    999.000
+    Z7                 0.000      0.000    999.000    999.000
+    Z8                 0.000      0.000    999.000    999.000
+    Z9                 0.000      0.000    999.000    999.000
+    Z10                0.000      0.000    999.000    999.000
+
+ Variances
+    ETA0SY            45.757      5.439      8.413      0.000
+    ETA1SY             0.704      0.065     10.819      0.000
+    ETA2SY             0.408      0.062      6.537      0.000
+    ETA0SZ            60.303      6.213      9.706      0.000
+    ETA1SZ             0.670      0.079      8.535      0.000
+    ETA2SZ             0.341      0.045      7.642      0.000
+
+ Residual Variances
+    Y1                 1.026      0.039     26.230      0.000
+    Y2                 1.026      0.039     26.230      0.000
+    Y3                 1.026      0.039     26.230      0.000
+    Y4                 1.026      0.039     26.230      0.000
+    Y5                 1.026      0.039     26.230      0.000
+    Y6                 1.026      0.039     26.230      0.000
+    Y7                 1.026      0.039     26.230      0.000
+    Y8                 1.026      0.039     26.230      0.000
+    Y9                 1.026      0.039     26.230      0.000
+    Y10                1.026      0.039     26.230      0.000
+    Z1                 1.029      0.041     25.048      0.000
+    Z2                 1.029      0.041     25.048      0.000
+    Z3                 1.029      0.041     25.048      0.000
+    Z4                 1.029      0.041     25.048      0.000
+    Z5                 1.029      0.041     25.048      0.000
+    Z6                 1.029      0.041     25.048      0.000
+    Z7                 1.029      0.041     25.048      0.000
+    Z8                 1.029      0.041     25.048      0.000
+    Z9                 1.029      0.041     25.048      0.000
+    Z10                1.029      0.041     25.048      0.000
+
+Latent Class 2
+
+ ETA0SY   BY
+    Y1                 1.000      0.000    999.000    999.000
+    Y2                 1.000      0.000    999.000    999.000
+    Y3                 1.000      0.000    999.000    999.000
+    Y4                 1.000      0.000    999.000    999.000
+    Y5                 1.000      0.000    999.000    999.000
+    Y6                 1.000      0.000    999.000    999.000
+    Y7                 1.000      0.000    999.000    999.000
+    Y8                 1.000      0.000    999.000    999.000
+    Y9                 1.000      0.000    999.000    999.000
+    Y10                1.000      0.000    999.000    999.000
+
+ ETA1SY   BY
+    Y1               999.000      0.000    999.000    999.000
+    Y2               999.000      0.000    999.000    999.000
+    Y3               999.000      0.000    999.000    999.000
+    Y4               999.000      0.000    999.000    999.000
+    Y5               999.000      0.000    999.000    999.000
+    Y6               999.000      0.000    999.000    999.000
+    Y7               999.000      0.000    999.000    999.000
+    Y8               999.000      0.000    999.000    999.000
+    Y9               999.000      0.000    999.000    999.000
+    Y10              999.000      0.000    999.000    999.000
+
+ ETA2SY   BY
+    Y1               999.000      0.000    999.000    999.000
+    Y2               999.000      0.000    999.000    999.000
+    Y3               999.000      0.000    999.000    999.000
+    Y4               999.000      0.000    999.000    999.000
+    Y5               999.000      0.000    999.000    999.000
+    Y6               999.000      0.000    999.000    999.000
+    Y7               999.000      0.000    999.000    999.000
+    Y8               999.000      0.000    999.000    999.000
+    Y9               999.000      0.000    999.000    999.000
+    Y10              999.000      0.000    999.000    999.000
+
+ ETA0SZ   BY
+    Z1                 1.000      0.000    999.000    999.000
+    Z2                 1.000      0.000    999.000    999.000
+    Z3                 1.000      0.000    999.000    999.000
+    Z4                 1.000      0.000    999.000    999.000
+    Z5                 1.000      0.000    999.000    999.000
+    Z6                 1.000      0.000    999.000    999.000
+    Z7                 1.000      0.000    999.000    999.000
+    Z8                 1.000      0.000    999.000    999.000
+    Z9                 1.000      0.000    999.000    999.000
+    Z10                1.000      0.000    999.000    999.000
+
+ ETA1SZ   BY
+    Z1               999.000      0.000    999.000    999.000
+    Z2               999.000      0.000    999.000    999.000
+    Z3               999.000      0.000    999.000    999.000
+    Z4               999.000      0.000    999.000    999.000
+    Z5               999.000      0.000    999.000    999.000
+    Z6               999.000      0.000    999.000    999.000
+    Z7               999.000      0.000    999.000    999.000
+    Z8               999.000      0.000    999.000    999.000
+    Z9               999.000      0.000    999.000    999.000
+    Z10              999.000      0.000    999.000    999.000
+
+ ETA2SZ   BY
+    Z1               999.000      0.000    999.000    999.000
+    Z2               999.000      0.000    999.000    999.000
+    Z3               999.000      0.000    999.000    999.000
+    Z4               999.000      0.000    999.000    999.000
+    Z5               999.000      0.000    999.000    999.000
+    Z6               999.000      0.000    999.000    999.000
+    Z7               999.000      0.000    999.000    999.000
+    Z8               999.000      0.000    999.000    999.000
+    Z9               999.000      0.000    999.000    999.000
+    Z10              999.000      0.000    999.000    999.000
+
+ ETA1SY   WITH
+    ETA0SY             3.368      0.487      6.910      0.000
+
+ ETA2SY   WITH
+    ETA0SY            -1.462      0.415     -3.523      0.000
+    ETA1SY             0.050      0.041      1.221      0.222
+
+ ETA0SZ   WITH
+    ETA0SY            21.769      5.244      4.151      0.000
+    ETA1SY             2.345      0.578      4.060      0.000
+    ETA2SY             0.461      0.449      1.026      0.305
+
+ ETA1SZ   WITH
+    ETA0SY             2.373      0.426      5.568      0.000
+    ETA1SY             0.285      0.047      6.074      0.000
+    ETA2SY             0.061      0.040      1.540      0.124
+    ETA0SZ             5.568      0.643      8.661      0.000
+
+ ETA2SZ   WITH
+    ETA0SY             0.137      0.443      0.308      0.758
+    ETA1SY             0.043      0.046      0.923      0.356
+    ETA2SY             0.000      0.032      0.012      0.990
+    ETA0SZ            -1.958      0.475     -4.119      0.000
+    ETA1SZ             0.030      0.040      0.753      0.451
+
+ Y1       WITH
+    Z1                 0.312      0.029     10.917      0.000
+
+ Y2       WITH
+    Z2                 0.312      0.029     10.917      0.000
+
+ Y3       WITH
+    Z3                 0.312      0.029     10.917      0.000
+
+ Y4       WITH
+    Z4                 0.312      0.029     10.917      0.000
+
+ Y5       WITH
+    Z5                 0.312      0.029     10.917      0.000
+
+ Y6       WITH
+    Z6                 0.312      0.029     10.917      0.000
+
+ Y7       WITH
+    Z7                 0.312      0.029     10.917      0.000
+
+ Y8       WITH
+    Z8                 0.312      0.029     10.917      0.000
+
+ Y9       WITH
+    Z9                 0.312      0.029     10.917      0.000
+
+ Y10      WITH
+    Z10                0.312      0.029     10.917      0.000
+
+ Means
+    ETA0SY           124.535      0.736    169.253      0.000
+    ETA1SY             3.875      0.068     56.704      0.000
+    ETA2SY            -1.175      0.059    -19.759      0.000
+    ETA0SZ           130.285      0.717    181.687      0.000
+    ETA1SZ             3.876      0.066     58.776      0.000
+    ETA2SZ            -1.130      0.052    -21.854      0.000
+
+ Intercepts
+    Y1                 0.000      0.000    999.000    999.000
+    Y2                 0.000      0.000    999.000    999.000
+    Y3                 0.000      0.000    999.000    999.000
+    Y4                 0.000      0.000    999.000    999.000
+    Y5                 0.000      0.000    999.000    999.000
+    Y6                 0.000      0.000    999.000    999.000
+    Y7                 0.000      0.000    999.000    999.000
+    Y8                 0.000      0.000    999.000    999.000
+    Y9                 0.000      0.000    999.000    999.000
+    Y10                0.000      0.000    999.000    999.000
+    Z1                 0.000      0.000    999.000    999.000
+    Z2                 0.000      0.000    999.000    999.000
+    Z3                 0.000      0.000    999.000    999.000
+    Z4                 0.000      0.000    999.000    999.000
+    Z5                 0.000      0.000    999.000    999.000
+    Z6                 0.000      0.000    999.000    999.000
+    Z7                 0.000      0.000    999.000    999.000
+    Z8                 0.000      0.000    999.000    999.000
+    Z9                 0.000      0.000    999.000    999.000
+    Z10                0.000      0.000    999.000    999.000
+
+ Variances
+    ETA0SY            46.493      5.600      8.302      0.000
+    ETA1SY             0.544      0.056      9.759      0.000
+    ETA2SY             0.372      0.051      7.354      0.000
+    ETA0SZ            74.356      7.252     10.253      0.000
+    ETA1SZ             0.724      0.072      9.994      0.000
+    ETA2SZ             0.348      0.041      8.432      0.000
+
+ Residual Variances
+    Y1                 0.946      0.036     26.165      0.000
+    Y2                 0.946      0.036     26.165      0.000
+    Y3                 0.946      0.036     26.165      0.000
+    Y4                 0.946      0.036     26.165      0.000
+    Y5                 0.946      0.036     26.165      0.000
+    Y6                 0.946      0.036     26.165      0.000
+    Y7                 0.946      0.036     26.165      0.000
+    Y8                 0.946      0.036     26.165      0.000
+    Y9                 0.946      0.036     26.165      0.000
+    Y10                0.946      0.036     26.165      0.000
+    Z1                 1.025      0.037     27.892      0.000
+    Z2                 1.025      0.037     27.892      0.000
+    Z3                 1.025      0.037     27.892      0.000
+    Z4                 1.025      0.037     27.892      0.000
+    Z5                 1.025      0.037     27.892      0.000
+    Z6                 1.025      0.037     27.892      0.000
+    Z7                 1.025      0.037     27.892      0.000
+    Z8                 1.025      0.037     27.892      0.000
+    Z9                 1.025      0.037     27.892      0.000
+    Z10                1.025      0.037     27.892      0.000
+
+Categorical Latent Variables
+
+ C#1        ON
+    X1                -0.609      0.154     -3.941      0.000
+    X2                -0.546      0.154     -3.540      0.000
+
+ Intercepts
+    C#1               -0.070      0.185     -0.380      0.704
+
+New/Additional Parameters
+    C1MUETA0          97.666      0.384    254.071      0.000
+    C1MUETA1           4.962      0.098     50.735      0.000
+    C1MUETA2           2.511      0.093     26.890      0.000
+    C1MUGY             3.444      0.034    100.217      0.000
+    C1PSI0Y0          23.190      3.064      7.570      0.000
+    C1PSI0Y1           1.092      0.433      2.522      0.012
+    C1PSI0Y2           1.774      0.461      3.848      0.000
+    C1PSI1Y1           1.269      0.127     10.013      0.000
+    C1PSI1Y2           0.296      0.093      3.170      0.002
+    C1PSI2Y2           0.956      0.104      9.170      0.000
+    C1MUETA0          97.512      0.402    242.489      0.000
+    C1MUETA1           4.947      0.088     56.347      0.000
+    C1MUETA2           2.532      0.083     30.342      0.000
+    C1MUGZ             4.521      0.042    107.473      0.000
+    C1PSI0Z0          24.626      2.478      9.938      0.000
+    C1PSI0Z1           1.558      0.475      3.278      0.001
+    C1PSI0Z2           1.799      0.429      4.198      0.000
+    C1PSI1Z1           1.057      0.124      8.499      0.000
+    C1PSI1Z2           0.329      0.092      3.565      0.000
+    C1PSI2Z2           0.965      0.111      8.664      0.000
+    C1PSI0Y0           5.716      1.735      3.294      0.001
+    C1PSI0Y1           1.295      0.418      3.098      0.002
+    C1PSI0Y2           1.788      0.430      4.155      0.000
+    C1PSI1Y0           1.719      0.548      3.138      0.002
+    C1PSI1Y1           0.348      0.092      3.775      0.000
+    C1PSI1Y2           0.209      0.096      2.165      0.030
+    C1PSI2Y0           1.577      0.359      4.395      0.000
+    C1PSI2Y1           0.415      0.082      5.036      0.000
+    C1PSI2Y2           0.264      0.082      3.238      0.001
+    C2MUETA0         101.946      0.399    255.326      0.000
+    C2MUETA1           5.050      0.089     56.485      0.000
+    C2MUETA2           2.700      0.092     29.413      0.000
+    C2MUGY             4.473      0.033    135.953      0.000
+    C2PSI0Y0          19.611      1.906     10.289      0.000
+    C2PSI0Y1           1.180      0.370      3.188      0.001
+    C2PSI0Y2           1.137      0.339      3.355      0.001
+    C2PSI1Y1           0.816      0.110      7.407      0.000
+    C2PSI1Y2           0.172      0.073      2.346      0.019
+    C2PSI2Y2           1.017      0.115      8.818      0.000
+    C2MUETA0         102.770      0.377    272.799      0.000
+    C2MUETA1           5.006      0.083     60.329      0.000
+    C2MUETA2           2.746      0.085     32.451      0.000
+    C2MUGZ             5.496      0.047    116.458      0.000
+    C2PSI0Z0          22.208      2.248      9.879      0.000
+    C2PSI0Z1           1.962      0.353      5.558      0.000
+    C2PSI0Z2           1.545      0.432      3.574      0.000
+    C2PSI1Z1           1.012      0.112      9.075      0.000
+    C2PSI1Z2           0.376      0.084      4.473      0.000
+    C2PSI2Z2           1.132      0.118      9.630      0.000
+    C2PSI0Y0           5.507      1.789      3.078      0.002
+    C2PSI0Y1           1.425      0.343      4.162      0.000
+    C2PSI0Y2           1.319      0.351      3.754      0.000
+    C2PSI1Y0           0.887      0.370      2.401      0.016
+    C2PSI1Y1           0.181      0.083      2.178      0.029
+    C2PSI1Y2           0.266      0.082      3.239      0.001
+    C2PSI2Y0           1.138      0.386      2.946      0.003
+    C2PSI2Y1           0.303      0.084      3.613      0.000
+    C2PSI2Y2           0.390      0.084      4.615      0.000
+
+
+LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+Categorical Latent Variables
+
+ C#1      ON
+    X1                 0.544      0.084     -5.425      0.000
+    X2                 0.579      0.089     -4.709      0.000
+
+
+ALTERNATIVE PARAMETERIZATIONS FOR THE CATEGORICAL LATENT VARIABLE REGRESSION
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Parameterization using Reference Class 1
+
+ C#2      ON
+    X1                 0.609      0.154      3.941      0.000
+    X2                 0.546      0.154      3.540      0.000
+
+ Intercepts
+    C#2                0.070      0.185      0.380      0.704
+
+
+ODDS RATIO FOR THE ALTERNATIVE PARAMETERIZATIONS FOR THE CATEGORICAL LATENT VARIABLE REGRESSION
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+Parameterization using Reference Class 1
+
+ C#2      ON
+    X1                 1.838      0.284      2.952      0.003
+    X2                 1.727      0.266      2.728      0.006
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.310E-06
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 1
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              Z1            Z2            Z3            Z4            Z5
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              Z6            Z7            Z8            Z9            Z10
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              X1            X2
+              ________      ________
+                    0             0
+
+
+           LAMBDA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ Y1                 0             1             2             0             0
+ Y2                 0             3             4             0             0
+ Y3                 0             5             6             0             0
+ Y4                 0             7             8             0             0
+ Y5                 0             9            10             0             0
+ Y6                 0            11            12             0             0
+ Y7                 0            13            14             0             0
+ Y8                 0            15            16             0             0
+ Y9                 0            17            18             0             0
+ Y10                0            19            20             0             0
+ Z1                 0             0             0             0            21
+ Z2                 0             0             0             0            23
+ Z3                 0             0             0             0            25
+ Z4                 0             0             0             0            27
+ Z5                 0             0             0             0            29
+ Z6                 0             0             0             0            31
+ Z7                 0             0             0             0            33
+ Z8                 0             0             0             0            35
+ Z9                 0             0             0             0            37
+ Z10                0             0             0             0            39
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           LAMBDA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ Y1                 0             0             0
+ Y2                 0             0             0
+ Y3                 0             0             0
+ Y4                 0             0             0
+ Y5                 0             0             0
+ Y6                 0             0             0
+ Y7                 0             0             0
+ Y8                 0             0             0
+ Y9                 0             0             0
+ Y10                0             0             0
+ Z1                22             0             0
+ Z2                24             0             0
+ Z3                26             0             0
+ Z4                28             0             0
+ Z5                30             0             0
+ Z6                32             0             0
+ Z7                34             0             0
+ Z8                36             0             0
+ Z9                38             0             0
+ Z10               40             0             0
+ X1                 0             0             0
+ X2                 0             0             0
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1                41
+ Y2                 0            41
+ Y3                 0             0            41
+ Y4                 0             0             0            41
+ Y5                 0             0             0             0            41
+ Y6                 0             0             0             0             0
+ Y7                 0             0             0             0             0
+ Y8                 0             0             0             0             0
+ Y9                 0             0             0             0             0
+ Y10                0             0             0             0             0
+ Z1                42             0             0             0             0
+ Z2                 0            42             0             0             0
+ Z3                 0             0            42             0             0
+ Z4                 0             0             0            42             0
+ Z5                 0             0             0             0            42
+ Z6                 0             0             0             0             0
+ Z7                 0             0             0             0             0
+ Z8                 0             0             0             0             0
+ Z9                 0             0             0             0             0
+ Z10                0             0             0             0             0
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           THETA
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6                41
+ Y7                 0            41
+ Y8                 0             0            41
+ Y9                 0             0             0            41
+ Y10                0             0             0             0            41
+ Z1                 0             0             0             0             0
+ Z2                 0             0             0             0             0
+ Z3                 0             0             0             0             0
+ Z4                 0             0             0             0             0
+ Z5                 0             0             0             0             0
+ Z6                42             0             0             0             0
+ Z7                 0            42             0             0             0
+ Z8                 0             0            42             0             0
+ Z9                 0             0             0            42             0
+ Z10                0             0             0             0            42
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           THETA
+              Z1            Z2            Z3            Z4            Z5
+              ________      ________      ________      ________      ________
+ Z1                43
+ Z2                 0            43
+ Z3                 0             0            43
+ Z4                 0             0             0            43
+ Z5                 0             0             0             0            43
+ Z6                 0             0             0             0             0
+ Z7                 0             0             0             0             0
+ Z8                 0             0             0             0             0
+ Z9                 0             0             0             0             0
+ Z10                0             0             0             0             0
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           THETA
+              Z6            Z7            Z8            Z9            Z10
+              ________      ________      ________      ________      ________
+ Z6                43
+ Z7                 0            43
+ Z8                 0             0            43
+ Z9                 0             0             0            43
+ Z10                0             0             0             0            43
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           THETA
+              X1            X2
+              ________      ________
+ X1                 0
+ X2                 0             0
+
+
+           ALPHA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+                   44            45            46            47            48
+
+
+           ALPHA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+                   49             0             0
+
+
+           BETA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ ETA0SY             0             0             0             0             0
+ ETA1SY             0             0             0             0             0
+ ETA2SY             0             0             0             0             0
+ ETA0SZ             0             0             0             0             0
+ ETA1SZ             0             0             0             0             0
+ ETA2SZ             0             0             0             0             0
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           BETA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ ETA0SY             0             0             0
+ ETA1SY             0             0             0
+ ETA2SY             0             0             0
+ ETA0SZ             0             0             0
+ ETA1SZ             0             0             0
+ ETA2SZ             0             0             0
+ X1                 0             0             0
+ X2                 0             0             0
+
+
+           PSI
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ ETA0SY            50
+ ETA1SY            51            52
+ ETA2SY            53            54            55
+ ETA0SZ            56            57            58            59
+ ETA1SZ            60            61            62            63            64
+ ETA2SZ            65            66            67            68            69
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           PSI
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ ETA2SZ            70
+ X1                 0             0
+ X2                 0             0             0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS 2
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              Z1            Z2            Z3            Z4            Z5
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              Z6            Z7            Z8            Z9            Z10
+              ________      ________      ________      ________      ________
+                    0             0             0             0             0
+
+
+           NU
+              X1            X2
+              ________      ________
+                    0             0
+
+
+           LAMBDA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ Y1                 0            71            72             0             0
+ Y2                 0            73            74             0             0
+ Y3                 0            75            76             0             0
+ Y4                 0            77            78             0             0
+ Y5                 0            79            80             0             0
+ Y6                 0            81            82             0             0
+ Y7                 0            83            84             0             0
+ Y8                 0            85            86             0             0
+ Y9                 0            87            88             0             0
+ Y10                0            89            90             0             0
+ Z1                 0             0             0             0            91
+ Z2                 0             0             0             0            93
+ Z3                 0             0             0             0            95
+ Z4                 0             0             0             0            97
+ Z5                 0             0             0             0            99
+ Z6                 0             0             0             0           101
+ Z7                 0             0             0             0           103
+ Z8                 0             0             0             0           105
+ Z9                 0             0             0             0           107
+ Z10                0             0             0             0           109
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           LAMBDA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ Y1                 0             0             0
+ Y2                 0             0             0
+ Y3                 0             0             0
+ Y4                 0             0             0
+ Y5                 0             0             0
+ Y6                 0             0             0
+ Y7                 0             0             0
+ Y8                 0             0             0
+ Y9                 0             0             0
+ Y10                0             0             0
+ Z1                92             0             0
+ Z2                94             0             0
+ Z3                96             0             0
+ Z4                98             0             0
+ Z5               100             0             0
+ Z6               102             0             0
+ Z7               104             0             0
+ Z8               106             0             0
+ Z9               108             0             0
+ Z10              110             0             0
+ X1                 0             0             0
+ X2                 0             0             0
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1               111
+ Y2                 0           111
+ Y3                 0             0           111
+ Y4                 0             0             0           111
+ Y5                 0             0             0             0           111
+ Y6                 0             0             0             0             0
+ Y7                 0             0             0             0             0
+ Y8                 0             0             0             0             0
+ Y9                 0             0             0             0             0
+ Y10                0             0             0             0             0
+ Z1               112             0             0             0             0
+ Z2                 0           112             0             0             0
+ Z3                 0             0           112             0             0
+ Z4                 0             0             0           112             0
+ Z5                 0             0             0             0           112
+ Z6                 0             0             0             0             0
+ Z7                 0             0             0             0             0
+ Z8                 0             0             0             0             0
+ Z9                 0             0             0             0             0
+ Z10                0             0             0             0             0
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           THETA
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6               111
+ Y7                 0           111
+ Y8                 0             0           111
+ Y9                 0             0             0           111
+ Y10                0             0             0             0           111
+ Z1                 0             0             0             0             0
+ Z2                 0             0             0             0             0
+ Z3                 0             0             0             0             0
+ Z4                 0             0             0             0             0
+ Z5                 0             0             0             0             0
+ Z6               112             0             0             0             0
+ Z7                 0           112             0             0             0
+ Z8                 0             0           112             0             0
+ Z9                 0             0             0           112             0
+ Z10                0             0             0             0           112
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           THETA
+              Z1            Z2            Z3            Z4            Z5
+              ________      ________      ________      ________      ________
+ Z1               113
+ Z2                 0           113
+ Z3                 0             0           113
+ Z4                 0             0             0           113
+ Z5                 0             0             0             0           113
+ Z6                 0             0             0             0             0
+ Z7                 0             0             0             0             0
+ Z8                 0             0             0             0             0
+ Z9                 0             0             0             0             0
+ Z10                0             0             0             0             0
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           THETA
+              Z6            Z7            Z8            Z9            Z10
+              ________      ________      ________      ________      ________
+ Z6               113
+ Z7                 0           113
+ Z8                 0             0           113
+ Z9                 0             0             0           113
+ Z10                0             0             0             0           113
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           THETA
+              X1            X2
+              ________      ________
+ X1                 0
+ X2                 0             0
+
+
+           ALPHA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+                  114           115           116           117           118
+
+
+           ALPHA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+                  119             0             0
+
+
+           BETA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ ETA0SY             0             0             0             0             0
+ ETA1SY             0             0             0             0             0
+ ETA2SY             0             0             0             0             0
+ ETA0SZ             0             0             0             0             0
+ ETA1SZ             0             0             0             0             0
+ ETA2SZ             0             0             0             0             0
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           BETA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ ETA0SY             0             0             0
+ ETA1SY             0             0             0
+ ETA2SY             0             0             0
+ ETA0SZ             0             0             0
+ ETA1SZ             0             0             0
+ ETA2SZ             0             0             0
+ X1                 0             0             0
+ X2                 0             0             0
+
+
+           PSI
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ ETA0SY           120
+ ETA1SY           121           122
+ ETA2SY           123           124           125
+ ETA0SZ           126           127           128           129
+ ETA1SZ           130           131           132           133           134
+ ETA2SZ           135           136           137           138           139
+ X1                 0             0             0             0             0
+ X2                 0             0             0             0             0
+
+
+           PSI
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ ETA2SZ           140
+ X1                 0             0
+ X2                 0             0             0
+
+
+     PARAMETER SPECIFICATION FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                  141             0
+
+
+           GAMMA(C)
+              X1            X2
+              ________      ________
+ C#1              142           143
+ C#2                0             0
+
+
+     PARAMETER SPECIFICATION FOR THE ADDITIONAL PARAMETERS
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1MUETA0      C1MUETA1      C1MUETA2      C1MUGY        C1PSI0Y0
+              ________      ________      ________      ________      ________
+                  144           145           146           147           148
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1PSI0Y1      C1PSI0Y2      C1PSI1Y1      C1PSI1Y2      C1PSI2Y2
+              ________      ________      ________      ________      ________
+                  149           150           151           152           153
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1MUGZ        C1PSI0Z0      C1PSI0Z1      C1PSI0Z2      C1PSI1Z1
+              ________      ________      ________      ________      ________
+                  154           155           156           157           158
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1PSI1Z2      C1PSI2Z2      C1PSI1Y0      C1PSI2Y0      C1PSI2Y1
+              ________      ________      ________      ________      ________
+                  159           160           161           162           163
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2MUETA0      C2MUETA1      C2MUETA2      C2MUGY        C2PSI0Y0
+              ________      ________      ________      ________      ________
+                  164           165           166           167           168
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2PSI0Y1      C2PSI0Y2      C2PSI1Y1      C2PSI1Y2      C2PSI2Y2
+              ________      ________      ________      ________      ________
+                  169           170           171           172           173
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2MUGZ        C2PSI0Z0      C2PSI0Z1      C2PSI0Z2      C2PSI1Z1
+              ________      ________      ________      ________      ________
+                  174           175           176           177           178
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2PSI1Z2      C2PSI2Z2      C2PSI1Y0      C2PSI2Y0      C2PSI2Y1
+              ________      ________      ________      ________      ________
+                  179           180           181           182           183
+
+
+           NEW/ADDITIONAL PARAMETERS
+                  184           185           186           187           188
+
+
+           NEW/ADDITIONAL PARAMETERS
+                  189           190           191           192           193
+
+
+           NEW/ADDITIONAL PARAMETERS
+                  194           195           196           197           198
+
+
+           NEW/ADDITIONAL PARAMETERS
+                  199           200           201
+
+
+     STARTING VALUES FOR LATENT CLASS 1
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              Z1            Z2            Z3            Z4            Z5
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              Z6            Z7            Z8            Z9            Z10
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              X1            X2
+              ________      ________
+                0.000         0.000
+
+
+           LAMBDA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ Y1             1.000         1.000         1.000         0.000         0.000
+ Y2             1.000         1.000         1.000         0.000         0.000
+ Y3             1.000         1.000         1.000         0.000         0.000
+ Y4             1.000         1.000         1.000         0.000         0.000
+ Y5             1.000         1.000         1.000         0.000         0.000
+ Y6             1.000         1.000         1.000         0.000         0.000
+ Y7             1.000         1.000         1.000         0.000         0.000
+ Y8             1.000         1.000         1.000         0.000         0.000
+ Y9             1.000         1.000         1.000         0.000         0.000
+ Y10            1.000         1.000         1.000         0.000         0.000
+ Z1             0.000         0.000         0.000         1.000         1.000
+ Z2             0.000         0.000         0.000         1.000         1.000
+ Z3             0.000         0.000         0.000         1.000         1.000
+ Z4             0.000         0.000         0.000         1.000         1.000
+ Z5             0.000         0.000         0.000         1.000         1.000
+ Z6             0.000         0.000         0.000         1.000         1.000
+ Z7             0.000         0.000         0.000         1.000         1.000
+ Z8             0.000         0.000         0.000         1.000         1.000
+ Z9             0.000         0.000         0.000         1.000         1.000
+ Z10            0.000         0.000         0.000         1.000         1.000
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ Y1             0.000         0.000         0.000
+ Y2             0.000         0.000         0.000
+ Y3             0.000         0.000         0.000
+ Y4             0.000         0.000         0.000
+ Y5             0.000         0.000         0.000
+ Y6             0.000         0.000         0.000
+ Y7             0.000         0.000         0.000
+ Y8             0.000         0.000         0.000
+ Y9             0.000         0.000         0.000
+ Y10            0.000         0.000         0.000
+ Z1             1.000         0.000         0.000
+ Z2             1.000         0.000         0.000
+ Z3             1.000         0.000         0.000
+ Z4             1.000         0.000         0.000
+ Z5             1.000         0.000         0.000
+ Z6             1.000         0.000         0.000
+ Z7             1.000         0.000         0.000
+ Z8             1.000         0.000         0.000
+ Z9             1.000         0.000         0.000
+ Z10            1.000         0.000         0.000
+ X1             0.000         1.000         0.000
+ X2             0.000         0.000         1.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1             1.100
+ Y2             0.000         1.100
+ Y3             0.000         0.000         1.100
+ Y4             0.000         0.000         0.000         1.100
+ Y5             0.000         0.000         0.000         0.000         1.100
+ Y6             0.000         0.000         0.000         0.000         0.000
+ Y7             0.000         0.000         0.000         0.000         0.000
+ Y8             0.000         0.000         0.000         0.000         0.000
+ Y9             0.000         0.000         0.000         0.000         0.000
+ Y10            0.000         0.000         0.000         0.000         0.000
+ Z1             0.300         0.000         0.000         0.000         0.000
+ Z2             0.000         0.300         0.000         0.000         0.000
+ Z3             0.000         0.000         0.300         0.000         0.000
+ Z4             0.000         0.000         0.000         0.300         0.000
+ Z5             0.000         0.000         0.000         0.000         0.300
+ Z6             0.000         0.000         0.000         0.000         0.000
+ Z7             0.000         0.000         0.000         0.000         0.000
+ Z8             0.000         0.000         0.000         0.000         0.000
+ Z9             0.000         0.000         0.000         0.000         0.000
+ Z10            0.000         0.000         0.000         0.000         0.000
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6             1.100
+ Y7             0.000         1.100
+ Y8             0.000         0.000         1.100
+ Y9             0.000         0.000         0.000         1.100
+ Y10            0.000         0.000         0.000         0.000         1.100
+ Z1             0.000         0.000         0.000         0.000         0.000
+ Z2             0.000         0.000         0.000         0.000         0.000
+ Z3             0.000         0.000         0.000         0.000         0.000
+ Z4             0.000         0.000         0.000         0.000         0.000
+ Z5             0.000         0.000         0.000         0.000         0.000
+ Z6             0.300         0.000         0.000         0.000         0.000
+ Z7             0.000         0.300         0.000         0.000         0.000
+ Z8             0.000         0.000         0.300         0.000         0.000
+ Z9             0.000         0.000         0.000         0.300         0.000
+ Z10            0.000         0.000         0.000         0.000         0.300
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              Z1            Z2            Z3            Z4            Z5
+              ________      ________      ________      ________      ________
+ Z1             1.100
+ Z2             0.000         1.100
+ Z3             0.000         0.000         1.100
+ Z4             0.000         0.000         0.000         1.100
+ Z5             0.000         0.000         0.000         0.000         1.100
+ Z6             0.000         0.000         0.000         0.000         0.000
+ Z7             0.000         0.000         0.000         0.000         0.000
+ Z8             0.000         0.000         0.000         0.000         0.000
+ Z9             0.000         0.000         0.000         0.000         0.000
+ Z10            0.000         0.000         0.000         0.000         0.000
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              Z6            Z7            Z8            Z9            Z10
+              ________      ________      ________      ________      ________
+ Z6             1.100
+ Z7             0.000         1.100
+ Z8             0.000         0.000         1.100
+ Z9             0.000         0.000         0.000         1.100
+ Z10            0.000         0.000         0.000         0.000         1.100
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              X1            X2
+              ________      ________
+ X1             0.000
+ X2             0.000         0.000
+
+
+           ALPHA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+              120.000         4.000        -1.000       120.000         4.000
+
+
+           ALPHA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+               -1.000         0.000         0.000
+
+
+           BETA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ ETA0SY         0.000         0.000         0.000         0.000         0.000
+ ETA1SY         0.000         0.000         0.000         0.000         0.000
+ ETA2SY         0.000         0.000         0.000         0.000         0.000
+ ETA0SZ         0.000         0.000         0.000         0.000         0.000
+ ETA1SZ         0.000         0.000         0.000         0.000         0.000
+ ETA2SZ         0.000         0.000         0.000         0.000         0.000
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           BETA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ ETA0SY         0.000         0.000         0.000
+ ETA1SY         0.000         0.000         0.000
+ ETA2SY         0.000         0.000         0.000
+ ETA0SZ         0.000         0.000         0.000
+ ETA1SZ         0.000         0.000         0.000
+ ETA2SZ         0.000         0.000         0.000
+ X1             0.000         0.000         0.000
+ X2             0.000         0.000         0.000
+
+
+           PSI
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ ETA0SY        50.000
+ ETA1SY         4.000         0.500
+ ETA2SY        -1.500         0.000         0.500
+ ETA0SZ        28.000         3.000         0.000        60.000
+ ETA1SZ         2.500         0.300         0.000         4.500         0.500
+ ETA2SZ         0.000         0.000         0.000        -2.000         0.000
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           PSI
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ ETA2SZ         0.500
+ X1             0.000         0.515
+ X2             0.000         0.000         0.475
+
+
+     STARTING VALUES FOR LATENT CLASS 2
+
+
+           NU
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              Z1            Z2            Z3            Z4            Z5
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              Z6            Z7            Z8            Z9            Z10
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           NU
+              X1            X2
+              ________      ________
+                0.000         0.000
+
+
+           LAMBDA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ Y1             1.000         1.000         1.000         0.000         0.000
+ Y2             1.000         1.000         1.000         0.000         0.000
+ Y3             1.000         1.000         1.000         0.000         0.000
+ Y4             1.000         1.000         1.000         0.000         0.000
+ Y5             1.000         1.000         1.000         0.000         0.000
+ Y6             1.000         1.000         1.000         0.000         0.000
+ Y7             1.000         1.000         1.000         0.000         0.000
+ Y8             1.000         1.000         1.000         0.000         0.000
+ Y9             1.000         1.000         1.000         0.000         0.000
+ Y10            1.000         1.000         1.000         0.000         0.000
+ Z1             0.000         0.000         0.000         1.000         1.000
+ Z2             0.000         0.000         0.000         1.000         1.000
+ Z3             0.000         0.000         0.000         1.000         1.000
+ Z4             0.000         0.000         0.000         1.000         1.000
+ Z5             0.000         0.000         0.000         1.000         1.000
+ Z6             0.000         0.000         0.000         1.000         1.000
+ Z7             0.000         0.000         0.000         1.000         1.000
+ Z8             0.000         0.000         0.000         1.000         1.000
+ Z9             0.000         0.000         0.000         1.000         1.000
+ Z10            0.000         0.000         0.000         1.000         1.000
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           LAMBDA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ Y1             0.000         0.000         0.000
+ Y2             0.000         0.000         0.000
+ Y3             0.000         0.000         0.000
+ Y4             0.000         0.000         0.000
+ Y5             0.000         0.000         0.000
+ Y6             0.000         0.000         0.000
+ Y7             0.000         0.000         0.000
+ Y8             0.000         0.000         0.000
+ Y9             0.000         0.000         0.000
+ Y10            0.000         0.000         0.000
+ Z1             1.000         0.000         0.000
+ Z2             1.000         0.000         0.000
+ Z3             1.000         0.000         0.000
+ Z4             1.000         0.000         0.000
+ Z5             1.000         0.000         0.000
+ Z6             1.000         0.000         0.000
+ Z7             1.000         0.000         0.000
+ Z8             1.000         0.000         0.000
+ Z9             1.000         0.000         0.000
+ Z10            1.000         0.000         0.000
+ X1             0.000         1.000         0.000
+ X2             0.000         0.000         1.000
+
+
+           THETA
+              Y1            Y2            Y3            Y4            Y5
+              ________      ________      ________      ________      ________
+ Y1             1.100
+ Y2             0.000         1.100
+ Y3             0.000         0.000         1.100
+ Y4             0.000         0.000         0.000         1.100
+ Y5             0.000         0.000         0.000         0.000         1.100
+ Y6             0.000         0.000         0.000         0.000         0.000
+ Y7             0.000         0.000         0.000         0.000         0.000
+ Y8             0.000         0.000         0.000         0.000         0.000
+ Y9             0.000         0.000         0.000         0.000         0.000
+ Y10            0.000         0.000         0.000         0.000         0.000
+ Z1             0.300         0.000         0.000         0.000         0.000
+ Z2             0.000         0.300         0.000         0.000         0.000
+ Z3             0.000         0.000         0.300         0.000         0.000
+ Z4             0.000         0.000         0.000         0.300         0.000
+ Z5             0.000         0.000         0.000         0.000         0.300
+ Z6             0.000         0.000         0.000         0.000         0.000
+ Z7             0.000         0.000         0.000         0.000         0.000
+ Z8             0.000         0.000         0.000         0.000         0.000
+ Z9             0.000         0.000         0.000         0.000         0.000
+ Z10            0.000         0.000         0.000         0.000         0.000
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              Y6            Y7            Y8            Y9            Y10
+              ________      ________      ________      ________      ________
+ Y6             1.100
+ Y7             0.000         1.100
+ Y8             0.000         0.000         1.100
+ Y9             0.000         0.000         0.000         1.100
+ Y10            0.000         0.000         0.000         0.000         1.100
+ Z1             0.000         0.000         0.000         0.000         0.000
+ Z2             0.000         0.000         0.000         0.000         0.000
+ Z3             0.000         0.000         0.000         0.000         0.000
+ Z4             0.000         0.000         0.000         0.000         0.000
+ Z5             0.000         0.000         0.000         0.000         0.000
+ Z6             0.300         0.000         0.000         0.000         0.000
+ Z7             0.000         0.300         0.000         0.000         0.000
+ Z8             0.000         0.000         0.300         0.000         0.000
+ Z9             0.000         0.000         0.000         0.300         0.000
+ Z10            0.000         0.000         0.000         0.000         0.300
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              Z1            Z2            Z3            Z4            Z5
+              ________      ________      ________      ________      ________
+ Z1             1.100
+ Z2             0.000         1.100
+ Z3             0.000         0.000         1.100
+ Z4             0.000         0.000         0.000         1.100
+ Z5             0.000         0.000         0.000         0.000         1.100
+ Z6             0.000         0.000         0.000         0.000         0.000
+ Z7             0.000         0.000         0.000         0.000         0.000
+ Z8             0.000         0.000         0.000         0.000         0.000
+ Z9             0.000         0.000         0.000         0.000         0.000
+ Z10            0.000         0.000         0.000         0.000         0.000
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              Z6            Z7            Z8            Z9            Z10
+              ________      ________      ________      ________      ________
+ Z6             1.100
+ Z7             0.000         1.100
+ Z8             0.000         0.000         1.100
+ Z9             0.000         0.000         0.000         1.100
+ Z10            0.000         0.000         0.000         0.000         1.100
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              X1            X2
+              ________      ________
+ X1             0.000
+ X2             0.000         0.000
+
+
+           ALPHA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+              120.000         4.000        -1.000       130.000         4.000
+
+
+           ALPHA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+               -1.000         0.000         0.000
+
+
+           BETA
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ ETA0SY         0.000         0.000         0.000         0.000         0.000
+ ETA1SY         0.000         0.000         0.000         0.000         0.000
+ ETA2SY         0.000         0.000         0.000         0.000         0.000
+ ETA0SZ         0.000         0.000         0.000         0.000         0.000
+ ETA1SZ         0.000         0.000         0.000         0.000         0.000
+ ETA2SZ         0.000         0.000         0.000         0.000         0.000
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           BETA
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ ETA0SY         0.000         0.000         0.000
+ ETA1SY         0.000         0.000         0.000
+ ETA2SY         0.000         0.000         0.000
+ ETA0SZ         0.000         0.000         0.000
+ ETA1SZ         0.000         0.000         0.000
+ ETA2SZ         0.000         0.000         0.000
+ X1             0.000         0.000         0.000
+ X2             0.000         0.000         0.000
+
+
+           PSI
+              ETA0SY        ETA1SY        ETA2SY        ETA0SZ        ETA1SZ
+              ________      ________      ________      ________      ________
+ ETA0SY        55.000
+ ETA1SY         4.000         0.500
+ ETA2SY        -1.500         0.000         0.500
+ ETA0SZ        28.000         3.200         0.000        70.000
+ ETA1SZ         2.500         0.300         0.000         5.000         0.500
+ ETA2SZ         0.000         0.000         0.000        -2.000         0.000
+ X1             0.000         0.000         0.000         0.000         0.000
+ X2             0.000         0.000         0.000         0.000         0.000
+
+
+           PSI
+              ETA2SZ        X1            X2
+              ________      ________      ________
+ ETA2SZ         0.500
+ X1             0.000         0.515
+ X2             0.000         0.000         0.475
+
+
+     STARTING VALUES FOR LATENT CLASS REGRESSION MODEL PART
+
+
+           ALPHA(C)
+              C#1           C#2
+              ________      ________
+                0.000         0.000
+
+
+           GAMMA(C)
+              X1            X2
+              ________      ________
+ C#1            0.000         0.000
+ C#2            0.000         0.000
+
+
+     STARTING VALUES FOR THE ADDITIONAL PARAMETERS
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1MUETA0      C1MUETA1      C1MUETA2      C1MUGY        C1PSI0Y0
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         4.000         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1PSI0Y1      C1PSI0Y2      C1PSI1Y1      C1PSI1Y2      C1PSI2Y2
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1MUGZ        C1PSI0Z0      C1PSI0Z1      C1PSI0Z2      C1PSI1Z1
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         4.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C1PSI1Z2      C1PSI2Z2      C1PSI1Y0      C1PSI2Y0      C1PSI2Y1
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2MUETA0      C2MUETA1      C2MUETA2      C2MUGY        C2PSI0Y0
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2PSI0Y1      C2PSI0Y2      C2PSI1Y1      C2PSI1Y2      C2PSI2Y2
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2MUGZ        C2PSI0Z0      C2PSI0Z1      C2PSI0Z2      C2PSI1Z1
+              ________      ________      ________      ________      ________
+                0.500         0.500         4.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+              C2PSI1Z2      C2PSI2Z2      C2PSI1Y0      C2PSI2Y0      C2PSI2Y1
+              ________      ________      ________      ________      ________
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+                0.500         0.500         5.000         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+                0.500         0.500         0.500         0.500         0.500
+
+
+           NEW/ADDITIONAL PARAMETERS
+                0.500         0.500         0.500
+
+
+TECHNICAL 8 OUTPUT
+
+
+  INITIAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.20373266D+05    0.0000000    0.0000000  EM
+              2 -0.19899605D+05  473.6611720    0.0232492  EM
+              3 -0.19820517D+05   79.0877488    0.0039743  EM
+              4 -0.19794551D+05   25.9662975    0.0013101  EM
+              5 -0.19786393D+05    8.1577168    0.0004121  EM
+              6 -0.19782771D+05    3.6223281    0.0001831  EM
+              7 -0.19780647D+05    2.1235296    0.0001073  EM
+              8 -0.19779378D+05    1.2692895    0.0000642  EM
+              9 -0.19778502D+05    0.8761520    0.0000443  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 1
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.49673808D+05    0.0000000    0.0000000  EM
+              2 -0.20065838D+05 ************    0.5960479  EM
+              3 -0.20065526D+05    0.3114352    0.0000155  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 2
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.54822419D+05    0.0000000    0.0000000  EM
+              2 -0.20365192D+05 ************    0.6285244  EM
+              3 -0.20069525D+05  295.6673046    0.0145183  EM
+              4 -0.20068281D+05    1.2439555    0.0000620  EM
+              5 -0.20067440D+05    0.8411279    0.0000419  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 3
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.49223487D+05    0.0000000    0.0000000  EM
+              2 -0.22176755D+05 ************    0.5494680  EM
+              3 -0.20284655D+05 1892.1000496    0.0853191  EM
+              4 -0.20100083D+05  184.5723115    0.0090991  EM
+              5 -0.20063912D+05   36.1711118    0.0017996  EM
+              6 -0.20050463D+05   13.4493827    0.0006703  EM
+              7 -0.20039149D+05   11.3135831    0.0005643  EM
+              8 -0.20035537D+05    3.6119254    0.0001802  EM
+              9 -0.20033633D+05    1.9040342    0.0000950  EM
+             10 -0.20032416D+05    1.2167956    0.0000607  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 4
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.39903066D+05    0.0000000    0.0000000  EM
+              2 -0.20237769D+05 ************    0.4928267  EM
+              3 -0.20094055D+05  143.7139414    0.0071013  EM
+              4 -0.20066167D+05   27.8880938    0.0013879  EM
+              5 -0.20055557D+05   10.6100390    0.0005288  EM
+              6 -0.20049333D+05    6.2240004    0.0003103  EM
+              7 -0.20046136D+05    3.1963651    0.0001594  EM
+              8 -0.20045140D+05    0.9967805    0.0000497  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 5
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.41271918D+05    0.0000000    0.0000000  EM
+              2 -0.20111922D+05 ************    0.5126972  EM
+              3 -0.20062877D+05   49.0451382    0.0024386  EM
+              4 -0.20036359D+05   26.5172197    0.0013217  EM
+              5 -0.19992531D+05   43.8280836    0.0021874  EM
+              6 -0.19952574D+05   39.9576519    0.0019986  EM
+              7 -0.19915658D+05   36.9154726    0.0018502  EM
+              8 -0.19880491D+05   35.1672672    0.0017658  EM
+              9 -0.19845312D+05   35.1789621    0.0017695  EM
+             10 -0.19820215D+05   25.0968067    0.0012646  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 6
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.36572624D+05    0.0000000    0.0000000  EM
+              2 -0.20229255D+05 ************    0.4468744  EM
+              3 -0.20029576D+05  199.6786951    0.0098708  EM
+              4 -0.19975404D+05   54.1719263    0.0027046  EM
+              5 -0.19911487D+05   63.9174084    0.0031998  EM
+              6 -0.19856290D+05   55.1963871    0.0027721  EM
+              7 -0.19821860D+05   34.4297099    0.0017339  EM
+              8 -0.19802363D+05   19.4977348    0.0009836  EM
+              9 -0.19792484D+05    9.8785560    0.0004989  EM
+             10 -0.19786930D+05    5.5542592    0.0002806  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 7
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.43795871D+05    0.0000000    0.0000000  EM
+              2 -0.27861291D+05 ************    0.3638375  EM
+              3 -0.27861291D+05    0.0001432    0.0000000  EM
+              4 -0.27861291D+05    0.0000528    0.0000000  EM
+              5 -0.27861291D+05    0.0000196    0.0000000  EM
+              6 -0.27861291D+05    0.0000074    0.0000000  EM
+              7 -0.27861291D+05    0.0000029    0.0000000  EM
+              8 -0.27861291D+05    0.0000012    0.0000000  EM
+              9 -0.27861291D+05    0.0000006    0.0000000  EM
+             10 -0.27861291D+05    0.0000004    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 8
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.83811845D+05    0.0000000    0.0000000  EM
+              2 -0.20442696D+05 ************    0.7560882  EM
+              3 -0.20066351D+05  376.3446041    0.0184097  EM
+              4 -0.20065750D+05    0.6013382    0.0000300  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 9
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.39439961D+05    0.0000000    0.0000000  EM
+              2 -0.22249440D+05 ************    0.4358656  EM
+              3 -0.21931019D+05  318.4209149    0.0143114  EM
+              4 -0.20221189D+05 1709.8299695    0.0779640  EM
+              5 -0.20092068D+05  129.1213004    0.0063854  EM
+              6 -0.20073649D+05   18.4192049    0.0009167  EM
+              7 -0.20066195D+05    7.4536741    0.0003713  EM
+              8 -0.20063229D+05    2.9657450    0.0001478  EM
+              9 -0.20057222D+05    6.0070751    0.0002994  EM
+             10 -0.20053136D+05    4.0862599    0.0002037  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 10
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.61009423D+05    0.0000000    0.0000000  EM
+              2 -0.22747908D+05 ************    0.6271411  EM
+              3 -0.22667540D+05   80.3678884    0.0035330  EM
+              4 -0.22640705D+05   26.8352790    0.0011839  EM
+              5 -0.22635323D+05    5.3814722    0.0002377  EM
+              6 -0.22635323D+05    0.0000048    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 11
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.73929768D+05    0.0000000    0.0000000  EM
+              2 -0.20744115D+05 ************    0.7194078  EM
+              3 -0.20080613D+05  663.5016542    0.0319851  EM
+              4 -0.20063394D+05   17.2198983    0.0008575  EM
+              5 -0.20052059D+05   11.3348701    0.0005650  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 12
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.48585216D+05    0.0000000    0.0000000  EM
+              2 -0.20067065D+05 ************    0.5869718  EM
+              3 -0.20065936D+05    1.1299228    0.0000563  EM
+              4 -0.20065683D+05    0.2529862    0.0000126  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 13
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.61621365D+05    0.0000000    0.0000000  EM
+              2 -0.20134454D+05 ************    0.6732553  EM
+              3 -0.20072476D+05   61.9776770    0.0030782  EM
+              4 -0.20067456D+05    5.0198895    0.0002501  EM
+              5 -0.20065863D+05    1.5937351    0.0000794  EM
+              6 -0.20065640D+05    0.2231064    0.0000111  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 14
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.36900225D+05    0.0000000    0.0000000  EM
+              2 -0.20233262D+05 ************    0.4516764  EM
+              3 -0.20078249D+05  155.0132645    0.0076613  EM
+              4 -0.20056260D+05   21.9889459    0.0010952  EM
+              5 -0.20049495D+05    6.7648878    0.0003373  EM
+              6 -0.20046602D+05    2.8935291    0.0001443  EM
+              7 -0.20045532D+05    1.0692376    0.0000533  EM
+              8 -0.20044866D+05    0.6668562    0.0000333  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 15
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.35115351D+05    0.0000000    0.0000000  EM
+              2 -0.22011437D+05 ************    0.3731677  EM
+              3 -0.20070345D+05 1941.0919489    0.0881856  EM
+              4 -0.20069363D+05    0.9823068    0.0000489  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 16
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.49951482D+05    0.0000000    0.0000000  EM
+              2 -0.20473816D+05 ************    0.5901260  EM
+              3 -0.20087970D+05  385.8459585    0.0188458  EM
+              4 -0.20074988D+05   12.9815933    0.0006462  EM
+              5 -0.20069659D+05    5.3289118    0.0002655  EM
+              6 -0.20067438D+05    2.2212189    0.0001107  EM
+              7 -0.20066347D+05    1.0909651    0.0000544  EM
+              8 -0.20065935D+05    0.4124047    0.0000206  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 17
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.64675962D+05    0.0000000    0.0000000  EM
+              2 -0.21451773D+05 ************    0.6683192  EM
+              3 -0.20192108D+05 1259.6648694    0.0587208  EM
+              4 -0.20086861D+05  105.2475851    0.0052123  EM
+              5 -0.20065579D+05   21.2822417    0.0010595  EM
+              6 -0.20060462D+05    5.1160540    0.0002550  EM
+              7 -0.20057725D+05    2.7374697    0.0001365  EM
+              8 -0.20055049D+05    2.6754994    0.0001334  EM
+              9 -0.20053553D+05    1.4967309    0.0000746  EM
+             10 -0.20051310D+05    2.2423834    0.0001118  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 18
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.47035416D+05    0.0000000    0.0000000  EM
+              2 -0.20154098D+05 ************    0.5715123  EM
+              3 -0.20071099D+05   82.9988579    0.0041182  EM
+              4 -0.20039002D+05   32.0975920    0.0015992  EM
+              5 -0.20016269D+05   22.7326826    0.0011344  EM
+              6 -0.19990613D+05   25.6560855    0.0012818  EM
+              7 -0.19979324D+05   11.2892517    0.0005647  EM
+              8 -0.19972307D+05    7.0164573    0.0003512  EM
+              9 -0.19962024D+05   10.2834031    0.0005149  EM
+             10 -0.19947128D+05   14.8952328    0.0007462  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 19
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.54635085D+05    0.0000000    0.0000000  EM
+              2 -0.27729904D+05 ************    0.4924524  EM
+              3 -0.27729904D+05    0.0000618    0.0000000  EM
+              4 -0.27729904D+05    0.0000227    0.0000000  EM
+              5 -0.27729904D+05    0.0000084    0.0000000  EM
+              6 -0.27729904D+05    0.0000031    0.0000000  EM
+              7 -0.27729904D+05    0.0000012    0.0000000  EM
+              8 -0.27729904D+05    0.0000004    0.0000000  EM
+              9 -0.27729904D+05    0.0000002    0.0000000  EM
+             10 -0.27729904D+05    0.0000001    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 20
+
+
+   E STEP  ITER  LOGLIKELIHOOD    ABS CHANGE   REL CHANGE  ALGORITHM
+              1 -0.57264953D+05    0.0000000    0.0000000  EM
+              2 -0.20074593D+05 ************    0.6494437  EM
+              3 -0.20069673D+05    4.9199003    0.0002451  EM
+              4 -0.20068179D+05    1.4934649    0.0000744  EM
+              5 -0.20067474D+05    0.7055719    0.0000352  EM
+
+
+  FINAL STAGE ITERATIONS
+
+
+  TECHNICAL 8 OUTPUT FOR UNPERTURBED STARTING VALUE SET
+
+
+              9 -0.19778502D+05    0.8761520    0.0000443  EM
+             10 -0.19777943D+05    0.5588413    0.0000283  EM
+             11 -0.19777582D+05    0.3612233    0.0000183  EM
+             12 -0.19777411D+05    0.1707104    0.0000086  EM
+             13 -0.19777317D+05    0.0944172    0.0000048  EM
+             14 -0.19777263D+05    0.0539398    0.0000027  EM
+             15 -0.19777233D+05    0.0296666    0.0000015  EM
+             16 -0.19777216D+05    0.0170203    0.0000009  EM
+             17 -0.19777207D+05    0.0093423    0.0000005  EM
+             18 -0.19777200D+05    0.0063539    0.0000003  EM
+             19 -0.19777197D+05    0.0032742    0.0000002  EM
+             20 -0.19777195D+05    0.0017598    0.0000001  EM
+             21 -0.19777194D+05    0.0011189    0.0000001  EM
+             22 -0.19777193D+05    0.0007267    0.0000000  EM
+             23 -0.19777193D+05    0.0003653    0.0000000  EM
+             24 -0.19777193D+05    0.0002177    0.0000000  EM
+             25 -0.19777193D+05    0.0001488    0.0000000  EM
+             26 -0.19777193D+05    0.0000774    0.0000000  EM
+             27 -0.19777193D+05    0.0000674    0.0000000  EM
+             28 -0.19777193D+05    0.0000284    0.0000000  EM
+             29 -0.19777193D+05    0.0000188    0.0000000  EM
+             30 -0.19777193D+05    0.0000104    0.0000000  EM
+             31 -0.19777193D+05    0.0000043    0.0000000  EM
+             32 -0.19777192D+05    0.0000026    0.0000000  EM
+             33 -0.19777192D+05    0.0000056    0.0000000  EM
+             34 -0.19777192D+05    0.0000015    0.0000000  EM
+             35 -0.19777192D+05    0.0000006    0.0000000  EM
+             36 -0.19777192D+05    0.0000004    0.0000000  EM
+             37 -0.19777192D+05    0.0000002    0.0000000  EM
+             38 -0.19777192D+05    0.0000002    0.0000000  EM
+             39 -0.19777192D+05    0.0000001    0.0000000  EM
+             40 -0.19777192D+05    0.0000001    0.0000000  EM
+             41 -0.19777192D+05    0.0000000    0.0000000  EM
+             42 -0.19777192D+05    0.0000000    0.0000000  EM
+             43 -0.19777192D+05    0.0000000    0.0000000  EM
+             44 -0.19777192D+05    0.0000000    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 6
+
+
+             10 -0.19786930D+05    5.5542592    0.0002806  EM
+             11 -0.19783620D+05    3.3100219    0.0001673  EM
+             12 -0.19781625D+05    1.9943960    0.0001008  EM
+             13 -0.19780408D+05    1.2173679    0.0000615  EM
+             14 -0.19779541D+05    0.8667041    0.0000438  EM
+             15 -0.19778889D+05    0.6523263    0.0000330  EM
+             16 -0.19778417D+05    0.4721482    0.0000239  EM
+             17 -0.19778089D+05    0.3278175    0.0000166  EM
+             18 -0.19777824D+05    0.2654905    0.0000134  EM
+             19 -0.19777631D+05    0.1928478    0.0000098  EM
+             20 -0.19777492D+05    0.1384985    0.0000070  EM
+             21 -0.19777399D+05    0.0929447    0.0000047  EM
+             22 -0.19777337D+05    0.0625709    0.0000032  EM
+             23 -0.19777290D+05    0.0470882    0.0000024  EM
+             24 -0.19777258D+05    0.0314460    0.0000016  EM
+             25 -0.19777237D+05    0.0216998    0.0000011  EM
+             26 -0.19777221D+05    0.0157569    0.0000008  EM
+             27 -0.19777211D+05    0.0098783    0.0000005  EM
+             28 -0.19777205D+05    0.0062613    0.0000003  EM
+             29 -0.19777200D+05    0.0042024    0.0000002  EM
+             30 -0.19777198D+05    0.0026456    0.0000001  EM
+             31 -0.19777196D+05    0.0018442    0.0000001  EM
+             32 -0.19777195D+05    0.0012179    0.0000001  EM
+             33 -0.19777194D+05    0.0007538    0.0000000  EM
+             34 -0.19777193D+05    0.0004894    0.0000000  EM
+             35 -0.19777193D+05    0.0003555    0.0000000  EM
+             36 -0.19777193D+05    0.0002137    0.0000000  EM
+             37 -0.19777193D+05    0.0001358    0.0000000  EM
+             38 -0.19777193D+05    0.0000997    0.0000000  EM
+             39 -0.19777193D+05    0.0000586    0.0000000  EM
+             40 -0.19777193D+05    0.0000404    0.0000000  EM
+             41 -0.19777193D+05    0.0000264    0.0000000  EM
+             42 -0.19777193D+05    0.0000172    0.0000000  EM
+             43 -0.19777193D+05    0.0000095    0.0000000  EM
+             44 -0.19777193D+05    0.0000061    0.0000000  EM
+             45 -0.19777192D+05    0.0000079    0.0000000  EM
+             46 -0.19777192D+05    0.0000031    0.0000000  EM
+             47 -0.19777192D+05    0.0000019    0.0000000  EM
+             48 -0.19777192D+05    0.0000012    0.0000000  EM
+             49 -0.19777192D+05    0.0000006    0.0000000  EM
+             50 -0.19777192D+05    0.0000005    0.0000000  EM
+             51 -0.19777192D+05    0.0000013    0.0000000  EM
+             52 -0.19777192D+05    0.0000003    0.0000000  EM
+             53 -0.19777192D+05    0.0000002    0.0000000  EM
+             54 -0.19777192D+05    0.0000001    0.0000000  EM
+             55 -0.19777192D+05    0.0000001    0.0000000  EM
+             56 -0.19777192D+05    0.0000000    0.0000000  EM
+             57 -0.19777192D+05    0.0000000    0.0000000  EM
+             58 -0.19777192D+05    0.0000000    0.0000000  EM
+             59 -0.19777192D+05    0.0000000    0.0000000  EM
+             60 -0.19777192D+05    0.0000000    0.0000000  EM
+             61 -0.19777192D+05    0.0000000    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 5
+
+
+             10 -0.19820215D+05   25.0968067    0.0012646  EM
+             11 -0.19804127D+05   16.0884737    0.0008117  EM
+             12 -0.19794026D+05   10.1012039    0.0005101  EM
+             13 -0.19787981D+05    6.0443868    0.0003054  EM
+             14 -0.19784280D+05    3.7007799    0.0001870  EM
+             15 -0.19781893D+05    2.3877824    0.0001207  EM
+             16 -0.19780440D+05    1.4526537    0.0000734  EM
+             17 -0.19779439D+05    1.0005633    0.0000506  EM
+             18 -0.19778642D+05    0.7977697    0.0000403  EM
+             19 -0.19778157D+05    0.4841981    0.0000245  EM
+             20 -0.19777842D+05    0.3158613    0.0000160  EM
+             21 -0.19777605D+05    0.2363309    0.0000119  EM
+             22 -0.19777452D+05    0.1532292    0.0000077  EM
+             23 -0.19777366D+05    0.0857337    0.0000043  EM
+             24 -0.19777307D+05    0.0592626    0.0000030  EM
+             25 -0.19777269D+05    0.0384554    0.0000019  EM
+             26 -0.19777243D+05    0.0257038    0.0000013  EM
+             27 -0.19777224D+05    0.0184852    0.0000009  EM
+             28 -0.19777214D+05    0.0105278    0.0000005  EM
+             29 -0.19777206D+05    0.0075101    0.0000004  EM
+             30 -0.19777201D+05    0.0054691    0.0000003  EM
+             31 -0.19777198D+05    0.0027954    0.0000001  EM
+             32 -0.19777196D+05    0.0018707    0.0000001  EM
+             33 -0.19777195D+05    0.0012299    0.0000001  EM
+             34 -0.19777194D+05    0.0008591    0.0000000  EM
+             35 -0.19777194D+05    0.0005926    0.0000000  EM
+             36 -0.19777193D+05    0.0003952    0.0000000  EM
+             37 -0.19777193D+05    0.0002172    0.0000000  EM
+             38 -0.19777193D+05    0.0001390    0.0000000  EM
+             39 -0.19777193D+05    0.0000921    0.0000000  EM
+             40 -0.19777193D+05    0.0000664    0.0000000  EM
+             41 -0.19777193D+05    0.0000378    0.0000000  EM
+             42 -0.19777193D+05    0.0000243    0.0000000  EM
+             43 -0.19777193D+05    0.0000177    0.0000000  EM
+             44 -0.19777193D+05    0.0000105    0.0000000  EM
+             45 -0.19777193D+05    0.0000056    0.0000000  EM
+             46 -0.19777193D+05    0.0000034    0.0000000  EM
+             47 -0.19777192D+05    0.0000022    0.0000000  EM
+             48 -0.19777192D+05    0.0000047    0.0000000  EM
+             49 -0.19777192D+05    0.0000013    0.0000000  EM
+             50 -0.19777192D+05    0.0000007    0.0000000  EM
+             51 -0.19777192D+05    0.0000005    0.0000000  EM
+             52 -0.19777192D+05    0.0000002    0.0000000  EM
+             53 -0.19777192D+05    0.0000003    0.0000000  EM
+             54 -0.19777192D+05    0.0000001    0.0000000  EM
+             55 -0.19777192D+05    0.0000001    0.0000000  EM
+             56 -0.19777192D+05    0.0000000    0.0000000  EM
+             57 -0.19777192D+05    0.0000001    0.0000000  EM
+             58 -0.19777192D+05    0.0000000    0.0000000  EM
+             59 -0.19777192D+05    0.0000000    0.0000000  EM
+             60 -0.19777192D+05    0.0000000    0.0000000  EM
+             61 -0.19777192D+05    0.0000000    0.0000000  EM
+             62 -0.19777192D+05    0.0000000    0.0000000  EM
+
+
+  TECHNICAL 8 OUTPUT FOR STARTING VALUE SET 18
+
+
+             10 -0.19947128D+05   14.8952328    0.0007462  EM
+             11 -0.19924430D+05   22.6988366    0.0011380  EM
+             12 -0.19883879D+05   40.5501914    0.0020352  EM
+             13 -0.19843880D+05   39.9998455    0.0020117  EM
+             14 -0.19818378D+05   25.5019202    0.0012851  EM
+             15 -0.19803001D+05   15.3769154    0.0007759  EM
+             16 -0.19793558D+05    9.4428260    0.0004768  EM
+             17 -0.19787583D+05    5.9751800    0.0003019  EM
+             18 -0.19783773D+05    3.8100869    0.0001925  EM
+             19 -0.19781527D+05    2.2461619    0.0001135  EM
+             20 -0.19780102D+05    1.4241001    0.0000720  EM
+             21 -0.19779146D+05    0.9563394    0.0000483  EM
+             22 -0.19778457D+05    0.6895287    0.0000349  EM
+             23 -0.19778043D+05    0.4140043    0.0000209  EM
+             24 -0.19777777D+05    0.2655806    0.0000134  EM
+             25 -0.19777568D+05    0.2088311    0.0000106  EM
+             26 -0.19777432D+05    0.1356313    0.0000069  EM
+             27 -0.19777335D+05    0.0979273    0.0000050  EM
+             28 -0.19777281D+05    0.0537618    0.0000027  EM
+             29 -0.19777248D+05    0.0331105    0.0000017  EM
+             30 -0.19777226D+05    0.0214966    0.0000011  EM
+             31 -0.19777213D+05    0.0129113    0.0000007  EM
+             32 -0.19777206D+05    0.0071356    0.0000004  EM
+             33 -0.19777202D+05    0.0044496    0.0000002  EM
+             34 -0.19777199D+05    0.0031506    0.0000002  EM
+             35 -0.19777196D+05    0.0021567    0.0000001  EM
+             36 -0.19777195D+05    0.0014343    0.0000001  EM
+             37 -0.19777194D+05    0.0008825    0.0000000  EM
+             38 -0.19777194D+05    0.0005579    0.0000000  EM
+             39 -0.19777193D+05    0.0003532    0.0000000  EM
+             40 -0.19777193D+05    0.0002340    0.0000000  EM
+             41 -0.19777193D+05    0.0001551    0.0000000  EM
+             42 -0.19777193D+05    0.0001000    0.0000000  EM
+             43 -0.19777193D+05    0.0000664    0.0000000  EM
+             44 -0.19777193D+05    0.0000415    0.0000000  EM
+             45 -0.19777193D+05    0.0000288    0.0000000  EM
+             46 -0.19777193D+05    0.0000188    0.0000000  EM
+             47 -0.19777193D+05    0.0000102    0.0000000  EM
+             48 -0.19777193D+05    0.0000062    0.0000000  EM
+             49 -0.19777193D+05    0.0000040    0.0000000  EM
+             50 -0.19777192D+05    0.0000055    0.0000000  EM
+             51 -0.19777192D+05    0.0000021    0.0000000  EM
+             52 -0.19777192D+05    0.0000013    0.0000000  EM
+             53 -0.19777192D+05    0.0000008    0.0000000  EM
+             54 -0.19777192D+05    0.0000006    0.0000000  EM
+             55 -0.19777192D+05    0.0000003    0.0000000  EM
+             56 -0.19777192D+05    0.0000001    0.0000000  EM
+             57 -0.19777192D+05    0.0000003    0.0000000  EM
+             58 -0.19777192D+05    0.0000001    0.0000000  EM
+             59 -0.19777192D+05    0.0000001    0.0000000  EM
+             60 -0.19777192D+05    0.0000000    0.0000000  EM
+             61 -0.19777192D+05    0.0000000    0.0000000  EM
+             62 -0.19777192D+05    0.0000000    0.0000000  EM
+             63 -0.19777192D+05    0.0000000    0.0000000  EM
+             64 -0.19777192D+05    0.0000000    0.0000000  EM
+
+
+DIAGRAM INFORMATION
+
+  Mplus diagrams are currently not available for Mixture analysis.
+  No diagram output was produced.
+
+
+     Beginning Time:  12:48:42
+        Ending Time:  16:16:07
+       Elapsed Time:  03:27:25
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen
