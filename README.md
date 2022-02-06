@@ -14,7 +14,7 @@ In this part, we developed two models in unstructured time framework:
 (For OS, R version, and OpenMx version, see the demo)
 
 **Example data:** <br>
-- [Data](https://github.com/Veronica0206/NonLinearCurve/blob/main/data/bi_dat.RData)
+- [Data](https://github.com/Veronica0206/NonLinearCurve/blob/main/data/BLSGM_bi_dat.RData)
 
 **Source Code:** <br>
 ***R package: OpenMx*** <br>
@@ -42,15 +42,15 @@ In this part, we extended Mixture-of-Experts Models to the SEM framework with in
 (For OS, R version, and OpenMx version, see the demo)
 
 **Example data:** <br>
-- [Data](https://github.com/Veronica0206/NonLinearCurve/blob/main/data/uni_sub_dat.RData)
+- [Data](https://github.com/Veronica0206/NonLinearCurve/blob/main/data/BLSGM_uni_sub_dat.RData)
 
 **Source Code:** <br>
 ***R package: OpenMx*** <br>
 **The models developed in this project are now part of *R* package *NonLinearCurve* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
-- [Full Mixture Model (Full mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/FullMM_BLSGM.R)
-- [Growth Predictor Mixture Model (Expert-network mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/GPMM_BLSGM.R)
-- [Cluster Predictor Mixture Model (Gating-network mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/CPMM_BLSGM.R)
-- [Finite Mixture Model](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/FMM_BLSGM.R)
+- [Full Mixture Model (Full mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_FullMM.R)
+- [Growth Predictor Mixture Model (Expert-network mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_GPMM.R)
+- [Cluster Predictor Mixture Model (Gating-network mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_CPMM.R)
+- [Finite Mixture Model](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_FMM.R)
 
 ***MPlus 8*** <br>
 - [Full Mixture Model (Full mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Full%20MoE.inp)
@@ -71,14 +71,29 @@ Extending Growth Mixture Model to Assess Heterogeneity in Joint Development with
 
 **Description:** <br>
 In this part, we extended Growth Mixture Models to investigate heterogeneity in nonlinear joint development with individual measurement occasions:
-- GMM with a PBLSGM (fixed knots) as the within-class model
+- PBLSGMM with fixed knots w/o cluster predictor
+- PBLSGMM with fixed knots w/ cluster predictor
 
 **Demo:** 
-- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%203/OpenMx_demo3.md)
+- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%203/OpenMx_E3/OpenMx_demo.md)
 (For OS, R version, and OpenMx version, see the demo)
 
+**Example data:** <br>
+- [Data](https://github.com/Veronica0206/NonLinearCurve/blob/main/data/BLSGM_bi_sub_dat.RData)
+
 **Source Code:** <br>
-Will upload later.
+***R package: OpenMx*** <br>
+**The models developed in this project are now part of *R* package *NonLinearCurve* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
+- [PBLSGMM with fixed knots w/o cluster predictor](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/PBLSGM_FMM.R)
+- [PBLSGMM with fixed knots w/ cluster predictor](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/PBLSGM_CPMM.R)
+
+***MPlus 8*** <br>
+- [PBLSGMM with fixed knots w/ cluster predictor](https://github.com/Veronica0206/Extension_projects/blob/master/Part%203/MPlus8_E3/PBLSGMM.inp)
+
+**This project also provides *OpenMx* code with common parametric functional forms to capture nonlinear change patterns.**
+- [GMM with parallel quadratic growth curve](https://github.com/Veronica0206/Extension_projects/blob/master/Part%203/R1_sensitivity/GMM_parallel%20quad.R)
+- [GMM with parallel Jenss-Bayley growth curve](https://github.com/Veronica0206/Extension_projects/blob/master/Part%203/R1_sensitivity/GMM_parallel_JB.R)
+
 
 ## Part IV: Jenss-Bayley Latent Change Score Model with Individual Ratio of Growth Acceleration in the Framework of Individual Measurement Occasions
 **Manuscript Title:** <br>
