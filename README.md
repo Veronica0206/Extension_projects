@@ -115,4 +115,7 @@ Will upload later.
 
 **R functions (OpenMx) for all developed models are now part of *R* package *[NonLinearCurve](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/)* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.** <br>
 
+**Flow chart:
+![](https://github.com/Veronica0206/Extension_projects/blob/master/plot.jpg)<!-- -->
+
 
