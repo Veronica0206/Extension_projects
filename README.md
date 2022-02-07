@@ -132,7 +132,7 @@ Will upload later.
 **Project 2 (univariate longitudinal outcome, explore possible sub-populations):**<br>
 - Two-step BLSGMMs for estimating fixed knots (```BLSGMM_2steps.R```):
 
-(1) First step: soft cluster development trajectories of reading (mathematics) ability and estimate **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line) as well as the **mean value of the knot** (i.e., the purple diamond) for each cluster.
+(1) First step: soft cluster development trajectories of reading (mathematics) ability. For each cluster, the model provides the same insights as such from ```BLSGM_fixed.R```.
 
 (2) Second step: regress **the vector of posterior probabilities** on baseline covariates and investigate predictors for clusters.
 
