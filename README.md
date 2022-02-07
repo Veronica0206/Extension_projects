@@ -115,7 +115,7 @@ Will upload later.
 
 **We developed multiple models in the six projects described in these two repositories. *R* functions for all developed models are now part of *R* package *[NonLinearCurve](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/)* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**<br>
 
-**We provide a flow chart below to recommend ```diff - when``` to use ```diff - which model``` in this collection.**<br>
+**We provide a flow chart below to recommend <p style='color:red'>when.</p> to use <p style='color:red'>which model.</p> in this collection.**<br>
 
 ![](https://github.com/Veronica0206/Extension_projects/blob/master/plot.jpg)<!-- -->
 
