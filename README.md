@@ -130,7 +130,8 @@ Will upload later.
 - BLSGMs-TICs for estimating random knots (BLSGM_TIC_random.R): **means** and **variances** of **initial status, two slopes** (i.e., a slope of each stage of pink line), **and the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability. In addition, the model **allows for covariates**, such as demographic information, school information, and socioeconomics status, **to explain the variances**.
 
 **Project 2 (univariate longitudinal outcome, explore possible sub-populations):**<br>
-- Two-step BLSGMMs for estimating fixed knots
+- Two-step BLSGMMs for estimating fixed knots:
+
 (1) First step: soft cluster development trajectories of reading (mathematics) ability and estimate **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line) as well as the **mean value of the knot** (i.e., the purple diamond) for each cluster.
 
 (2) Second step: regress **the vector of posterior probabilities** on baseline covariates and investigate predictors for clusters.
