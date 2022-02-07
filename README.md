@@ -119,6 +119,6 @@ Will upload later.
 
 ![](https://github.com/Veronica0206/Extension_projects/blob/master/plot.jpg)<!-- -->
 
-**Suppose we have longitudinal records of reading ability and mathematics ability, and we view the development of two abilities as two stages (see the pink line and purple diamond in the plot below). From each of proposed model, we can expect the following ```insights```.**<br>
+**Suppose we have longitudinal records of reading ability and mathematics ability, and we view the development of two abilities as two stages (see the pink line and purple diamond in the plot below). From each of proposed models, we are able to have the following ```insights```.**<br>
 
 ![](https://github.com/Veronica0206/Extension_projects/blob/master/Demo.jpg)<!-- -->
