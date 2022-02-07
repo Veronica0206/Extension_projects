@@ -124,13 +124,13 @@ Will upload later.
 ![](https://github.com/Veronica0206/Extension_projects/blob/master/Demo.jpg)<!-- -->
 
 **Project 1 (univariate longitudinal outcome, one population assumption):**<br>
-- BLSGMs for estimating fixed knots (BLSGM_fixed.R): **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line), but only the **mean value of the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability.
-- BLSGMs for estimating random knots (BLSGM_random.R): **means** and **variances** of **initial status, two slopes** (i.e., a slope of each stage of pink line), **and the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability.
-- BLSGMs-TICs for estimating fixed knots (BLSGM_TIC_fixed.R): **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line), but only the **mean value of the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability. In addition, the model **allows for covariates**, such as demographic information, school information, and socioeconomics status, **to explain the variances**.
-- BLSGMs-TICs for estimating random knots (BLSGM_TIC_random.R): **means** and **variances** of **initial status, two slopes** (i.e., a slope of each stage of pink line), **and the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability. In addition, the model **allows for covariates**, such as demographic information, school information, and socioeconomics status, **to explain the variances**.
+- BLSGMs for estimating fixed knots (```BLSGM_fixed.R```): **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line), but only the **mean value of the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability.
+- BLSGMs for estimating random knots (```BLSGM_random.R```): **means** and **variances** of **initial status, two slopes** (i.e., a slope of each stage of pink line), **and the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability.
+- BLSGMs-TICs for estimating fixed knots (```BLSGM_TIC_fixed.R```): **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line), but only the **mean value of the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability. In addition, the model **allows for covariates**, such as demographic information, school information, and socioeconomics status, **to explain the variances**.
+- BLSGMs-TICs for estimating random knots (```BLSGM_TIC_random.R```): **means** and **variances** of **initial status, two slopes** (i.e., a slope of each stage of pink line), **and the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability. In addition, the model **allows for covariates**, such as demographic information, school information, and socioeconomics status, **to explain the variances**.
 
 **Project 2 (univariate longitudinal outcome, explore possible sub-populations):**<br>
-- Two-step BLSGMMs for estimating fixed knots:
+- Two-step BLSGMMs for estimating fixed knots (```BLSGMM_2steps.R```):
 
 (1) First step: soft cluster development trajectories of reading (mathematics) ability and estimate **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line) as well as the **mean value of the knot** (i.e., the purple diamond) for each cluster.
 
