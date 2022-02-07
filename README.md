@@ -137,5 +137,5 @@ Will upload later.
 (2) Second step: regress **the vector of posterior probabilities** on baseline covariates and investigate predictors for clusters.
 
 **Project 3 (multivariate longitudinal outcome, one population assumption):**<br>
-- PBLSGMs for estimating fixed knots (```PBLSGM_fixed.R```): other than the insights we obtained from ```BLSGM_fixed.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating intercept-intercept correlation and pre- and post-knot slope-slope correlation.
-- PBLSGMs for estimating random knots (```PBLSGM_random.R```): other than the insights we obtained from ```BLSGM_random.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating intercept-intercept correlation, pre- and post-knot slope-slope correlation, and knot-knot correlation.
+- PBLSGMs for estimating fixed knots (```PBLSGM_fixed.R```): other than the insights we obtained from ```BLSGM_fixed.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating **intercept-intercept correlation** and **pre- and post-knot slope-slope correlation**.
+- PBLSGMs for estimating random knots (```PBLSGM_random.R```): other than the insights we obtained from ```BLSGM_random.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating **intercept-intercept correlation**, **pre- and post-knot slope-slope correlation**, and **knot-knot correlation**.
