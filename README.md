@@ -139,3 +139,9 @@ Will upload later.
 **Project 3 (multivariate longitudinal outcome, one population assumption):**<br>
 - PBLSGMs for estimating fixed knots (```PBLSGM_fixed.R```): other than the insights we obtained from ```BLSGM_fixed.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating **intercept-intercept correlation** and **pre- and post-knot slope-slope correlation**.
 - PBLSGMs for estimating random knots (```PBLSGM_random.R```): other than the insights we obtained from ```BLSGM_random.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating **intercept-intercept correlation**, **pre- and post-knot slope-slope correlation**, and **knot-knot correlation**.
+
+**Project 4 (univariate longitudinal outcome, explore possible sub-populations):**<br>
+- Full Mixture Model (Full mixture of experts, ```BLSGM_fullMM.R```)
+- Growth Predictor Mixture Model (Expert-network mixture of experts, ```BLSGM_GPMM.R```)
+- Cluster Predictor Mixture Model (Gating-network mixture of experts, ```BLSGM_CPMM.R```)
+- Finite Mixture Model (```BLSGM_FMM.R```)
