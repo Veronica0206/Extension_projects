@@ -135,3 +135,7 @@ Will upload later.
 (1) First step: soft cluster development trajectories of reading (mathematics) ability and estimate **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line) as well as the **mean value of the knot** (i.e., the purple diamond) for each cluster.
 
 (2) Second step: regress **the vector of posterior probabilities** on baseline covariates and investigate predictors for clusters.
+
+**Project 3 (multivariate longitudinal outcome, one population assumption):**<br>
+- PBLSGMs for estimating fixed knots (```PBLSGM_fixed.R```): other than the insights we obtained from ```BLSGM_fixed.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating intercept-intercept correlation and pre- and post-knot slope-slope correlation.
+- PBLSGMs for estimating random knots (```PBLSGM_random.R```): other than the insights we obtained from ```BLSGM_random.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating intercept-intercept correlation, pre- and post-knot slope-slope correlation, and knot-knot correlation.
