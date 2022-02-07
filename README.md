@@ -154,4 +154,4 @@ will add later.
 
 In addition, 
 - Project 4 documents how to use latent Kappa statistics (Dumenci, 2011) to quantify the agreement between latent groups obtained from two clustering algorithms and the corresponding simulation studies.
-- Project 5 documents how to use growth mixture models, EFA and SEM forests to perform holistic assessments when exploring possible sub-groups of (joint) development and provide recommendations for real-world analyses.
+- Project 5 documents how to use growth mixture models (Muthén & Shedden, 1999), exploratory factor analysis (EFA) (Spearman, 1904) and SEM forests (Brandmaier et al., 2016) to perform holistic assessments when exploring possible sub-groups of (joint) development and provide recommendations for real-world analyses.
