@@ -145,3 +145,13 @@ Will upload later.
 - Growth Predictor Mixture Model (Expert-network mixture of experts, ```BLSGM_GPMM.R```): other than the insights that obtained from the first step of ```BLSGMM_2steps.R```, the proposed model allows for covariates to **explain the with-cluster variability in trajectories**. 
 - Cluster Predictor Mixture Model (Gating-network mixture of experts, ```BLSGM_CPMM.R```): other than the insights that obtained from the first step of ```BLSGMM_2steps.R```, the proposed model allows for covariates to **inform the cluster formation**. 
 - Finite Mixture Model (```BLSGM_FMM.R```): the same insights as such obtained the first step of ```BLSGMM_2steps.R```.
+
+**Project 5 (multivariate longitudinal outcome, explore possible sub-populations):**<br>
+- PBLSGMM with fixed knots w/ cluster predictor (```BLSGM_CPMM.R```): soft cluster development trajectories of reading (mathematics) ability. For each cluster, the model provides the same insights as such from ```PBLSGM_fixed.R```. In addition, the proposed model allows for covariates to **inform the cluster formation**. **Note that we also explore the heterogeneity in the correlation between reading and mathematics development with the proposed model**. 
+
+**Project 6 (mediation effects among multivariate longitudinal outcome, one population assumption):**<br>
+will add later.
+
+In addition, 
+- Project 4 documents how to use latent Kappa statistics to quantify the agreement between latent groups obtained from two clustering algorithms and the corresponding simulation studies.
+- Project 5 documents how to use growth mixture models, EFA and SEM forests to perform holistic assessments when exploring possible sub-groups of (joint) development.  
