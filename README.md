@@ -122,3 +122,11 @@ Will upload later.
 **Suppose we have longitudinal records of reading ability and mathematics ability, and we view the development of two abilities as two stages (see the pink line and purple diamond in the plot below). From each of proposed models, we are able to have the following ```insights```.**<br>
 
 ![](https://github.com/Veronica0206/Extension_projects/blob/master/Demo.jpg)<!-- -->
+
+**Project 1:**<br>
+- BLSGMs for estimating fixed knots (BLSGM_fixed.R): **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line), but only the **mean value of the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability.
+- BLSGMs for estimating random knots (BLSGM_random.R): **means** and **variances** of **initial status, two slopes** (i.e., a slope of each stage of pink line), **and the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability.
+- BLSGMs-TICs for estimating fixed knots (BLSGM_TIC_fixed.R): **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line), but only the **mean value of the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability. In addition, the model **allows for covariates**, such as demographic information, school information, and socioeconomics status, **to explain the variances**.
+- BLSGMs-TICs for estimating random knots (BLSGM_TIC_random.R): **means** and **variances** of **initial status, two slopes** (i.e., a slope of each stage of pink line), **and the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability. In addition, the model **allows for covariates**, such as demographic information, school information, and socioeconomics status, **to explain the variances**.
+
+
