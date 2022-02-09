@@ -160,8 +160,17 @@ Will upload later.
 (2) Second step: regress **the vector of posterior probabilities** on baseline covariates and investigate predictors for clusters.
 
 **Project 3 (multivariate longitudinal outcome, one population assumption):**<br>
-- PBLSGMs for estimating fixed knots (```PBLSGM_fixed.R```): other than the insights we obtained from ```BLSGM_fixed.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating **intercept-intercept correlation** and **pre- and post-knot slope-slope correlation** between the development of reading ability and mathematics ability.
-- PBLSGMs for estimating random knots (```PBLSGM_random.R```): other than the insights we obtained from ```BLSGM_random.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating **intercept-intercept correlation**, **pre- and post-knot slope-slope correlation**, and **knot-knot correlation** between the development of reading ability and mathematics ability.
+- PBLSGMs for estimating fixed knots (```PBLSGM_fixed.R```): 
+
+(1) the insights we obtained from ```BLSGM_fixed.R``` if we use the function to analyze reading and mathematics development, 
+
+(2) allows for estimating **intercept-intercept correlation** and **pre- and post-knot slope-slope correlation** between the development of reading ability and mathematics ability.
+
+- PBLSGMs for estimating random knots (```PBLSGM_random.R```): 
+
+(1) the insights we obtained from ```BLSGM_random.R``` if we use the function to analyze reading and mathematics development, 
+
+(2) allows for estimating **intercept-intercept correlation**, **pre- and post-knot slope-slope correlation**, and **knot-knot correlation** between the development of reading ability and mathematics ability.
 
 **Project 4 (univariate longitudinal outcome, explore possible sub-populations):**<br>
 - Full Mixture Model (Full mixture of experts, ```BLSGM_fullMM.R```): 
