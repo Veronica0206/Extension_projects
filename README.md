@@ -126,9 +126,9 @@ Will upload later.
 **Project 1 (univariate longitudinal outcome, one population assumption):**<br>
 - BLSGMs for estimating fixed knots (```BLSGM_fixed.R```): 
 
-(1) estimating **individual growth rate** in reading (mathematics) ability during each phase, 
+  - estimating **individual growth rate** in reading (mathematics) ability during each phase, 
 
-(2) identifying **transition time from one stage to another** with the **assumption** that *the transition time is roughly the same across the population*. 
+  - identifying **transition time from one stage to another** with the **assumption** that *the transition time is roughly the same across the population*. 
 
 - BLSGMs for estimating random knots (```BLSGM_random.R```): 
 
@@ -196,9 +196,9 @@ Will upload later.
 **Project 5 (multivariate longitudinal outcome, explore possible sub-populations):**<br>
 - PBLSGMM with fixed knots w/ cluster predictor (```BLSGM_CPMM.R```): 
 
-(1)soft cluster development trajectories of reading (mathematics) ability. 
+(1) soft cluster development trajectories of reading (mathematics) ability. 
 
-(2) For each cluster, the model provides the same insights as such from ```PBLSGM_fixed.R```. 
+(2) for each cluster, the model provides the same insights as such from ```PBLSGM_fixed.R```. 
 
 (3) the proposed model allows for covariates to **inform the cluster formation**. 
 
