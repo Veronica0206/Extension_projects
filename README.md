@@ -124,10 +124,33 @@ Will upload later.
 ![](https://github.com/Veronica0206/Extension_projects/blob/master/Demo.jpg)<!-- -->
 
 **Project 1 (univariate longitudinal outcome, one population assumption):**<br>
-- BLSGMs for estimating fixed knots (```BLSGM_fixed.R```): (1) estimating **individual growth rate** in reading (mathematics) ability during each phase, and (2) identifying **transition time from one stage to another** with the **assumption** that *the transition time is roughly the same across the population*. 
-- BLSGMs for estimating random knots (```BLSGM_random.R```): (1) estimating **individual growth rate** in reading (mathematics) ability during each phase, and (2) identifying **individual transition time from one stage to another**. 
-- BLSGMs-TICs for estimating fixed knots (```BLSGM_TIC_fixed.R```): (1) estimating **individual growth rate** in reading (mathematics) ability during each phase, (2) identifying **transition time from one stage to another** with the **assumption** that *the transition time is roughly the same across the population*, and (3) examining **the effects of a wide range of individual characteristics**, such as *approach to learning* and *attentional focus*, on their differences in reading (mathematics) development.
-- BLSGMs-TICs for estimating random knots (```BLSGM_TIC_random.R```): (1) estimating **individual growth rate** in reading (mathematics) ability during each phase, (2) identifying **individual transition time from one stage to another**, and (3) examining **the effects of a wide range of individual characteristics**, such as *approach to learning* and *attentional focus*, on their differences in reading (mathematics) development. 
+- BLSGMs for estimating fixed knots (```BLSGM_fixed.R```): 
+
+(1) estimating **individual growth rate** in reading (mathematics) ability during each phase, 
+
+(2) identifying **transition time from one stage to another** with the **assumption** that *the transition time is roughly the same across the population*. 
+
+- BLSGMs for estimating random knots (```BLSGM_random.R```): 
+
+(1) estimating **individual growth rate** in reading (mathematics) ability during each phase, 
+
+(2) identifying **individual transition time from one stage to another**. 
+
+- BLSGMs-TICs for estimating fixed knots (```BLSGM_TIC_fixed.R```): 
+
+(1) estimating **individual growth rate** in reading (mathematics) ability during each phase,
+
+(2) identifying **transition time from one stage to another** with the **assumption** that *the transition time is roughly the same across the population*, 
+
+(3) examining **the effects of a wide range of individual characteristics**, such as *approach to learning* and *attentional focus*, on their differences in reading (mathematics) development.
+
+- BLSGMs-TICs for estimating random knots (```BLSGM_TIC_random.R```): 
+
+(1) estimating **individual growth rate** in reading (mathematics) ability during each phase, 
+
+(2) identifying **individual transition time from one stage to another**, 
+
+(3) examining **the effects of a wide range of individual characteristics**, such as *approach to learning* and *attentional focus*, on their differences in reading (mathematics) development. 
 
 **Project 2 (univariate longitudinal outcome, explore possible sub-populations):**<br>
 - Two-step BLSGMMs for estimating fixed knots (```BLSGMM_2steps.R```):
@@ -141,13 +164,36 @@ Will upload later.
 - PBLSGMs for estimating random knots (```PBLSGM_random.R```): other than the insights we obtained from ```BLSGM_random.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating **intercept-intercept correlation**, **pre- and post-knot slope-slope correlation**, and **knot-knot correlation** between the development of reading ability and mathematics ability.
 
 **Project 4 (univariate longitudinal outcome, explore possible sub-populations):**<br>
-- Full Mixture Model (Full mixture of experts, ```BLSGM_fullMM.R```): other than the insights that obtained from the first step of ```BLSGMM_2steps.R```, the proposed model allows for covariates to **inform the cluster formation** and **explain the with-cluster variability** in trajectories. 
-- Growth Predictor Mixture Model (Expert-network mixture of experts, ```BLSGM_GPMM.R```): other than the insights that obtained from the first step of ```BLSGMM_2steps.R```, the proposed model allows for covariates to **explain the with-cluster variability in trajectories**. 
-- Cluster Predictor Mixture Model (Gating-network mixture of experts, ```BLSGM_CPMM.R```): other than the insights that obtained from the first step of ```BLSGMM_2steps.R```, the proposed model allows for covariates to **inform the cluster formation**. 
+- Full Mixture Model (Full mixture of experts, ```BLSGM_fullMM.R```): 
+
+(1) the insights that obtained from the first step of ```BLSGMM_2steps.R```, 
+
+(2) allows for covariates to **inform the cluster formation** and **explain the with-cluster variability** in trajectories. 
+
+- Growth Predictor Mixture Model (Expert-network mixture of experts, ```BLSGM_GPMM.R```): 
+
+(1) the insights that obtained from the first step of ```BLSGMM_2steps.R```, 
+
+(2) allows for covariates to **explain the with-cluster variability in trajectories**. 
+
+- Cluster Predictor Mixture Model (Gating-network mixture of experts, ```BLSGM_CPMM.R```): 
+
+(1) the insights that obtained from the first step of ```BLSGMM_2steps.R```, 
+
+(2) allows for covariates to **inform the cluster formation**. 
+
 - Finite Mixture Model (```BLSGM_FMM.R```): the same insights as such obtained the first step of ```BLSGMM_2steps.R```.
 
 **Project 5 (multivariate longitudinal outcome, explore possible sub-populations):**<br>
-- PBLSGMM with fixed knots w/ cluster predictor (```BLSGM_CPMM.R```): soft cluster development trajectories of reading (mathematics) ability. For each cluster, the model provides the same insights as such from ```PBLSGM_fixed.R```. In addition, the proposed model allows for covariates to **inform the cluster formation**. **Note that we also explore the heterogeneity in the correlation between reading and mathematics development with the proposed model**. 
+- PBLSGMM with fixed knots w/ cluster predictor (```BLSGM_CPMM.R```): 
+
+(1)soft cluster development trajectories of reading (mathematics) ability. 
+
+(2) For each cluster, the model provides the same insights as such from ```PBLSGM_fixed.R```. 
+
+(3) the proposed model allows for covariates to **inform the cluster formation**. 
+
+**Note that we also explore the heterogeneity in the correlation between reading and mathematics development with the proposed model**. 
 
 **Project 6 (mediation effects among multivariate longitudinal outcome, one population assumption):**<br>
 will add later.
