@@ -96,7 +96,7 @@ In this part, we extended Growth Mixture Models to investigate heterogeneity in 
 
 ## Part VI: Mediational Processes in Parallel Bilinear Spline Growth Curve Models in the Framework of Individual Measurement Occasions
 **Manuscript Title:** <br>
-Assessing Mediational Processes in Parallel Bilinear Spline Growth Curve Models in the Framework of Individual Measurement Occasions. (Accepted publication in ***Behavior Research Methods***)
+Assessing Mediational Processes in Parallel Bilinear Spline Growth Curve Models in the Framework of Individual Measurement Occasions. (Accepted for publication in ***Behavior Research Methods***)
 
 **Description:** <br>
 In this study, we extend latent growth mediation models with linear trajectories (Cheong et al., 2003) and develop two models to evaluate mediational processes where the bilinear spline (i.e., the linear-linear piecewise) growth model is utilized to capture the change patterns. We define the mediational process as either the baseline covariate or the change of covariate influencing the change of the mediator, which, in turn, affects the change of the outcome. 
