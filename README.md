@@ -108,8 +108,10 @@ In this study, we extend latent growth mediation models with linear trajectories
 (For OS, R version, and OpenMx version, see the demo)
 
 **Source Code:** <br>
-Will upload later.
-
+***R package: OpenMx*** <br>
+**The models developed in this project are now part of *R* package *NonLinearCurve* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
+- [Baseline covariate->longitudinal mediator->longitudinal outcome](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_Med2.R)
+- [Longitudinal covariate->longitudinal mediator->longitudinal outcome](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_Med3.R)
 
 ## Special instructions of repositories “Dissertation_projects” and “Extension_projects”:
 
