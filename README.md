@@ -100,8 +100,8 @@ Assessing Mediational Processes in Parallel Bilinear Spline Growth Curve Models 
 
 **Description:** <br>
 In this study, we extend latent growth mediation models with linear trajectories (Cheong et al., 2003) and develop two models to evaluate mediational processes where the bilinear spline (i.e., the linear-linear piecewise) growth model is utilized to capture the change patterns. We define the mediational process as either the baseline covariate or the change of covariate influencing the change of the mediator, which, in turn, affects the change of the outcome. 
-- Baseline covariate->longitudinal mediator->longitudinal outcome
-- Longitudinal covariate->longitudinal mediator->longitudinal outcome
+- Baseline predictor->longitudinal mediator->longitudinal outcome
+- Longitudinal predictor->longitudinal mediator->longitudinal outcome
 
 **Demo:** 
 - [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%206/OpenMx_demo6.md)
@@ -110,8 +110,8 @@ In this study, we extend latent growth mediation models with linear trajectories
 **Source Code:** <br>
 ***R package: OpenMx*** <br>
 **The models developed in this project are now part of *R* package *NonLinearCurve* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
-- [Baseline covariate->longitudinal mediator->longitudinal outcome](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_Med2.R)
-- [Longitudinal covariate->longitudinal mediator->longitudinal outcome](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_Med3.R)
+- [Baseline predictor->longitudinal mediator->longitudinal outcome](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_Med2.R)
+- [Longitudinal predictor->longitudinal mediator->longitudinal outcome](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_Med3.R)
 
 ## Special instructions of repositories “Dissertation_projects” and “Extension_projects”:
 
