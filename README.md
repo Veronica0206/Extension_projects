@@ -28,7 +28,7 @@ In this part, we developed two models in unstructured time framework:
 
 ## Part II: Extending Mixture of Experts Model to Investigate Heterogeneity of Trajectories
 **Manuscript Title:** <br>
-Extending Mixture of Experts Model to Investigate Heterogeneity of Trajectories: When, Where and How to Add Which Covariates (**accepted for publication in *Psychological Methods***)
+Extending Mixture of Experts Model to Investigate Heterogeneity of Trajectories: When, Where and How to Add Which Covariates (***Psychological Methods*, 2022, [Advance online publication](https://doi.org/10.1037/met0000436)**)
 
 **Description:** <br>
 In this part, we extended Mixture-of-Experts Models to the SEM framework with individual measurement occasions:
@@ -67,7 +67,7 @@ In this part, we extended Mixture-of-Experts Models to the SEM framework with in
 
 ## Part III: Growth Mixture Model to Investigate Heterogeneity in Nonlinear Joint Development with Individual Measurement Occasions
 **Manuscript Title:** <br>
-Extending Growth Mixture Model to Assess Heterogeneity in Joint Development with Piecewise Linear Trajectories in the Framework of Individual Measurement Occasions
+Extending Growth Mixture Model to Assess Heterogeneity in Joint Development with Piecewise Linear Trajectories in the Framework of Individual Measurement Occasions (***Psychological Methods*, 2022, [Advance online publication](https://doi.org/10.1037/met0000500)**)
 
 **Description:** <br>
 In this part, we extended Growth Mixture Models to investigate heterogeneity in nonlinear joint development with individual measurement occasions:
@@ -96,20 +96,22 @@ In this part, we extended Growth Mixture Models to investigate heterogeneity in 
 
 ## Part VI: Mediational Processes in Parallel Bilinear Spline Growth Curve Models in the Framework of Individual Measurement Occasions
 **Manuscript Title:** <br>
-Assessing Mediational Processes in Parallel Bilinear Spline Growth Curve Models in the Framework of Individual Measurement Occasions.
+Assessing Mediational Processes in Parallel Bilinear Spline Growth Curve Models in the Framework of Individual Measurement Occasions. (Accepted for publication in ***Behavior Research Methods***)
 
 **Description:** <br>
 In this study, we extend latent growth mediation models with linear trajectories (Cheong et al., 2003) and develop two models to evaluate mediational processes where the bilinear spline (i.e., the linear-linear piecewise) growth model is utilized to capture the change patterns. We define the mediational process as either the baseline covariate or the change of covariate influencing the change of the mediator, which, in turn, affects the change of the outcome. 
-- Baseline covariate->longitudinal mediator->longitudinal outcome
-- Longitudinal covariate->longitudinal mediator->longitudinal outcome
+- Baseline predictor->longitudinal mediator->longitudinal outcome
+- Longitudinal predictor->longitudinal mediator->longitudinal outcome
 
 **Demo:** 
 - [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%206/OpenMx_demo6.md)
 (For OS, R version, and OpenMx version, see the demo)
 
 **Source Code:** <br>
-Will upload later.
-
+***R package: OpenMx*** <br>
+**The models developed in this project are now part of *R* package *NonLinearCurve* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
+- [Baseline predictor->longitudinal mediator->longitudinal outcome](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_Med2.R)
+- [Longitudinal predictor->longitudinal mediator->longitudinal outcome](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_Med3.R)
 
 ## Special instructions of repositories “Dissertation_projects” and “Extension_projects”:
 
@@ -124,30 +126,60 @@ Will upload later.
 ![](https://github.com/Veronica0206/Extension_projects/blob/master/Demo.jpg)<!-- -->
 
 **Project 1 (univariate longitudinal outcome, one population assumption):**<br>
-- BLSGMs for estimating fixed knots (```BLSGM_fixed.R```): **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line), but only the **mean value of the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability.
-- BLSGMs for estimating random knots (```BLSGM_random.R```): **means** and **variances** of **initial status, two slopes** (i.e., a slope of each stage of pink line), **and the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability.
-- BLSGMs-TICs for estimating fixed knots (```BLSGM_TIC_fixed.R```): **means** and **variances** of **initial status and two slopes** (i.e., a slope of each stage of pink line), but only the **mean value of the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability. In addition, the model **allows for covariates**, such as demographic information, school information, and socioeconomics status, **to explain the variances**.
-- BLSGMs-TICs for estimating random knots (```BLSGM_TIC_random.R```): **means** and **variances** of **initial status, two slopes** (i.e., a slope of each stage of pink line), **and the knot** (i.e., the purple diamond) of the development of reading (mathematics) ability. In addition, the model **allows for covariates**, such as demographic information, school information, and socioeconomics status, **to explain the variances**.
+- BLSGMs for estimating fixed knots (```BLSGM_fixed.R```): 
+  - estimating **individual growth rate** in reading (mathematics) ability during each phase, 
+  - identifying **transition time from one stage to another** with the **assumption** that *the transition time is roughly the same across the population*. 
+
+- BLSGMs for estimating random knots (```BLSGM_random.R```): 
+  - estimating **individual growth rate** in reading (mathematics) ability during each phase, 
+  - identifying **individual transition time from one stage to another**. 
+
+- BLSGMs-TICs for estimating fixed knots (```BLSGM_TIC_fixed.R```): 
+  - estimating **individual growth rate** in reading (mathematics) ability during each phase,
+  - identifying **transition time from one stage to another** with the **assumption** that *the transition time is roughly the same across the population*, 
+  - examining **the effects of a wide range of individual characteristics**, such as *approach to learning* and *attentional focus*, on their differences in reading (mathematics) development.
+
+- BLSGMs-TICs for estimating random knots (```BLSGM_TIC_random.R```): 
+  - estimating **individual growth rate** in reading (mathematics) ability during each phase, 
+  - identifying **individual transition time from one stage to another**, 
+  - examining **the effects of a wide range of individual characteristics**, such as *approach to learning* and *attentional focus*, on their differences in reading (mathematics) development. 
 
 **Project 2 (univariate longitudinal outcome, explore possible sub-populations):**<br>
 - Two-step BLSGMMs for estimating fixed knots (```BLSGMM_2steps.R```):
-
-(1) First step: soft cluster development trajectories of reading (mathematics) ability. For each cluster, the model provides the same insights as such from ```BLSGM_fixed.R```.
-
-(2) Second step: regress **the vector of posterior probabilities** on baseline covariates and investigate predictors for clusters.
+  - First step: soft cluster development trajectories of reading (mathematics) ability. For each cluster, the model provides the same insights as such from ```BLSGM_fixed.R```.
+  - Second step: regress **the vector of posterior probabilities** on baseline covariates and investigate predictors for clusters.
 
 **Project 3 (multivariate longitudinal outcome, one population assumption):**<br>
-- PBLSGMs for estimating fixed knots (```PBLSGM_fixed.R```): other than the insights we obtained from ```BLSGM_fixed.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating **intercept-intercept correlation** and **pre- and post-knot slope-slope correlation**.
-- PBLSGMs for estimating random knots (```PBLSGM_random.R```): other than the insights we obtained from ```BLSGM_random.R``` if we use the function to analyze reading and mathematics development, the proposed model allows for estimating **intercept-intercept correlation**, **pre- and post-knot slope-slope correlation**, and **knot-knot correlation**.
+- PBLSGMs for estimating fixed knots (```PBLSGM_fixed.R```): 
+  - the insights we obtained from ```BLSGM_fixed.R``` if we use the function to analyze reading and mathematics development, 
+  - allows for estimating **intercept-intercept correlation** and **pre- and post-knot slope-slope correlation** between the development of reading ability and mathematics ability.
+
+- PBLSGMs for estimating random knots (```PBLSGM_random.R```): 
+  - the insights we obtained from ```BLSGM_random.R``` if we use the function to analyze reading and mathematics development, 
+  - allows for estimating **intercept-intercept correlation**, **pre- and post-knot slope-slope correlation**, and **knot-knot correlation** between the development of reading ability and mathematics ability.
 
 **Project 4 (univariate longitudinal outcome, explore possible sub-populations):**<br>
-- Full Mixture Model (Full mixture of experts, ```BLSGM_fullMM.R```): other than the insights that obtained from the first step of ```BLSGMM_2steps.R```, the proposed model allows for covariates to **inform the cluster formation** and **explain the with-cluster variability** in trajectories. 
-- Growth Predictor Mixture Model (Expert-network mixture of experts, ```BLSGM_GPMM.R```): other than the insights that obtained from the first step of ```BLSGMM_2steps.R```, the proposed model allows for covariates to **explain the with-cluster variability in trajectories**. 
-- Cluster Predictor Mixture Model (Gating-network mixture of experts, ```BLSGM_CPMM.R```): other than the insights that obtained from the first step of ```BLSGMM_2steps.R```, the proposed model allows for covariates to **inform the cluster formation**. 
+- Full Mixture Model (Full mixture of experts, ```BLSGM_fullMM.R```): 
+  - the insights that obtained from the first step of ```BLSGMM_2steps.R```, 
+  - allows for covariates to **inform the cluster formation** and **explain the with-cluster variability** in trajectories. 
+
+- Growth Predictor Mixture Model (Expert-network mixture of experts, ```BLSGM_GPMM.R```): 
+  - the insights that obtained from the first step of ```BLSGMM_2steps.R```, 
+  - allows for covariates to **explain the with-cluster variability in trajectories**. 
+
+- Cluster Predictor Mixture Model (Gating-network mixture of experts, ```BLSGM_CPMM.R```): 
+  - the insights that obtained from the first step of ```BLSGMM_2steps.R```, 
+  - allows for covariates to **inform the cluster formation**. 
+
 - Finite Mixture Model (```BLSGM_FMM.R```): the same insights as such obtained the first step of ```BLSGMM_2steps.R```.
 
 **Project 5 (multivariate longitudinal outcome, explore possible sub-populations):**<br>
-- PBLSGMM with fixed knots w/ cluster predictor (```BLSGM_CPMM.R```): soft cluster development trajectories of reading (mathematics) ability. For each cluster, the model provides the same insights as such from ```PBLSGM_fixed.R```. In addition, the proposed model allows for covariates to **inform the cluster formation**. **Note that we also explore the heterogeneity in the correlation between reading and mathematics development with the proposed model**. 
+- PBLSGMM with fixed knots w/ cluster predictor (```BLSGM_CPMM.R```): 
+  - soft cluster development trajectories of reading (mathematics) ability. 
+  - for each cluster, the model provides the same insights as such from ```PBLSGM_fixed.R```. 
+  - the proposed model allows for covariates to **inform the cluster formation**. 
+
+**Note that we also explore the heterogeneity in the correlation between reading and mathematics development with the proposed model**. 
 
 **Project 6 (mediation effects among multivariate longitudinal outcome, one population assumption):**<br>
 will add later.
