@@ -85,7 +85,7 @@ show(Figure1)
 
     ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo2_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](OpenMx_demo_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ## Second Model: Growth Predictor Mixture Model with Bilinear Spline Functional Form
 
@@ -125,7 +125,7 @@ show(Figure2)
 
     ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo2_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](OpenMx_demo_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ## Third Model: Cluster Predictor Mixture Model with Bilinear Spline Functional Form
 
@@ -166,7 +166,7 @@ show(Figure3)
 
     ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo2_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](OpenMx_demo_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 ## Fourth Model: Finite Mixture Model Mixture Model with Bilinear Spline Functional Form
 
@@ -202,4 +202,4 @@ show(Figure4)
 
     ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo2_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](OpenMx_demo_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
