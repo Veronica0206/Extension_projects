@@ -77,7 +77,7 @@ In this part, we extended Growth Mixture Models to investigate heterogeneity in 
 **Source Code:** <br>
 ***R package: nlpsem*** <br>
 **The models developed in this project are now part of *R* package *nlpsem* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
-- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/tree/master/Part3/Main/OpenMx/OpenMx_demo.md)
+- [*R* package: *nlpsem*](https://github.com/Veronica0206/Extension_projects/tree/master/Part3/Main/OpenMx/OpenMx_demo.md)
   
 ***MPlus 8*** <br>
 - [PBLSGMM with fixed knots w/ cluster predictor](https://github.com/Veronica0206/Extension_projects/tree/master/Part3/Main/MPlus8/PBLSGMM.inp)
