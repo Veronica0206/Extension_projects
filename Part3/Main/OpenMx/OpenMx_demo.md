@@ -90,7 +90,7 @@ show(Figure1)
 
     ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo3_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](OpenMx_demo_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
     ## 
     ## Trajectory 2 :
@@ -98,4 +98,4 @@ show(Figure1)
 
     ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo3_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
+![](OpenMx_demo_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
