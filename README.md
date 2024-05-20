@@ -9,18 +9,13 @@ In this part, we developed two models in unstructured time framework:
 - PBLSGMs for estimating fixed knots 
 - PBLSGMs for estimating random knots
 
-**Demo:**
-- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%201/OpenMx_E1/OpenMx_demo.md)
-(For OS, R version, and OpenMx version, see the demo)
-
 **Example data:** <br>
-- [Data](https://github.com/Veronica0206/NonLinearCurve/blob/main/data/BLSGM_bi_dat.RData)
+- [Data](https://github.com/Veronica0206/Extension_projects/tree/master/Part1/Data/Bi_BLS_dat.RData)
 
 **Source Code:** <br>
-***R package: OpenMx*** <br>
-**The models developed in this project are now part of *R* package *NonLinearCurve* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
-- [PBLSGMs for estimating fixed knots](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/PBLSGM_fixed.R)
-- [PBLSGMs for estimating random knots](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/PBLSGM_random.R)
+***R package: nlpsem*** <br>
+**The models developed in this project are now part of *R* package *nlpsem* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
+- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part1/OpenMx/OpenMx_demo.md)
 
 ***MPlus 8*** <br>
 - [PBLSGMs for estimating fixed knots](https://github.com/Veronica0206/Extension_projects/blob/master/Part%201/MPlus8_E1/PBLSGM_Unknown%20Fixed%20Knot.inp)
@@ -37,33 +32,35 @@ In this part, we extended Mixture-of-Experts Models to the SEM framework with in
 - Cluster Predictor Mixture Model (Gating-network mixture of experts)
 - Finite Mixture Model
 
-**Demo:** 
-- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/OpenMx_E2/OpenMx_demo.md)
-(For OS, R version, and OpenMx version, see the demo)
-
 **Example data:** <br>
-- [Data](https://github.com/Veronica0206/NonLinearCurve/blob/main/data/BLSGM_uni_sub_dat.RData)
+- [Data](https://github.com/Veronica0206/Extension_projects/tree/master/Part2/Main/Data/BLS_dat2.RData)
 
 **Source Code:** <br>
-***R package: OpenMx*** <br>
-**The models developed in this project are now part of *R* package *NonLinearCurve* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
-- [Full Mixture Model (Full mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_FullMM.R)
-- [Growth Predictor Mixture Model (Expert-network mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_GPMM.R)
-- [Cluster Predictor Mixture Model (Gating-network mixture of experts)](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_CPMM.R)
-- [Finite Mixture Model](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_FMM.R)
+***R package: nlpsem*** <br>
+**The models developed in this project are now part of *R* package *nlpsem* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
+- [*R* package: *nlpsem*](https://github.com/Veronica0206/Extension_projects/blob/master/Part2/Main/OpenMx/OpenMx_demo.md)
 
 ***MPlus 8*** <br>
-- [Full Mixture Model (Full mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Full%20MoE.inp)
-- [Growth Predictor Mixture Model (Expert-network mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Expert-network%20MoE.inp)
-- [Cluster Predictor Mixture Model (Gating-network mixture of experts)](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/Gating-network%20MoE.inp)
-- [Finite Mixture Model](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/MPlus8_E2/FMM.inp)
+- [Full Mixture Model (Full mixture of experts)](https://github.com/Veronica0206/Extension_projects/tree/master/Part2/Main/MPlus8/Full%20MoE.inp)
+- [Growth Predictor Mixture Model (Expert-network mixture of experts)](https://github.com/Veronica0206/Extension_projects/tree/master/Part2/Main/MPlus8/Expert-network%20MoE.inp)
+- [Cluster Predictor Mixture Model (Gating-network mixture of experts)](https://github.com/Veronica0206/Extension_projects/tree/master/Part2/Main/MPlus8/Gating-network%20MoE.inp)
+- [Finite Mixture Model](https://github.com/Veronica0206/Extension_projects/tree/master/Part2/Main/MPlus8/FMM.inp)
 
 **In this part, we further extend the full mixture model to allow time-varying covariates and provide *OpenMx* code.**
 - [Full mixture model with time-varying covariates](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/R1_extension/fun_for_VaryingMoE.R)
 
 **This project also provides *OpenMx* code with common parametric functional forms to capture nonlinear change patterns.**
-- [Quadratic growth curve](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/R1_sensitivity/full_MoE_quad.R)
-- [Jenss-Bayley growth curve](https://github.com/Veronica0206/Extension_projects/blob/master/Part%202/R1_sensitivity/full_MoE_JB.R)
+- Quadratic growth curve
+- Exponential growth curve
+- Jenss-Bayley growth curve
+
+**Example data:** <br>
+- [Quadratic growth curve](https://github.com/Veronica0206/Extension_projects/tree/master/Part2/Sensitivity/Data/QUAD_dat2.RData)
+- [Exponential growth curve](https://github.com/Veronica0206/Extension_projects/tree/master/Part2/Sensitivity/Data/EXP_dat2.RData)
+- [Jenss-Bayley growth curve](https://github.com/Veronica0206/Extension_projects/tree/master/Part2/Sensitivity/Data/JB_dat2.RData)
+
+**Source Code:** <br>
+- [*R* package: *nlpsem*](https://github.com/Veronica0206/Extension_projects/tree/master/Part2/Sensitivity/OpenMx/OpenMx_demo.md)
 
 ## Part III: Growth Mixture Model to Investigate Heterogeneity in Nonlinear Joint Development with Individual Measurement Occasions
 **Manuscript Title:** <br>
@@ -74,25 +71,29 @@ In this part, we extended Growth Mixture Models to investigate heterogeneity in 
 - PBLSGMM with fixed knots w/o cluster predictor
 - PBLSGMM with fixed knots w/ cluster predictor
 
-**Demo:** 
-- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%203/OpenMx_E3/OpenMx_demo.md)
-(For OS, R version, and OpenMx version, see the demo)
-
 **Example data:** <br>
-- [Data](https://github.com/Veronica0206/NonLinearCurve/blob/main/data/BLSGM_bi_sub_dat.RData)
+- [Data](https://github.com/Veronica0206/Extension_projects/tree/master/Part3/Main/Data/Bi_BLS_dat2.RData)
 
 **Source Code:** <br>
-***R package: OpenMx*** <br>
-**The models developed in this project are now part of *R* package *NonLinearCurve* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
-- [PBLSGMM with fixed knots w/o cluster predictor](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/PBLSGM_FMM.R)
-- [PBLSGMM with fixed knots w/ cluster predictor](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/PBLSGM_CPMM.R)
-
+***R package: nlpsem*** <br>
+**The models developed in this project are now part of *R* package *nlpsem* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
+- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/tree/master/Part3/Main/OpenMx/OpenMx_demo.md)
+  
 ***MPlus 8*** <br>
-- [PBLSGMM with fixed knots w/ cluster predictor](https://github.com/Veronica0206/Extension_projects/blob/master/Part%203/MPlus8_E3/PBLSGMM.inp)
+- [PBLSGMM with fixed knots w/ cluster predictor](https://github.com/Veronica0206/Extension_projects/tree/master/Part3/Main/MPlus8/PBLSGMM.inp)
 
 **This project also provides *OpenMx* code with common parametric functional forms to capture nonlinear change patterns.**
-- [GMM with parallel quadratic growth curve](https://github.com/Veronica0206/Extension_projects/blob/master/Part%203/R1_sensitivity/GMM_parallel%20quad.R)
-- [GMM with parallel Jenss-Bayley growth curve](https://github.com/Veronica0206/Extension_projects/blob/master/Part%203/R1_sensitivity/GMM_parallel_JB.R)
+- Quadratic growth curve
+- Exponential growth curve
+- Jenss-Bayley growth curve
+
+**Example data:** <br>
+- [Quadratic growth curve](https://github.com/Veronica0206/Extension_projects/tree/master/Part3/Sensitivity/Data/Bi_QUAD_dat2.RData)
+- [Exponential growth curve](https://github.com/Veronica0206/Extension_projects/tree/master/Part3/Sensitivity/Data/Bi_EXP_dat2.RData)
+- [Jenss-Bayley growth curve](https://github.com/Veronica0206/Extension_projects/tree/master/Part3/Sensitivity/Data/Bi_JB_dat2.RData)
+
+**Source Code:** <br>
+- [*R* package: *nlpsem*](https://github.com/Veronica0206/Extension_projects/tree/master/Part3/Sensitivity/OpenMx/OpenMx_demo.md)
 
 ## Part VI: Mediational Processes in Parallel Bilinear Spline Growth Curve Models in the Framework of Individual Measurement Occasions
 **Manuscript Title:** <br>
@@ -103,15 +104,14 @@ In this study, we extend latent growth mediation models with linear trajectories
 - Baseline predictor->longitudinal mediator->longitudinal outcome
 - Longitudinal predictor->longitudinal mediator->longitudinal outcome
 
-**Demo:** 
-- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part%206/OpenMx_demo6.md)
-(For OS, R version, and OpenMx version, see the demo)
+**Example data:** <br>
+- [Baseline predictor](https://github.com/Veronica0206/Extension_projects/tree/master/Part4/Data/MED2_BLS_dat.RData)
+- [Longitudinal predictor](https://github.com/Veronica0206/Extension_projects/tree/master/Part4/Data/MED3_BLS_dat.RData)
 
 **Source Code:** <br>
-***R package: OpenMx*** <br>
-**The models developed in this project are now part of *R* package *NonLinearCurve* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
-- [Baseline predictor->longitudinal mediator->longitudinal outcome](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_Med2.R)
-- [Longitudinal predictor->longitudinal mediator->longitudinal outcome](https://github.com/Veronica0206/NonLinearCurve/blob/main/R/BLSGM_Med3.R)
+***R package: nlpsem*** <br>
+**The models developed in this project are now part of *R* package *nlpsem* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
+- [*R* package: *nlpsem*](https://github.com/Veronica0206/Extension_projects/tree/master/Part4/OpenMx/OpenMx_demo.md)
 
 ## Special instructions of repositories “Dissertation_projects” and “Extension_projects”:
 
