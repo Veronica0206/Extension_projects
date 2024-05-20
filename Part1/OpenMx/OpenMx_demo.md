@@ -80,7 +80,7 @@ show(Figure1)
 
     ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo1_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](OpenMx_demo_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
     ## 
     ## Trajectory 2 :
@@ -88,7 +88,7 @@ show(Figure1)
 
     ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo1_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
+![](OpenMx_demo_files/figure-gfm/unnamed-chunk-5-2.png)<!-- -->
 
 ## Second Model: Multivariate Latent Growth Curve Model w/ Fixed Knots
 
@@ -137,7 +137,7 @@ show(Figure1)
 
     ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo1_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](OpenMx_demo_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
     ## 
     ## Trajectory 2 :
@@ -145,4 +145,4 @@ show(Figure1)
 
     ## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
 
-![](OpenMx_demo1_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
+![](OpenMx_demo_files/figure-gfm/unnamed-chunk-8-2.png)<!-- -->
