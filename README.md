@@ -15,11 +15,11 @@ In this part, we developed two models in unstructured time framework:
 **Source Code:** <br>
 ***R package: nlpsem*** <br>
 **The models developed in this project are now part of *R* package *nlpsem* (dependency: *OpenMx*), where we provide functions capable of 'calculating' starting values from the input and generate the estimates described in the manuscript.**
-- [*R* package: *OpenMx*](https://github.com/Veronica0206/Extension_projects/blob/master/Part1/OpenMx/OpenMx_demo.md)
+- [*R* package: *nlpsem*](https://github.com/Veronica0206/Extension_projects/blob/master/Part1/OpenMx/OpenMx_demo.md)
 
 ***MPlus 8*** <br>
-- [PBLSGMs for estimating fixed knots](https://github.com/Veronica0206/Extension_projects/blob/master/Part%201/MPlus8_E1/PBLSGM_Unknown%20Fixed%20Knot.inp)
-- [PBLSGMs for estimating random knots](https://github.com/Veronica0206/Extension_projects/blob/master/Part%201/MPlus8_E1/PBLSGM_Unknown%20Random%20Knot.inp)
+- [PBLSGMs for estimating fixed knots](https://github.com/Veronica0206/Extension_projects/tree/master/Part1/MPlus8/PBLSGM_Unknown%20Fixed%20Knot.inp)
+- [PBLSGMs for estimating random knots](https://github.com/Veronica0206/Extension_projects/tree/master/Part1/MPlus8/PBLSGM_Unknown%20Random%20Knot.inp)
 
 ## Part II: Extending Mixture of Experts Model to Investigate Heterogeneity of Trajectories
 **Manuscript Title:** <br>
